@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .reference {
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            border: 1px solid #8AC763;
+            margin: 150px 0 150px 600px;
+            text-align: center;
+        }
+        .popper {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+        }
+        .p1 {
+            border: 1px solid #678CB1;
+        }
+        .p2 {
+            border: 1px solid #FACD22;
+        }
+        .p3 {
+            border: 1px solid #f5222d;
+        }
+    </style>
+</head>
+<body>
+<div class="reference">Reference</div>
+<div class="popper p1">Popper</div>
+<div class="popper p2">Popper</div>
+<div class="popper p3">Popper</div>
+<script src="js/popper.min.js"></script>
+<script>
+    const reference = document.querySelector('.reference');
+    const poppers = document.querySelectorAll('.popper');
+    new Popper(reference, poppers[0], {
+        placement: 'bottom-start',
+    });
+    new Popper(reference, poppers[1], {
+        placement: 'bottom',
+    });
+    new Popper(reference, poppers[2], {
+        placement: 'bottom-end',
+    });
+
+    /* 坐标系Y轴是2个元素连线朝外 */
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+        .reference {
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            border: 1px solid #8AC763;
+            margin: 50px 0 50px 600px;
+            text-align: center;
+        }
+        .popper {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border: 1px solid #678CB1;
+            text-align: center;
+        }
+        [x-arrow] {
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 10px;
+            /*left: 0;*/
+            /*top: 0;*/
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="reference">Reference</div>
+<div class="popper">Popper <i x-arrow=""></i></div>
+<script src="js/popper.min.js"></script>
+<script>
+    const reference = document.querySelector('.reference');
+    const popper = document.querySelector('.popper');
+    const arrow = document.querySelector('.arrow');
+    const instance = new Popper(reference, popper, {
+        // placement: 'left',
+        // positionFixed: true,
+        // removeOnDestroy: true,
+        modifiers: {
+            /*offset: {
+                // offset: '120, 55'
+            },*/
+            arrow: {
+                // element: arrow,
+            },
+            /*preventOverflow: {
+                boundariesElement: document.body, // 边界元素
+            },*/
+            /*flip: {
+                padding: 20, // 距离边界20就重新定位
+                boundariesElement: document.body, // 边界元素
+            },*/
+            /*applyStyle: {
+                onLoad() {
+
+                },
+            }*/
+        },
+        onCreate(data) {
+            // console.log(data);
+        },
+        onUpdate(data) {
+            // console.log(data);
+        },
+    });
+</script>
+</body>
+</html>
