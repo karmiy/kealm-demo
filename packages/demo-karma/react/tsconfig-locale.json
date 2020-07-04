@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "./lib/common",
+    "jsx": "preserve"
+  },
+  "include": [
+    "src/components/**/locale/*"
+  ]
+}
