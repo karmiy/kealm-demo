@@ -1,15 +1,13 @@
 {
   "name": "demo-babel",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
+  "description": "demo-babel",
+  "author": "karmiy",
   "scripts": {
     "compiler": "babel src --out-dir lib",
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --config build/webpack.dev.conf.js",
     "build": "cross-env NODE_ENV=prod webpack --progress --config build/webpack.prod.conf.js"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.8.4",

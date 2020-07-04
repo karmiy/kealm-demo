@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist", // 输出路径，可以省略
+        "module": "commonjs", // 指定生成哪个模块系统代码
+        "moduleResolution": "Node",
+        "target": "es5", // 打包成es5
+        "allowJs": true, // 允许在ts中也能引入js的文件
+        "strict": true,
+        "alwaysStrict": true,
+        "lib": ["es2017", "es7", "es6", "dom"], // 编译过程要引入的库
+        "esModuleInterop": true, // 允许import x from 'XX'(正常引入需要import * as x from 'XX')
+        "jsx": "react",
+        "baseUrl": "./",
+        "paths": {
+            "@utils/*": ["src/utils/*"],
+            "@/*": ["src/*"],
+            "@components/*": ["src/components/*"]
+        }
+    }
+}

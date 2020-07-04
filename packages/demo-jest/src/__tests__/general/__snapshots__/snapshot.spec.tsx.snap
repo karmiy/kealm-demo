@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly test createdAt is a date type and id is a number type 1`] = `
+Object {
+  "createdAt": Any<Date>,
+  "id": Any<Number>,
+  "name": "LeBron James CV",
+}
+`;
+
+exports[`renders correctly test innerText of wrap is "contents" 1`] = `
+<div
+  className="wrap"
+>
+  <p>
+    contents
+  </p>
+</div>
+`;

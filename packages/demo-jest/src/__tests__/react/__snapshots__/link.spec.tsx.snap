@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link test snapshot that Link changes the class when hovered 1`] = `
+<a
+  className="normal"
+  href="https://github.com/karmiy/demo-jest"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  demo-jest
+</a>
+`;
+
+exports[`Link test snapshot that Link changes the class when hovered 2`] = `
+<a
+  className="hovered"
+  href="https://github.com/karmiy/demo-jest"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  demo-jest
+</a>
+`;
+
+exports[`Link test snapshot that Link changes the class when hovered 3`] = `
+<a
+  className="normal"
+  href="https://github.com/karmiy/demo-jest"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  demo-jest
+</a>
+`;

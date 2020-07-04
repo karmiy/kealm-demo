@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link test snapshot that Link changes the class when hovered 1`] = `
+<a
+  class="normal"
+  href="https://github.com/karmiy/demo-jest"
+/>
+`;
+
+exports[`Link test snapshot that Link changes the class when hovered 2`] = `
+<a
+  class="hovered"
+  href="https://github.com/karmiy/demo-jest"
+/>
+`;
+
+exports[`Link test snapshot that Link changes the class when hovered 3`] = `
+<a
+  class="normal"
+  href="https://github.com/karmiy/demo-jest"
+/>
+`;

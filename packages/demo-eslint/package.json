@@ -2,6 +2,7 @@
   "name": "demo-eslint",
   "version": "1.0.0",
   "description": "demo-eslint",
+  "author": "karmiy",
   "scripts": {
     "eslint:javascript": "cd ./packages/javascript && npm run eslint",
     "eslint:typescript": "cd ./packages/typescript && npm run eslint",
@@ -36,7 +37,6 @@
     "kealm",
     "kmy"
   ],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "husky": "^4.2.5",
