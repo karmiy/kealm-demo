@@ -2,7 +2,6 @@
   "name": "demo-mockjs",
   "version": "1.0.2",
   "description": "demo-mockjs",
-  "main": "./lib/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --config build/webpack.dev.conf.js",
     "build": "cross-env NODE_ENV=prod webpack --progress --config build/webpack.prod.conf.js"
@@ -12,7 +11,7 @@
     "kealm",
     "kmy"
   ],
-  "author": "",
+  "author": "karmiy",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.5.5",
