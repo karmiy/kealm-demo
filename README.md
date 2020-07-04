@@ -1,0 +1,1 @@
+![logo](./shared/static/imgs/logo-kealm.png)
