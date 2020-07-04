@@ -1,0 +1,25 @@
+{
+  "name": "demo-eslint-vue",
+  "version": "1.0.0",
+  "description": "demo-eslint-vue",
+  "keywords": [
+    "eslint",
+    "vue",
+    "kealm",
+    "kmy"
+  ],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "eslint": "eslint",
+    "lint": "eslint ./ --ext .vue",
+    "lint:fix": "eslint ./ --ext .vue --fix"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-vue": "^6.2.2"
+  }
+}

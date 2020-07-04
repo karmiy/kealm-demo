@@ -1,0 +1,26 @@
+{
+  "name": "demo-eslint-javascript",
+  "version": "1.0.0",
+  "description": "demo-eslint-javascript",
+  "keywords": [
+    "eslint",
+    "javascript",
+    "kealm",
+    "kmy"
+  ],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "eslint": "eslint",
+    "lint": "eslint ./ --ext .js",
+    "lint:fix": "eslint ./ --ext .js --fix"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}

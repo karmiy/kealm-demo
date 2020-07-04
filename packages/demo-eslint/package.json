@@ -1,0 +1,45 @@
+{
+  "name": "demo-eslint",
+  "version": "1.0.0",
+  "description": "demo-eslint",
+  "scripts": {
+    "eslint:javascript": "cd ./packages/javascript && npm run eslint",
+    "eslint:typescript": "cd ./packages/typescript && npm run eslint",
+    "eslint:vue": "cd ./packages/vue && npm run eslint",
+    "eslint:react": "cd ./packages/react && npm run eslint",
+    "eslint:typescript-react": "cd ./packages/typescript-react && npm run eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "npm run eslint:javascript"
+    ],
+    "*.{ts}": [
+        "npm run eslint:typescript"
+    ],
+    "*.{vue}": [
+        "npm run eslint:vue"
+    ],
+    "*.{jsx}": [
+        "npm run eslint:react"
+    ],
+    "*.{tsx}": [
+        "npm run eslint:typescript-react"
+    ]
+  },
+  "keywords": [
+    "eslint",
+    "kealm",
+    "kmy"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.9"
+  }
+}

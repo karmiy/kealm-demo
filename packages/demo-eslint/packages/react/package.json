@@ -1,0 +1,33 @@
+{
+  "name": "demo-eslint-react",
+  "version": "1.0.0",
+  "description": "demo-eslint-react",
+  "keywords": [
+    "eslint",
+    "react",
+    "kealm",
+    "kmy"
+  ],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "eslint": "eslint",
+    "lint": "eslint ./ --ext .jsx",
+    "lint:fix": "eslint ./ --ext .jsx --fix"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
