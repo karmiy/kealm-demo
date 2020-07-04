@@ -1,0 +1,20 @@
+{
+  "name": "kealm-lerna-2",
+  "version": "1.0.3",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./run.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "url-loader": "^4.1.0"
+  },
+  "gitHead": "da6cce8862121f20991ee7b7db74a9f3b79df1f9"
+}
