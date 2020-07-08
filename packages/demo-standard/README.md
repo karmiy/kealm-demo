@@ -1,3 +1,5 @@
+![logo](../../shared/static/imgs/logo-kealm.png)
+
 ## 规范
 
 ### JavaScript 命名规范
