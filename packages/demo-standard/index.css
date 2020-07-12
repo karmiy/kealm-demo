@@ -1,0 +1,19 @@
+/* 头部区域 */
+.header {
+    width: 100%;
+}
+
+/* ------ START 产品块 ------ */
+/* 展示区 */
+.main {
+    height: 100%;
+    overflow: hidden;
+    /* color: #1394ff; */
+}
+
+.content {
+    display: flex;
+    /* 控制产品列表水平居中 */
+    justify-content: center;
+}
+/* ------ END ------ */
