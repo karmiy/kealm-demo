@@ -93,7 +93,7 @@ c-card {}
 is-disabled {}
 ```
 
-### 常见问题
+### 常见场景
 
 #### 孙子或更下级命名
 
@@ -111,7 +111,7 @@ is-disabled {}
 
 上方孙子元素命名 home__header__title 是不合适的
 
-命名约定是为了更好识别顶层元素如 home，将元素与顶层达到关联
+命名约定是为了更好识别顶层元素 block 如这里的 home，将元素与顶层达到关联
 
 所以更好的做法是使用 home__title 命名：
 
@@ -172,3 +172,227 @@ is-disabled {}
     </div>
 </div>
 ```
+
+#### 划分顶层元素
+
+并不是一个 DOM 结构里只有一个顶层元素，否则无限制的层级之下命名也会越来越困难
+
+更好的做法是根据情况进行划分顶层元素 block，如下：
+
+```html
+<!-- 顶层元素 grid -->
+<ul class="c-grid">
+    <li class="c-grid__item">
+        <!-- 重新划分新的顶层元素 card -->
+        <div class="c-card">
+            <div class="c-card__header">
+                ...
+            </div>
+            <div class="c-card__body">
+                ...
+            </div>
+        </div>
+    </li>
+</ul>
+```
+
+可以看到，相比于 c-grid__card，重新规划顶层元素 c-card 可能更为的合适
+
+c-grid__card 可能在命名 header 与 body 时显得更为困难，而 c-card 并不会，并且让自身与 grid 进行解耦，更好的分离，例如可以单独封装成 Card 组件
+
+#### 浅划分
+
+有时希望重新划分顶层元素 block，但是又不希望与外层完全解耦，可以这样处理：
+
+```html
+<div class="c-card">
+    <div class="c-card__header">
+        ...
+    </div>
+    <!-- 重新划分为 c-card-list -->
+    <ul class="c-card-list">
+        <li class="c-card-list__item">...</li>
+        <li class="c-card-list__item">...</li>
+        <li class="c-card-list__item">...</li>
+    </ul>
+</div>
+```
+
+如上做法，我们将顶层元素进一步的划分，又不完全让 c-card 与 c-card-list 解耦，这也是可行的
+
+#### 深度关联命名
+
+如果就是需要深层的命名，与其出现 __xx__yy 这样的做法，更好的应该是 __xx-yy：
+
+```html
+<div class="c-card">
+    <div class="c-card__header">
+        ...
+    </div>
+    <div class="c-card__body">
+        <!-- bad -->
+        <!-- <h3 class="c-card__body__title">...</h3> -->
+
+        <!-- good -->
+        <h3 class="c-card__body-title">...</h3>
+    </div>
+</div>
+```
+
+#### 跨组件作用
+
+在组件应用中，经常可能出现一个组件里嵌套另一个组件时需要调整样式的问题
+
+例如 c-card 组件里使用了 c-button：
+
+```html
+<div class="c-card">
+    <div class="c-card__header">
+        ...
+    </div>
+    <div class="c-card__body">
+        <!-- 引用了 c-button -->
+        <button class="c-button"></button>
+    </div>
+</div>
+```
+而可能 UI 规定，在 Card 中的 Button，需要更小一点，意味着我们需要在 Card 组件里调整 Button 的样式
+
+一种做法是新增一个 Card 与 Button 的关联类：
+
+```html
+<div class="c-card">
+    <div class="c-card__header">
+        ...
+    </div>
+    <div class="c-card__body">
+        <!-- 定义 c-card__c-button 覆盖原样式 -->
+        <button class="c-button c-card__c-button"></button>
+    </div>
+</div>
+```
+
+但是这样的混合做法可能存在问题：
+
+如果引入 Card 的样式声明在 Button 前，那么由于 c-card__c-button 这个类出现在 c-button 之后，如果同时都声明了如 height 属性，那么多 c-button 的优先级是更高的，意味着 c-card__c-button 对按钮的样式覆盖会失败
+
+更好的做法应该是：
+
+为 Button 新增修饰符：
+
+```html
+<div class="c-card__body">
+    <button class="c-button c-button--small"></button>
+</div>
+```
+```css
+.c-button {
+    ...
+}
+
+.c-button--small {
+    ...
+}
+```
+
+虽然这样与 Card 就没有了什么联系，但是好处也是很明显的：
+
+- 与父元素不再捆绑，不依赖优先级等问题
+
+- 以脱离与父元素关系为代价，换来更大的收益：复用性。在未来需求扩大时收益是明显的
+
+还有一种做法是直接在 Card 中用父子关系选择器的高优先级进行覆盖，element-ui 就是这样处理的：
+
+```css
+.c-card .c-button {
+    ...
+}
+```
+
+#### 使用 is-xxx 定义状态
+
+对于状态，使用 is- 的命名方式是更为合适的：
+
+```html
+<button class="c-button is-disabled"></button>
+```
+
+这就是命名空间与 BEM 的一种配合，即不脱离与元素的关系，又简单清晰，在 element-ui 中状态也都是这样处理的：
+
+```css
+.el-button.is-disabled {
+    ...
+}
+```
+
+### BEM 配合 SCSS
+
+在 SCSS 中，可以利用 @mixin 来创建 BEM 结构
+
+根据需求，我们应该有如下 @mixin：
+
+- @mixin b
+
+- @mixin e
+
+- @mixin m
+
+- @mixin when
+
+使用方式：
+
+```scss
+@include b(home) {
+    background-color: deepskyblue;
+
+    @include e(content) {
+        font-size: 20px;
+
+        @include m(large) {
+            font-size: 24px;
+        }
+
+        @include when(disabled) {
+            pointer-events: none;
+        }
+    }
+}
+```
+
+解析结果：
+
+```css
+/* 假设前缀是 el- */
+.el-home {
+    background-color: deepskyblue;
+}
+
+.el-home__content {
+    font-size: 20px;
+}
+
+.el-home__content--large {
+    font-size: 24px;
+}
+
+.el-home__content.is-disabled {
+    pointer-events: none;
+}
+```
+
+值得注意的是：**@minxin BEM 解析出来的样式都只有一个层级**
+
+```css
+/* bad */
+.el-home .el-home__content {
+    font-size: 20px;
+}
+
+/* good */
+.el-home__content {
+    font-size: 20px;
+}
+```
+
+这是为了在达到效果的前提下尽可能的减少 CSS 层级，而让其他地方更容易的调整它，想象一下如果组件本身的样式层级很高，其他地方需要对它进行调整，这会显得很困难
+
