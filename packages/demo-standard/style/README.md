@@ -98,12 +98,12 @@ is-disabled {}
 #### 孙子或更下级命名
 
 ```html
-<div class="home">
-    <div class="home__header">
+<div class='home'>
+    <div class='home__header'>
         <!-- bad -->
-        <h3 class="home__header__title"></h3>
+        <h3 class='home__header__title'></h3>
     </div>
-    <div class="home__content">
+    <div class='home__content'>
         ...
     </div>
 </div>
@@ -116,12 +116,12 @@ is-disabled {}
 所以更好的做法是使用 home__title 命名：
 
 ```html
-<div class="home">
-    <div class="home__header">
+<div class='home'>
+    <div class='home__header'>
         <!-- good -->
-        <h3 class="home__title"></h3>
+        <h3 class='home__title'></h3>
     </div>
-    <div class="home__content">
+    <div class='home__content'>
         ...
     </div>
 </div>
@@ -131,7 +131,7 @@ is-disabled {}
 
 - 没有破坏与 home 的关联性
 
-- title 与 header 没有强关联，将 title 移动到 content 下也是可行的，并且不破坏语言(title 是 home 里的 title)
+- title 与 header 没有强关联，将 title 移动到 content 下也是可行的，并且不破坏语义(title 是 home 里的 title)
 
 - 命名更简洁
 
@@ -142,11 +142,11 @@ is-disabled {}
 如上方 title 与 header 是相关联的，那么适当省略掉元素的类名也是可行的：
 
 ```html
-<div class="home">
-    <div class="home__header">
+<div class='home'>
+    <div class='home__header'>
         <h3>...</h3>
     </div>
-    <div class="home__content">
+    <div class='home__content'>
         ...
     </div>
 </div>
@@ -162,12 +162,12 @@ is-disabled {}
 配合命名空间来作用元素，甚至可以提升可读性，如为元素加上禁用状态：
 
 ```html
-<div class="home">
-    <div class="home__header">
+<div class='home'>
+    <div class='home__header'>
         <!-- is-disabled 表示禁用状态 -->
-        <button class="home__btn is-disabled"></button>
+        <button class='home__btn is-disabled'></button>
     </div>
-    <div class="home__content">
+    <div class='home__content'>
         ...
     </div>
 </div>
@@ -181,14 +181,14 @@ is-disabled {}
 
 ```html
 <!-- 顶层元素 grid -->
-<ul class="c-grid">
-    <li class="c-grid__item">
+<ul class='c-grid'>
+    <li class='c-grid__item'>
         <!-- 重新划分新的顶层元素 card -->
-        <div class="c-card">
-            <div class="c-card__header">
+        <div class='c-card'>
+            <div class='c-card__header'>
                 ...
             </div>
-            <div class="c-card__body">
+            <div class='c-card__body'>
                 ...
             </div>
         </div>
@@ -205,15 +205,15 @@ c-grid__card 可能在命名 header 与 body 时显得更为困难，而 c-card 
 有时希望重新划分顶层元素 block，但是又不希望与外层完全解耦，可以这样处理：
 
 ```html
-<div class="c-card">
-    <div class="c-card__header">
+<div class='c-card'>
+    <div class='c-card__header'>
         ...
     </div>
     <!-- 重新划分为 c-card-list -->
-    <ul class="c-card-list">
-        <li class="c-card-list__item">...</li>
-        <li class="c-card-list__item">...</li>
-        <li class="c-card-list__item">...</li>
+    <ul class='c-card-list'>
+        <li class='c-card-list__item'>...</li>
+        <li class='c-card-list__item'>...</li>
+        <li class='c-card-list__item'>...</li>
     </ul>
 </div>
 ```
@@ -225,16 +225,16 @@ c-grid__card 可能在命名 header 与 body 时显得更为困难，而 c-card 
 如果就是需要深层的命名，与其出现 __xx__yy 这样的做法，更好的应该是 __xx-yy：
 
 ```html
-<div class="c-card">
-    <div class="c-card__header">
+<div class='c-card'>
+    <div class='c-card__header'>
         ...
     </div>
-    <div class="c-card__body">
+    <div class='c-card__body'>
         <!-- bad -->
-        <!-- <h3 class="c-card__body__title">...</h3> -->
+        <!-- <h3 class='c-card__body__title'>...</h3> -->
 
         <!-- good -->
-        <h3 class="c-card__body-title">...</h3>
+        <h3 class='c-card__body-title'>...</h3>
     </div>
 </div>
 ```
@@ -246,28 +246,28 @@ c-grid__card 可能在命名 header 与 body 时显得更为困难，而 c-card 
 例如 c-card 组件里使用了 c-button：
 
 ```html
-<div class="c-card">
-    <div class="c-card__header">
+<div class='c-card'>
+    <div class='c-card__header'>
         ...
     </div>
-    <div class="c-card__body">
+    <div class='c-card__body'>
         <!-- 引用了 c-button -->
-        <button class="c-button"></button>
+        <button class='c-button'></button>
     </div>
 </div>
 ```
-而可能 UI 规定，在 Card 中的 Button，需要更小一点，意味着我们需要在 Card 组件里调整 Button 的样式
+然而可能 UI 规定，在 Card 中的 Button，需要更小一点，意味着我们需要在 Card 组件里调整 Button 的样式
 
 一种做法是新增一个 Card 与 Button 的关联类：
 
 ```html
-<div class="c-card">
-    <div class="c-card__header">
+<div class='c-card'>
+    <div class='c-card__header'>
         ...
     </div>
-    <div class="c-card__body">
+    <div class='c-card__body'>
         <!-- 定义 c-card__c-button 覆盖原样式 -->
-        <button class="c-button c-card__c-button"></button>
+        <button class='c-button c-card__c-button'></button>
     </div>
 </div>
 ```
@@ -281,8 +281,8 @@ c-grid__card 可能在命名 header 与 body 时显得更为困难，而 c-card 
 为 Button 新增修饰符：
 
 ```html
-<div class="c-card__body">
-    <button class="c-button c-button--small"></button>
+<div class='c-card__body'>
+    <button class='c-button c-button--small'></button>
 </div>
 ```
 ```css
@@ -314,7 +314,7 @@ c-grid__card 可能在命名 header 与 body 时显得更为困难，而 c-card 
 对于状态，使用 is- 的命名方式是更为合适的：
 
 ```html
-<button class="c-button is-disabled"></button>
+<button class='c-button is-disabled'></button>
 ```
 
 这就是命名空间与 BEM 的一种配合，即不脱离与元素的关系，又简单清晰，在 element-ui 中状态也都是这样处理的：

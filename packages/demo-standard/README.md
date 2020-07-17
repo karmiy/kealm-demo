@@ -10,4 +10,6 @@
 
 - [代码提交规范](./commit/README.md)
 
+- [样式规范](./style/README.md)
+
 - [React 规范](./react/README.md)

@@ -19,3 +19,5 @@ practice the following items:
 - nextJs
 
 - popper.js
+
+- standard
