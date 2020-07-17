@@ -394,5 +394,118 @@ c-grid__card 可能在命名 header 与 body 时显得更为困难，而 c-card 
 }
 ```
 
-这是为了在达到效果的前提下尽可能的减少 CSS 层级，而让其他地方更容易的调整它，想象一下如果组件本身的样式层级很高，其他地方需要对它进行调整，这会显得很困难
+这是为了在达到效果的前提下尽可能的减少 CSS 层级，而让其他地方更容易的调整它
 
+想象一下如果组件本身的样式层级很高，其他地方需要对它进行调整，这会显得很困难
+
+借鉴于 element-ui，完整的 BEM 样式如下：
+
+```scss
+/* config.scss */
+$namespace: 'km';
+$km-separator: '__';
+$modifier-separator: '--';
+$state-prefix: 'is-';
+```
+
+```scss
+/* function.scss */
+@function selectorToString($selector) { // .my-button
+    $selector: inspect($selector); // 转字符串=> (.my-button,)    ...会多了个,
+    $selector: str-slice($selector, 2, -2); // .my-button,
+    @return $selector;
+}
+
+@function containsModifier($selector) { // .my-button
+    $selector: selectorToString($selector);
+
+    @if str-index($selector, $modifier-separator) { // 是否有--符号
+        @return true;
+    } @else {
+        @return false;
+    }
+}
+
+@function containWhenFlag($selector) {
+    $selector: selectorToString($selector);
+
+    @if str-index($selector, '.' + $state-prefix) {
+        @return true
+    } @else {
+        @return false
+    }
+}
+
+@function containPseudoClass($selector) {
+    $selector: selectorToString($selector);
+
+    @if str-index($selector, ':') {
+        @return true
+    } @else {
+        @return false
+    }
+}
+
+@function hitAllSpecialNestRule($selector) {
+    @return containsModifier($selector) or containWhenFlag($selector) or containPseudoClass($selector);
+}
+```
+
+```scss
+@import 'function';
+@import 'config';
+
+@mixin b($block) {
+    $B: $namespace + '-' + $block !global;
+    .#{$B} {
+        @content;
+    }
+}
+
+@mixin e($element) {
+    $E: $element !global;
+    $selector: &;
+    $currentSelector: '';
+    @each $unit in $element {
+        $currentSelector: #{$currentSelector + '.' + $B + $km-separator + $unit + ','};
+    }
+
+    @if hitAllSpecialNestRule($selector) {
+        @at-root {
+            #{$selector} {
+                #{$currentSelector} {
+                    @content;
+                }
+            }
+        }
+    } @else {
+        @at-root {
+            #{$currentSelector} {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin m($modifier) {
+    $selector: &;
+    $currentSelector: '';
+    @each $unit in $modifier {
+        $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + ','};
+    }
+
+    @at-root {
+        #{$currentSelector} {
+            @content;
+        }
+    }
+}
+
+@mixin when($state) {
+    @at-root {
+        &.#{$state-prefix + $state} {
+            @content;
+        }
+    }
+}
+```
