@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useCounter } from 'react-use';
+import { useCss } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -27,38 +27,23 @@ function getUsers(sex: ISex) {
 }
 
 const App: React.FC<{}> = () => {
-    const [min, { inc: incMin, dec: decMin }] = useCounter(1);
-    const [max, { inc: incMax, dec: decMax }] = useCounter(10);
-    const [value, { inc, dec, set, reset }] = useCounter(5, max, min);
-
-    // console.log('render');
+    const className = useCss({
+        color: 'red',
+        border: '1px solid red',
+        '&:hover': {
+            color: 'blue',
+        },
+        '.global_class': {
+            color: 'green',
+        },
+    });
     return (
         <Router>
             <div className='app'>
-                <div>
-                    current: { value } [min: { min }; max: { max }]
+                Hover me!
+                <div className='global_class'>
+                    Over!
                 </div>
-
-                <br />
-                Current value: <button onClick={ () => inc() }>Increment</button>
-                <button onClick={ () => dec() }>Decrement</button>
-                <button onClick={ () => inc(5) }>Increment (+5)</button>
-                <button onClick={ () => dec(5) }>Decrement (-5)</button>
-                <button onClick={ () => set(100) }>Set 100</button>
-                <button onClick={ () => reset() }>Reset</button>
-                <button onClick={ () => reset(25) }>Reset (25)</button>
-
-                <br />
-                <br />
-                Min value:
-                <button onClick={ () => incMin() }>Increment</button>
-                <button onClick={ () => decMin() }>Decrement</button>
-
-                <br />
-                <br />
-                Max value:
-                <button onClick={ () => incMax() }>Increment</button>
-                <button onClick={ () => decMax() }>Decrement</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

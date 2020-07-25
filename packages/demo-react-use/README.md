@@ -40,6 +40,8 @@
 
     - [useClickAway](./docs/useClickAway.md) 点击元素外围
 
+    - [useCss](./docs/useCss.md) 动态使用 CSS
+
 ## 心得
 
 - 尽可能的灵活 - useAudio
