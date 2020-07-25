@@ -75,7 +75,7 @@ function useCounter(
 
 - set 方法接收 HookState 类型，可以传递 number, () => number, (prev) => number，贴合 React.useState 的方式
 
-- 内置一个 [resolveHookState](../README.md#Utils工具) 函数转换 newState 与 prevState
+- 内置一个 [resolveHookState](../README.md#utils-工具) 函数转换 newState 与 prevState
 
 ```tsx
 let init = resolveHookState(initialValue);
