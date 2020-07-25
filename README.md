@@ -21,3 +21,5 @@ practice the following items:
 - popper.js
 
 - standard
+
+- react-use
