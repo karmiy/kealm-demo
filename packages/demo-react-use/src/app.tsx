@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useCustomCompareEffect, useCounter } from 'react-use';
+import { useDebounce, useThrottleFn } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -26,23 +26,35 @@ function getUsers(sex: ISex) {
     });
 }
 
-const isEqual = (prevDeps: any, nextDeps: any) => {
-    console.log(prevDeps, nextDeps);
-    return true;
-}
-
 const App: React.FC<{}> = () => {
-    const [visible, setVisible] = useState(false);
+    const [state, setState] = React.useState('Typing stopped');
+    const [val, setVal] = React.useState('');
 
-    useCustomCompareEffect(() => {
-        console.log(111);
-    }, [{ visible }], (nextDeps) => !nextDeps[0].visible);
-
+    const [isReady, cancel] = useDebounce(
+        () => {
+            setState('Typing stopped');
+            // 发起请求
+            console.log('start request');
+        },
+        2000,
+        [val]
+    );
+    
     return (
         <Router>
             <div className='app'>
-                <p>useCustomCompareEffect with deep comparison: {String(visible)}</p>
-                <button onClick={() => setVisible(v => !v)}>toggle</button>
+                <input
+                    type="text"
+                    value={val}
+                    placeholder="Debounced input"
+                    onChange={({ currentTarget }) => {
+                        setState('Waiting for typing to stop...');
+                        setVal(currentTarget.value);
+                    }}
+                />
+                <div>{state}</div>
+                <div>isReady: {String(isReady())}</div>
+                <button onClick={cancel}>Cancel debounce</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

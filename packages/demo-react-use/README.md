@@ -28,6 +28,8 @@
 
     - [useCopyToClipboard](./docs/useCopyToClipboard.md) 复制文本到剪切板
 
+    - [useDebounce](./docs/useDebounce.md) 执行防抖
+
 - Lifecycles
 
     - [useCustomCompareEffect](./docs/useCustomCompareEffect.md) 可控比较器的 useEffect
