@@ -17,7 +17,11 @@ type PromiseType = ...; // 获取 Promise 返回值类型
 
 type StateFromFnReturningPromise<T> = AsyncState<PromiseType<ReturnType<T>>>; // 其实就是 AsyncState 的结构，只是根据我们 Promise 返回值给 value 赋值了类型
 
-function useAsyncFn<T extends FnReturningPromise>(fn: T, deps?: DependencyList, initialState?: StateFromFnReturningPromise): [StateFromFnReturningPromise<T>, T];
+function useAsyncFn<T extends FnReturningPromise>(
+    fn: T, 
+    deps?: DependencyList, 
+    initialState?: StateFromFnReturningPromise
+): [StateFromFnReturningPromise<T>, T];
 ```
 
 ### 函数与返回值
