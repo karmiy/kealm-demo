@@ -10,6 +10,8 @@
 
 - [useCounter](./docs/useCounter.md)
 
+- [useCustomCompareEffect](./docs/useCustomCompareEffect.md)
+
 ## 分类
 
 - Effect
@@ -25,6 +27,10 @@
     - [useCookie](./docs/useCookie.md) 管理 cookie
 
     - [useCopyToClipboard](./docs/useCopyToClipboard.md) 复制文本到剪切板
+
+- Lifecycles
+
+    - [useCustomCompareEffect](./docs/useCustomCompareEffect.md) 可控比较器的 useEffect
 
 - State
 
@@ -87,4 +93,22 @@ export function resolveHookState<S, C extends S>(newState: ResolvableHookState<S
 
     return newState;
 }
+```
+
+- isPrimitive: 判断是否基础数据类型
+
+```ts
+const isPrimitive = (val: any) => val !== Object(val);
+```
+
+- EffectCallback: React.EffectCallback 标注 effect 类型
+
+```ts
+type EffectCallback = () => (void | (() => void | undefined));
+```
+
+- DependencyList: React.DependencyList 标准 deps 类型
+
+```ts
+type DependencyList = ReadonlyArray<any>;
 ```

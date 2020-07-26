@@ -1,11 +1,11 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect, EffectCallback, DependencyList } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import './app.scss';
 import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useCss } from 'react-use';
+import { useCustomCompareEffect, useCounter } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -26,24 +26,23 @@ function getUsers(sex: ISex) {
     });
 }
 
+const isEqual = (prevDeps: any, nextDeps: any) => {
+    console.log(prevDeps, nextDeps);
+    return true;
+}
+
 const App: React.FC<{}> = () => {
-    const className = useCss({
-        color: 'red',
-        border: '1px solid red',
-        '&:hover': {
-            color: 'blue',
-        },
-        '.global_class': {
-            color: 'green',
-        },
-    });
+    const [visible, setVisible] = useState(false);
+
+    useCustomCompareEffect(() => {
+        console.log(111);
+    }, [{ visible }], (nextDeps) => !nextDeps[0].visible);
+
     return (
         <Router>
             <div className='app'>
-                Hover me!
-                <div className='global_class'>
-                    Over!
-                </div>
+                <p>useCustomCompareEffect with deep comparison: {String(visible)}</p>
+                <button onClick={() => setVisible(v => !v)}>toggle</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
