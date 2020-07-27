@@ -10,8 +10,6 @@
 
 - [useCounter](./docs/useCounter.md)
 
-- [useCustomCompareEffect](./docs/useCustomCompareEffect.md)
-
 ## 分类
 
 - Effect
@@ -33,6 +31,8 @@
 - Lifecycles
 
     - [useCustomCompareEffect](./docs/useCustomCompareEffect.md) 可控比较器的 useEffect
+
+    - [useDeepCompareEffect](./docs/useDeepCompareEffect.md) 深比较的 useCustomCompareEffect
 
 - State
 

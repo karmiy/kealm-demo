@@ -1,11 +1,11 @@
-import React, { useState, useCallback, useRef, useEffect, EffectCallback, DependencyList } from 'react';
+import React, { useState, useCallback, useRef, useEffect, EffectCallback, DependencyList, useMemo } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import './app.scss';
 import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useDebounce, useThrottleFn } from 'react-use';
+import { useDeepCompareEffect } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -27,34 +27,19 @@ function getUsers(sex: ISex) {
 }
 
 const App: React.FC<{}> = () => {
-    const [state, setState] = React.useState('Typing stopped');
-    const [val, setVal] = React.useState('');
+    const [visible, setVisible] = useState(false);
+    const option = useMemo(() => ({ visible }), [visible]);
 
-    const [isReady, cancel] = useDebounce(
-        () => {
-            setState('Typing stopped');
-            // 发起请求
-            console.log('start request');
-        },
-        2000,
-        [val]
-    );
+    useDeepCompareEffect(() => {
+        // 当 visible 为 true 时触发
+        console.log(111);
+    }, [option]);
     
     return (
         <Router>
             <div className='app'>
-                <input
-                    type="text"
-                    value={val}
-                    placeholder="Debounced input"
-                    onChange={({ currentTarget }) => {
-                        setState('Waiting for typing to stop...');
-                        setVal(currentTarget.value);
-                    }}
-                />
-                <div>{state}</div>
-                <div>isReady: {String(isReady())}</div>
-                <button onClick={cancel}>Cancel debounce</button>
+                <p>useCustomCompareEffect with deep comparison: {String(visible)}</p>
+                <button onClick={() => setVisible(v => !v)}>toggle</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
