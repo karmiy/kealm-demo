@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useDrop } from 'react-use';
+import { useDropArea } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -27,7 +27,7 @@ function getUsers(sex: ISex) {
 }
 
 const App: React.FC<{}> = () => {
-    const state = useDrop({
+    const [bond, state] = useDropArea({
         onFiles: files => console.log('files', files),
         onUri: uri => console.log('uri', uri),
         onText: text => console.log('text', text),
@@ -36,7 +36,7 @@ const App: React.FC<{}> = () => {
     return (
         <Router>
             <div className='app'>
-                <p>Drop something on the page.</p>
+                <p {...bond}>Drop something here.</p>
                 <p>over: {state.over.toString()}</p>
                 <a href='https://github.com/streamich/react-use/blob/master/docs/useDrop.md' 
                     draggable 

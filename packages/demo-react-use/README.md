@@ -54,6 +54,8 @@
 
     - [useDrop](./docs/useDrop.md) 全局拖拽、粘贴事件响应
 
+    - [useDropArea](./docs/useDropArea.md) 特定元素拖拽、粘贴事件响应
+
 ## 心得
 
 - 尽可能的灵活 - useAudio
@@ -67,6 +69,8 @@
 - set 方法相关的参数定义为 HookState 类型 - useCounter
 
 - 当需要返回一个功能对象时，利用 useMemo 对该对象进行缓存，防止用户使用该对象作为 dep 时出现多余无用 render - useCounter
+
+- 巧用高阶函数，将不容易变化的数据作为第一阶的参数，返回一个函数，利用 useMemo 缓存该函数。再将容易变化的数据作为返回函数的参数 - useDrop
 
 ## Utils 工具
 
