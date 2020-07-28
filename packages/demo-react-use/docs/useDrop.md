@@ -6,13 +6,13 @@
 
 ```ts
 interface DropAreaOptions {
-  onFiles?: (files: File[], event?) => void;
-  onText?: (text: string, event?) => void;
-  onUri?: (url: string, event?) => void;
+    onFiles?: (files: File[], event?) => void;
+    onText?: (text: string, event?) => void;
+    onUri?: (url: string, event?) => void;
 }
 
 interface DropAreaState {
-  over: boolean;
+    over: boolean;
 }
 
 function useDrop(
@@ -32,6 +32,8 @@ function useDrop(
         - onText: 粘贴时触发
 
         - onUri: 拖拽链接放手时触发
+
+    - args: 其他依赖项，可用于刷新事件绑定，作用不大
 
 - Return:
 
