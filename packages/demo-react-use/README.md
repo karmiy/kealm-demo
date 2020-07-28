@@ -38,6 +38,8 @@
 
     - [useCounter](./docs/useCounter.md) 数值管理
 
+    - [useDefault](./docs/useDefault.md) 带有默认值的 useState
+
 - Sensors
 
     - [useBattery](./docs/useBattery.md) 电池
@@ -49,6 +51,8 @@
     - [useClickAway](./docs/useClickAway.md) 点击元素外围
 
     - [useCss](./docs/useCss.md) 动态使用 CSS
+
+    - [useDrop](./docs/useDrop.md) 全局拖拽、粘贴事件响应
 
 ## 心得
 

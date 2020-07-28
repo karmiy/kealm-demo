@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useDeepCompareEffect } from 'react-use';
+import { useDrop } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -27,19 +27,23 @@ function getUsers(sex: ISex) {
 }
 
 const App: React.FC<{}> = () => {
-    const [visible, setVisible] = useState(false);
-    const option = useMemo(() => ({ visible }), [visible]);
-
-    useDeepCompareEffect(() => {
-        // 当 visible 为 true 时触发
-        console.log(111);
-    }, [option]);
+    const state = useDrop({
+        onFiles: files => console.log('files', files),
+        onUri: uri => console.log('uri', uri),
+        onText: text => console.log('text', text),
+    });
     
     return (
         <Router>
             <div className='app'>
-                <p>useCustomCompareEffect with deep comparison: {String(visible)}</p>
-                <button onClick={() => setVisible(v => !v)}>toggle</button>
+                <p>Drop something on the page.</p>
+                <p>over: {state.over.toString()}</p>
+                <a href='https://github.com/streamich/react-use/blob/master/docs/useDrop.md' 
+                    draggable 
+                    style={{backgroundColor: '#1394ff'}}
+                >
+                    draggable
+                </a>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
