@@ -34,6 +34,8 @@
 
     - [useDeepCompareEffect](./docs/useDeepCompareEffect.md) 深比较的 useCustomCompareEffect
 
+    - [useEffectOnce](./docs/useEffectOnce.md) 只执行一次的 useEffect
+
 - State
 
     - [useCounter](./docs/useCounter.md) 数值管理
