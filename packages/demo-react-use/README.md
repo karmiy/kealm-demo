@@ -10,6 +10,8 @@
 
 - [useCounter](./docs/useCounter.md)
 
+- [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md)
+
 ## 分类
 
 - Effect
@@ -41,6 +43,10 @@
     - [useCounter](./docs/useCounter.md) 数值管理
 
     - [useDefault](./docs/useDefault.md) 带有默认值的 useState
+
+- Miscellaneous
+
+    - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 确保使用 forwardRef 时子组件可以拿到 ref
 
 - Sensors
 

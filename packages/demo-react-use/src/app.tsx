@@ -1,11 +1,11 @@
-import React, { useState, useCallback, useRef, useEffect, EffectCallback, DependencyList, useMemo } from 'react';
+import React, { useState, useCallback, useRef, useEffect, EffectCallback, DependencyList, useMemo, forwardRef } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import './app.scss';
 import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useDropArea } from 'react-use';
+import { useEnsuredForwardedRef, ensuredForwardRef } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -26,24 +26,38 @@ function getUsers(sex: ISex) {
     });
 }
 
+interface IChildProps {
+    id?: number;
+}
+
+const Child = forwardRef<HTMLDivElement, IChildProps>((props, ref) => {
+    // Here `ref` is undefined
+    const ensuredForwardRef = useEnsuredForwardedRef(ref as React.MutableRefObject<HTMLDivElement>);
+    // ensuredForwardRef will always be a valid reference.
+  
+    useEffect(() => {
+        console.log(ensuredForwardRef.current);
+    }, [])
+  
+    return (
+        <div ref={ensuredForwardRef} />
+    );
+});
+
 const App: React.FC<{}> = () => {
-    const [bond, state] = useDropArea({
-        onFiles: files => console.log('files', files),
-        onUri: uri => console.log('uri', uri),
-        onText: text => console.log('text', text),
-    });
+
+    const ref = useRef(null);
     
+    useEffect(() => {
+        // console.log(ensuredForwardRef.current?.getBoundingClientRect())
+        console.log(ref.current);
+    }, [])
+
     return (
         <Router>
             <div className='app'>
-                <p {...bond}>Drop something here.</p>
-                <p>over: {state.over.toString()}</p>
-                <a href='https://github.com/streamich/react-use/blob/master/docs/useDrop.md' 
-                    draggable 
-                    style={{backgroundColor: '#1394ff'}}
-                >
-                    draggable
-                </a>
+                {/* 123 */}
+                <Child />
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
