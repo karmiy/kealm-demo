@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useError } from 'react-use';
+import { useEvent } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -31,17 +31,15 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
+    const onScroll = useCallback((e: Event) => {
+        console.log('scroll', e);
+    }, []);
 
-    const dispatchError = useError();
-
-    const clickHandler = () => {
-        dispatchError(new Error('Some error!'));
-    };
+    useEvent('scroll', onScroll);
 
     return (
         <Router>
             <div className='app'>
-                <button onClick={clickHandler}>Click me to throw</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

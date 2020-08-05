@@ -12,6 +12,8 @@
 
 - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md)
 
+- [useEvent](./docs/useEvent.md)(需改造)
+
 ## 分类
 
 - Effect
@@ -39,6 +41,8 @@
     - [useDeepCompareEffect](./docs/useDeepCompareEffect.md) 深比较的 useCustomCompareEffect
 
     - [useEffectOnce](./docs/useEffectOnce.md) 只执行一次的 useEffect
+
+    - [useEvent](./docs/useEvent.md) 事件挂载
 
 - State
 
