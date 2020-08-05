@@ -30,6 +30,8 @@
 
     - [useDebounce](./docs/useDebounce.md) 执行防抖
 
+    - [useError](./docs/useError.md) 派发错误
+
 - Lifecycles
 
     - [useCustomCompareEffect](./docs/useCustomCompareEffect.md) 可控比较器的 useEffect

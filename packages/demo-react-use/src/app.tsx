@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useEnsuredForwardedRef, ensuredForwardRef } from 'react-use';
+import { useError } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -30,34 +30,18 @@ interface IChildProps {
     id?: number;
 }
 
-const Child = forwardRef<HTMLDivElement, IChildProps>((props, ref) => {
-    // Here `ref` is undefined
-    const ensuredForwardRef = useEnsuredForwardedRef(ref as React.MutableRefObject<HTMLDivElement>);
-    // ensuredForwardRef will always be a valid reference.
-  
-    useEffect(() => {
-        console.log(ensuredForwardRef.current);
-    }, [])
-  
-    return (
-        <div ref={ensuredForwardRef} />
-    );
-});
-
 const App: React.FC<{}> = () => {
 
-    const ref = useRef(null);
-    
-    useEffect(() => {
-        // console.log(ensuredForwardRef.current?.getBoundingClientRect())
-        console.log(ref.current);
-    }, [])
+    const dispatchError = useError();
+
+    const clickHandler = () => {
+        dispatchError(new Error('Some error!'));
+    };
 
     return (
         <Router>
             <div className='app'>
-                {/* 123 */}
-                <Child />
+                <button onClick={clickHandler}>Click me to throw</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
