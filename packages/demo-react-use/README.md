@@ -64,6 +64,8 @@
 
     - [useBattery](./docs/useBattery.md) 电池
 
+    - [useGeolocation](./docs/useGeolocation.md) 地理位置
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频

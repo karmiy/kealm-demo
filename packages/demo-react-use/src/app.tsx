@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useFullscreen, useToggle } from 'react-use';
+import { useGeolocation } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -31,16 +31,14 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const ref = useRef(null)
-    const [show, toggle] = useToggle(false);
-    const isFullscreen = useFullscreen(ref, show, {onClose: () => toggle(false)});
+    const state = useGeolocation();
 
     return (
         <Router>
-            <div ref={ref} className='app'>
-                <div>{isFullscreen ? 'Fullscreen' : 'Not fullscreen'}</div>
-                <button onClick={() => toggle()}>Toggle</button>
-                {/* <video src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" autoPlay /> */}
+            <div className='app'>
+                <pre>
+                    {JSON.stringify(state, null, 2)}
+                </pre>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
