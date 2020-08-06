@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useFirstMountState, useUpdate } from 'react-use';
+import { useFullscreen, useToggle } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -31,15 +31,16 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const isFirstMount = useFirstMountState();
-    const update = useUpdate();
+    const ref = useRef(null)
+    const [show, toggle] = useToggle(false);
+    const isFullscreen = useFullscreen(ref, show, {onClose: () => toggle(false)});
 
     return (
         <Router>
-            <div className='app'>
-                <span>This component is just mounted: {isFirstMount ? 'YES' : 'NO'}</span>
-                <br />
-                <button onClick={update}>re-render</button>
+            <div ref={ref} className='app'>
+                <div>{isFullscreen ? 'Fullscreen' : 'Not fullscreen'}</div>
+                <button onClick={() => toggle()}>Toggle</button>
+                {/* <video src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" autoPlay /> */}
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

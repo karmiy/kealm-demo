@@ -76,6 +76,8 @@
 
     - [useDropArea](./docs/useDropArea.md) 特定元素拖拽、粘贴事件响应
 
+    - [useFullscreen](./docs/useFullscreen.md) 使用全屏
+
 ## 心得
 
 - 尽可能的灵活 - useAudio
