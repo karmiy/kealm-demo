@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useFavicon } from 'react-use';
+import { useFirstMountState, useUpdate } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -31,11 +31,15 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    useFavicon('https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico');
+    const isFirstMount = useFirstMountState();
+    const update = useUpdate();
 
     return (
         <Router>
             <div className='app'>
+                <span>This component is just mounted: {isFirstMount ? 'YES' : 'NO'}</span>
+                <br />
+                <button onClick={update}>re-render</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

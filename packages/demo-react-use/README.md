@@ -14,6 +14,8 @@
 
 - [useEvent](./docs/useEvent.md)（需改造）
 
+- [useFirstMountState](./docs/useFirstMountState.md)
+
 ## 分类
 
 - Effect
@@ -52,6 +54,8 @@
 
     - [useDefault](./docs/useDefault.md) 带有默认值的 useState
 
+    - [useFirstMountState](./docs/useFirstMountState.md) 组件是否为初始挂载 render
+
 - Miscellaneous
 
     - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 确保使用 forwardRef 时子组件可以拿到 ref
@@ -87,6 +91,8 @@
 - 当需要返回一个功能对象时，利用 useMemo 对该对象进行缓存，防止用户使用该对象作为 dep 时出现多余无用 render - useCounter
 
 - 巧用高阶函数，将不容易变化的数据作为第一阶的参数，返回一个函数，利用 useMemo 缓存该函数。再将容易变化的数据作为返回函数的参数 - useDrop
+
+- 与其作为钩子函数被使用，更灵活的是返回一个状态，这样的做法可以让状态更灵活的被使用。如开发一个 useDidMount 作为生命周期，更灵活的是开发一个 useIsFirstMount 返回是否为第一次 render，这样除了可以让使用者根据返回值自定义 useEffect 实现 useDidMount，该变量还可以让使用者在更多场景判断是否为第一次挂载 - useFirstMountState, useMountedState
 
 ## Utils 工具
 
