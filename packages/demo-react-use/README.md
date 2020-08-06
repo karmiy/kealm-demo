@@ -34,6 +34,8 @@
 
     - [useError](./docs/useError.md) 派发错误
 
+    - [useFavicon](./docs/useFavicon.md) 挂载 favicon
+
 - Lifecycles
 
     - [useCustomCompareEffect](./docs/useCustomCompareEffect.md) 可控比较器的 useEffect

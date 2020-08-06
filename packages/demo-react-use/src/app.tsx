@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useEvent } from 'react-use';
+import { useFavicon } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -31,11 +31,7 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const onScroll = useCallback((e: Event) => {
-        console.log('scroll', e);
-    }, []);
-
-    useEvent('scroll', onScroll);
+    useFavicon('https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico');
 
     return (
         <Router>
