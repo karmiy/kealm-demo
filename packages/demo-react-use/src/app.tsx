@@ -1,11 +1,21 @@
-import React, { useState, useCallback, useRef, useEffect, EffectCallback, DependencyList, useMemo, forwardRef } from 'react';
+import React, { 
+    useState, 
+    useCallback, 
+    useRef, 
+    useEffect, 
+    EffectCallback, 
+    DependencyList, 
+    useMemo, 
+    forwardRef,
+    Dispatch,
+} from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import './app.scss';
 import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useGetSet } from 'react-use';
+import { useGetSetState } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -31,17 +41,26 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const [get, set] = useGetSet(0);
+    const [get, setState] = useGetSetState({
+        id: 1,
+        code: 10,
+        count: 100,
+    });
+
     const onClick = () => {
         setTimeout(() => {
-            set(get() + 1)
+            setState({
+                id: get().id + 1,
+                code: get().code + 10,
+            });
         }, 1000);
     };
 
     return (
         <Router>
             <div className='app'>
-                <button onClick={onClick}>Clicked: {get()}</button>
+                <p>State: {JSON.stringify(get())}</p>
+                <button onClick={onClick}>Clicked</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

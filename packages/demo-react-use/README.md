@@ -18,6 +18,8 @@
 
 - [useGetSet](./docs/useGetSet.md)
 
+- [useGetSetState](./docs/useGetSetState.md)
+
 ## 分类
 
 - Effect
@@ -59,6 +61,8 @@
     - [useFirstMountState](./docs/useFirstMountState.md) 组件是否为初始挂载 render
 
     - [useGetSet](./docs/useGetSet.md) 返回 get set 的 useState
+
+    - [useGetSetState](./docs/useGetSetState.md) useGetSet + Class Component 的 setState
 
 - Miscellaneous
 
