@@ -24,13 +24,13 @@ function useGetSet<S>(
 
 - Return:
 
-    - get: 获取 state 值
+    - get: 获取 state 值，**该函数返回的引用地址不变**
 
-    - set: 设置 state 值，同 useState
+    - set: 设置 state 值，同 useState，**该函数返回的引用地址不变**
 
 ### 作用
 
-- 创建一个返回 get set 的 useState，并且**返回的 get, set 引用不变**
+- 创建一个返回 get set 的 useState，并且 **get 方法总能获得最新的值**
 
 ### 何时使用
 
