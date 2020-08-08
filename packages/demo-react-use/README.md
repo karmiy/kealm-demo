@@ -16,6 +16,8 @@
 
 - [useFirstMountState](./docs/useFirstMountState.md)
 
+- [useGetSet](./docs/useGetSet.md)
+
 ## 分类
 
 - Effect
@@ -55,6 +57,8 @@
     - [useDefault](./docs/useDefault.md) 带有默认值的 useState
 
     - [useFirstMountState](./docs/useFirstMountState.md) 组件是否为初始挂载 render
+
+    - [useGetSet](./docs/useGetSet.md) 返回 get set 的 useState
 
 - Miscellaneous
 
@@ -112,13 +116,19 @@ export type PromiseType<P extends Promise<any>> = P extends Promise<infer T> ? T
 
 - resolveHookState: 处理 hook 状态，将 S, () => S, (prevState: S) => S 的数据进行执行返回 S
 ```ts
+// (prevState: S) => S
 export type StateSetter<S> = (prevState: S) => S;
+// () => S
 export type InitialStateSetter<S> = () => S;
 
+// S | () => S
 export type InitialHookState<S> = S | InitialStateSetter<S>;
+// S | (prevState: S) => S
 export type HookState<S> = S | StateSetter<S>;
+// S | (prevState: S) => S | () => S
 export type ResolvableHookState<S> = S | StateSetter<S> | InitialStateSetter<S>;
 
+// 将 S | (prevState: S) => S | () => S 转新的 S
 export function resolveHookState<S, C extends S>(newState: InitialStateSetter<S>): S;
 export function resolveHookState<S, C extends S>(newState: StateSetter<S>, currentState: C): S;
 export function resolveHookState<S, C extends S>(newState: ResolvableHookState<S>, currentState?: C): S;

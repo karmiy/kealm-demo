@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useGeolocation } from 'react-use';
+import { useGetSet } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -31,14 +31,17 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const state = useGeolocation();
+    const [get, set] = useGetSet(0);
+    const onClick = () => {
+        setTimeout(() => {
+            set(get() + 1)
+        }, 1000);
+    };
 
     return (
         <Router>
             <div className='app'>
-                <pre>
-                    {JSON.stringify(state, null, 2)}
-                </pre>
+                <button onClick={onClick}>Clicked: {get()}</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
