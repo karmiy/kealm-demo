@@ -30,6 +30,8 @@
 
 - [useCopyToClipboard](./docs/useCopyToClipboard.md)
 
+- [useDebounce](./docs/useDebounce.md)
+
 - [useHarmonicIntervalFn](./docs/useHarmonicIntervalFn.md)
 
 - [useHover](./docs/useHover.md)
