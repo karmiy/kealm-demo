@@ -20,6 +20,20 @@
 
 - [useGetSetState](./docs/useGetSetState.md)
 
+## 实用
+
+- [useAudio](./docs/useAudio.md)
+
+- [useCookie](./docs/useCookie.md)
+
+- [useCopyToClipboard](./docs/useCopyToClipboard.md)
+
+- [useEffectOnce](./docs/useEffectOnce.md)
+
+- [useHarmonicIntervalFn](./docs/useHarmonicIntervalFn.md)
+
+- [useHover](./docs/useHover.md)
+
 ## 分类
 
 - Animations
@@ -79,6 +93,8 @@
     - [useGeolocation](./docs/useGeolocation.md) 地理位置
 
     - [useHash](./docs/useHash.md) 管理 hash
+
+    - [useHover](./docs/useHover.md) 管理 ReactElement 的 hover 状态
 
 - UI
 

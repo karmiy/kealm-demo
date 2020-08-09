@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useHash, useMount } from 'react-use';
+import { useHover } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -41,19 +41,18 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const [hash, setHash] = useHash();
+    const element = (hovered: boolean) =>
+        <div>
+            Hover me! {hovered && 'Thanks!'}
+        </div>;
+
+    const [hoverable, hovered] = useHover(element);
 
     return (
         <Router>
             <div className='app'>
-                <div>window.location.href:</div>
-                <div>
-                    <pre>{window.location.href}</pre>
-                </div>
-                <div>Edit hash: </div>
-                <div>
-                    <input style={{ width: '100%' }} value={hash} onChange={e => setHash(e.target.value)} />
-                </div>
+                {hoverable}
+                <div>{hovered ? 'HOVERED' : ''}</div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
