@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useGetSetState } from 'react-use';
+import { useHarmonicIntervalFn } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -41,26 +41,17 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const [get, setState] = useGetSetState({
-        id: 1,
-        code: 10,
-        count: 100,
-    });
+    useHarmonicIntervalFn(() => {
+        console.log('interval-1');
+    }, 1000);
 
-    const onClick = () => {
-        setTimeout(() => {
-            setState({
-                id: get().id + 1,
-                code: get().code + 10,
-            });
-        }, 1000);
-    };
+    useHarmonicIntervalFn(() => {
+        console.log('interval-2');
+    }, 1000);
 
     return (
         <Router>
             <div className='app'>
-                <p>State: {JSON.stringify(get())}</p>
-                <button onClick={onClick}>Clicked</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

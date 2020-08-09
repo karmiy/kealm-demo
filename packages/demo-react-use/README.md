@@ -22,6 +22,10 @@
 
 ## 分类
 
+- Animations
+
+    - [useHarmonicIntervalFn](./docs/useHarmonicIntervalFn.md) 同谐波的 setInterval
+
 - Effect
 
     - [useAsyncFn](./docs/useAsyncFn.md) 异步函数
@@ -94,7 +98,7 @@
 
 - 不做无用渲染，区分状态应该存储在 useState 还是 useRef - useMountedState
 
-- 合理结合优秀的第三方库 - useCookie, useCopyToClipboard
+- 合理结合优秀的第三方库 - useCookie, useCopyToClipboard, useHarmonicIntervalFn
 
 - hook 初始值定义为 InitialHookState 类型 - useCounter
 
