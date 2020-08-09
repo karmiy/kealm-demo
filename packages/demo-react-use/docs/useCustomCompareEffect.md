@@ -50,6 +50,8 @@ function useCustomCompareEffect<TDeps extends DependencyList>(
 
 [useCustomCompareEffect 源码地址](https://github.com/streamich/react-use/blob/master/src/useCustomCompareEffect.ts)
 
+- 利用 useRef 存储旧的 deps，以便后续做比较
+
 - 利用 ref.current 作为内部 useEffect 的依赖，控制 useEffect 不执行，在 depsEqual 返回 false 后手动更新 ref.current，触发执行，来达到条件执行 effect 的效果
 
 - 校验细致，判断 deps 是否都是基础数据类型，是则提示使用 useEffect，因为当 deps 都是基础数据类型时，使用 useEffect 就够了
