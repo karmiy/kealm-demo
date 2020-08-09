@@ -78,6 +78,8 @@
 
     - [useGeolocation](./docs/useGeolocation.md) 地理位置
 
+    - [useHash](./docs/useHash.md) 管理 hash
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频

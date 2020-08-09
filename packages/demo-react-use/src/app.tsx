@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useHarmonicIntervalFn } from 'react-use';
+import { useHash, useMount } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -41,17 +41,19 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    useHarmonicIntervalFn(() => {
-        console.log('interval-1');
-    }, 1000);
-
-    useHarmonicIntervalFn(() => {
-        console.log('interval-2');
-    }, 1000);
+    const [hash, setHash] = useHash();
 
     return (
         <Router>
             <div className='app'>
+                <div>window.location.href:</div>
+                <div>
+                    <pre>{window.location.href}</pre>
+                </div>
+                <div>Edit hash: </div>
+                <div>
+                    <input style={{ width: '100%' }} value={hash} onChange={e => setHash(e.target.value)} />
+                </div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
