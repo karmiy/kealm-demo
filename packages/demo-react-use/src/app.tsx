@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useHover } from 'react-use';
+import { useHoverDirty } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -41,17 +41,14 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const element = (hovered: boolean) =>
-        <div>
-            Hover me! {hovered && 'Thanks!'}
-        </div>;
+    const ref = useRef<HTMLDivElement>(null);
 
-    const [hoverable, hovered] = useHover(element);
+    const hovered = useHoverDirty(ref);
 
     return (
         <Router>
-            <div className='app'>
-                {hoverable}
+            <div className='app' ref={ref}>
+                <div style={{height: 50}}></div>
                 <div>{hovered ? 'HOVERED' : ''}</div>
             </div>
             {/* {renderRoutes(routes)} */}

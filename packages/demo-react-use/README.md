@@ -36,6 +36,8 @@
 
 - [useHover](./docs/useHover.md)
 
+- [useHoverDirty](./docs/useHoverDirty.md)
+
 ## 分类
 
 - Animations
@@ -97,6 +99,8 @@
     - [useHash](./docs/useHash.md) 管理 hash
 
     - [useHover](./docs/useHover.md) 管理 ReactElement 的 hover 状态
+
+    - [useHoverDirty](./docs/useHoverDirty.md) 管理 DOM 节点的 hover 状态
 
 - UI
 
