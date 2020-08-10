@@ -38,6 +38,8 @@
 
 - [useHoverDirty](./docs/useHoverDirty.md)
 
+- [useIdle](./docs/useIdle.md)
+
 ## 分类
 
 - Animations
@@ -102,6 +104,8 @@
 
     - [useHoverDirty](./docs/useHoverDirty.md) 管理 DOM 节点的 hover 状态
 
+    - [useIdle](./docs/useIdle.md) 监听用户空闲状态
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
@@ -122,7 +126,7 @@
 
 - 不做无用渲染，区分状态应该存储在 useState 还是 useRef - useMountedState
 
-- 合理结合优秀的第三方库 - useCookie, useCopyToClipboard, useHarmonicIntervalFn
+- 合理结合优秀的第三方库 - useCookie, useCopyToClipboard, useHarmonicIntervalFn, useIdle
 
 - hook 初始值定义为 InitialHookState 类型 - useCounter
 

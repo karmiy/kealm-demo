@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useHoverDirty } from 'react-use';
+import { useIdle } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -41,15 +41,12 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const ref = useRef<HTMLDivElement>(null);
-
-    const hovered = useHoverDirty(ref);
+    const isIdle = useIdle(3e3);
 
     return (
         <Router>
-            <div className='app' ref={ref}>
-                <div style={{height: 50}}></div>
-                <div>{hovered ? 'HOVERED' : ''}</div>
+            <div className='app'>
+                <div>User is idle: {isIdle ? 'Yes 😴' : 'Nope'}</div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
