@@ -74,6 +74,15 @@ function App() {
 
 - 对于对象依赖 options，使用 JSON.stringify 转为字符串再作为依赖，保证在 options 引用变化，但是内容不变时，事件不需要重新挂载
 
+- typescript 的类型实现细节，值得学习
+
+```ts
+// 如获取 name, handler, options 的类型
+Parameters<AddEventListener<T>>[0]
+Parameters<AddEventListener<T>>[1]
+Parameters<AddEventListener<T>>[2]
+```
+
 ### 更多看法
 
 无法挂载未 render 的 DOM 或 ref.current 挂载的 DOM，因为最开始作为参数传入 useEvent 时是 null 的，导致 useEvent 在挂载时判断会找不到 target
