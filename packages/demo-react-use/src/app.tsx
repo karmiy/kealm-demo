@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useIdle } from 'react-use';
+import { useIntersection } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -41,12 +41,21 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const isIdle = useIdle(3e3);
+    const intersectionRef = React.useRef(null);
+    const intersection = useIntersection(intersectionRef, {
+        root: null,
+        rootMargin: '10px',
+        threshold: 1
+    });
 
     return (
         <Router>
-            <div className='app'>
-                <div>User is idle: {isIdle ? 'Yes 😴' : 'Nope'}</div>
+            <div className='app' style={{height: 2000}}>
+                <div ref={intersectionRef} style={{marginTop: 400}}>
+                    {intersection && intersection.intersectionRatio < 1
+                        ? 'Obscured'
+                        : 'Fully in view'}
+                </div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

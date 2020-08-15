@@ -106,6 +106,8 @@
 
     - [useIdle](./docs/useIdle.md) 监听用户空闲状态
 
+    - [useIntersection](./docs/useIntersection.md) 观察元素是否可见
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
