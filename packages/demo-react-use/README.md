@@ -134,6 +134,8 @@
 
 - 不做无用渲染，区分状态应该存储在 useState 还是 useRef - useMountedState
 
+- 对于一些对象参数，如函数，在不希望作为依赖但需要获取最新的引用时，除了保存引用，也可以让使用者传递一个 deps 帮助实时更新
+
 - 合理结合优秀的第三方库 - useCookie, useCopyToClipboard, useHarmonicIntervalFn, useIdle
 
 - hook 初始值定义为 InitialHookState 类型 - useCounter
