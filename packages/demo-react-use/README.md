@@ -80,6 +80,8 @@
 
     - [useEvent](./docs/useEvent.md) 事件挂载
 
+    - [useIsomorphicLayoutEffect](./docs/useIsomorphicLayoutEffect.md) 安全使用 useLayoutEffect
+
 - State
 
     - [useCounter](./docs/useCounter.md) 数值管理
