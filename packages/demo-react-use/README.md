@@ -40,11 +40,15 @@
 
 - [useIdle](./docs/useIdle.md)
 
+- [useInterval](./docs/useInterval.md)
+
 ## 分类
 
 - Animations
 
     - [useHarmonicIntervalFn](./docs/useHarmonicIntervalFn.md) 同谐波的 setInterval
+
+    - [useInterval](./docs/useInterval.md) setInterval 定时器轮询
 
 - Effect
 

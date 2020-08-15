@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useIntersection } from 'react-use';
+import { useInterval } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -41,20 +41,26 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const intersectionRef = React.useRef(null);
-    const intersection = useIntersection(intersectionRef, {
-        root: null,
-        rootMargin: '10px',
-        threshold: 1
-    });
+    const [count, setCount] = useState(0);
+    const [delay, setDelay] = useState(1000);
+    const [isRunning, setIsRunning] = useState(true);
+
+    useInterval(
+        () => {
+            setCount(count + 1);
+        },
+        isRunning ? delay : null
+    );
 
     return (
         <Router>
-            <div className='app' style={{height: 2000}}>
-                <div ref={intersectionRef} style={{marginTop: 400}}>
-                    {intersection && intersection.intersectionRatio < 1
-                        ? 'Obscured'
-                        : 'Fully in view'}
+            <div className='app'>
+                <div>
+                    delay: <input value={delay} onChange={event => setDelay(Number(event.target.value))} />
+                </div>
+                <h1>count: {count}</h1>
+                <div>
+                    <button onClick={() => setIsRunning(v => !v)}>{isRunning ? 'stop' : 'start'}</button>
                 </div>
             </div>
             {/* {renderRoutes(routes)} */}
