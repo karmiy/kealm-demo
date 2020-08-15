@@ -43,6 +43,8 @@ const savedCallback = useRef<Function>(() => {});
 useEffect(() => {
     savedCallback.current = callback;
 });
+
+// 个人觉得可以给 useEffect 加 callback 的依赖
 ```
 
 ### 示例
