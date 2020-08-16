@@ -66,7 +66,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: '第三方问诊接入', // HTML中的title
+            title: 'react-use', // HTML中的title
             minify: {
                 // 压缩 HTML 文件
                 removeComments: true, // 移除 HTML 中的注释

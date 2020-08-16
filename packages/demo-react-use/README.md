@@ -208,3 +208,80 @@ type EffectCallback = () => (void | (() => void | undefined));
 ```ts
 type DependencyList = ReadonlyArray<any>;
 ```
+
+- createRenderProp: 将 hook 转为 React 组件
+
+```ts
+const defaultMapPropsToArgs = <P extends object>(props: P) => [props];
+
+const createRenderProp = <H extends (...args: any[]) => any, S extends ReturnType<H>, P extends object>(hook: H, mapPropsToArgs: (props: P) => any = defaultMapPropsToArgs) => {
+    type Render = (state: S) => React.ReactElement;
+
+    type Props = {
+        children?: Render;
+        render?: Render;
+    } & P;
+    
+    const RenderProp: React.FC<Props> = (props: Props) => {
+        const state = (hook(...mapPropsToArgs(props)) as S);
+        const { children, render = children } = props;
+        return render ? (render(state) || null) : null;
+    };
+
+    return RenderProp;
+}
+```
+
+```tsx
+// e.g.
+function useTest(id: number, name: string) {
+    return {
+        id: 'ID: ' + id,
+        name: 'NAME: ' + name,
+    }
+}
+
+interface ITestProps {
+    id: number;
+    name: string;
+}
+
+// Test 组件
+const Test = createRenderProp(useTest, ({ id, name }: ITestProps) => ([id, name]));
+
+function App() {
+    const [count, setCount] = useState(0);
+    const [delay, setDelay] = useState(1000);
+    const [isRunning, setIsRunning] = useState(true);
+
+    useInterval(
+        () => {
+            setCount(count + 1);
+        },
+        isRunning ? delay : null
+    );
+
+    return (
+        <div className='app'>
+            <Test id={1} name={'karmiy'} render={state => {
+                return (
+                    <div>
+                        <p>{state.id}</p>
+                        <p>{state.name}</p>
+                    </div>
+                )
+            }} />
+            <Test id={1} name={'karloy'}>
+                {state => {
+                    return (
+                        <div>
+                            <p>{state.id}</p>
+                            <p>{state.name}</p>
+                        </div>
+                    )
+                }}
+            </Test>
+        </div>
+    )
+}
+```

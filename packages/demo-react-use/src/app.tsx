@@ -39,15 +39,73 @@ interface IChildProps {
     id?: number;
 }
 
+const defaultMapPropsToArgs = <P extends object>(props: P) => [props];
+
+
+/* const createRenderProp = <S, H extends (...args: any[]) => S, P extends Props<S>>(hook: H, mapPropsToArgs: (props: P) => Parameters<H> = (defaultMapPropsToArgs as any)) => {
+    const RenderProp = (props: P) => {
+        const state = hook(...mapPropsToArgs(props));
+        const { children, render = children } = props;
+        return render ? render(state) || null : null;
+    };
+
+    return RenderProp;
+}; */
+
+const createRenderProp = <H extends (...args: any[]) => any, S extends ReturnType<H>, P extends object>(hook: H, mapPropsToArgs: (props: P) => any = defaultMapPropsToArgs) => {
+    type Render = (state: S) => React.ReactElement;
+
+    type Props = {
+        children?: Render;
+        render?: Render;
+    } & P;
+    
+    const RenderProp: React.FC<Props> = (props: Props) => {
+        const state = (hook(...mapPropsToArgs(props)) as S);
+        const { children, render = children } = props;
+        return render ? (render(state) || null) : null;
+    };
+
+    return RenderProp;
+}
+
+function useTest(id: number, name: string) {
+    return {
+        id: 'ID: ' + id,
+        name: 'NAME: ' + name,
+    }
+}
+
+interface ITestProps {
+    id: number;
+    name: string;
+}
+const Test = createRenderProp(useTest, ({ id, name }: ITestProps) => ([id, name]));
+
 const App: React.FC<{}> = () => {
-    const [count, set] = useState(0);
-    const increment = () => set(count => ++count);
-    useKey('ArrowUp', increment);
 
     return (
         <Router>
             <div className='app'>
-                Press arrow up: {count}
+                {/* Press arrow up: {count} */}
+                <Test id={1} name={'karmiy'} render={state => {
+                    return (
+                        <div>
+                            <p>{state.id}</p>
+                            <p>{state.name}</p>
+                        </div>
+                    )
+                }} />
+                <Test id={1} name={'karloy'}>
+                    {state => {
+                        return (
+                            <div>
+                                <p>{state.id}</p>
+                                <p>{state.name}</p>
+                            </div>
+                        )
+                    }}
+                </Test>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
