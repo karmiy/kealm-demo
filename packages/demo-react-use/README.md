@@ -42,6 +42,8 @@
 
 - [useInterval](./docs/useInterval.md)
 
+- [useKey](./docs/useKey.md)
+
 ## 分类
 
 - Animations
@@ -113,6 +115,8 @@
     - [useIdle](./docs/useIdle.md) 监听用户空闲状态
 
     - [useIntersection](./docs/useIntersection.md) 观察元素是否可见
+
+    - [useKey](./docs/useKey.md) 响应用户键盘事件
 
 - UI
 

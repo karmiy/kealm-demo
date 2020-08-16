@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useInterval } from 'react-use';
+import { useKey } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -24,7 +24,6 @@ interface IUser {
     name: string;
     sex: 'man' | 'woman';
 }
-
 function getUsers(sex: ISex) {
     return new Promise<Array<IUser>>((resolve) => {
         setTimeout(() => {
@@ -41,27 +40,14 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const [count, setCount] = useState(0);
-    const [delay, setDelay] = useState(1000);
-    const [isRunning, setIsRunning] = useState(true);
-
-    useInterval(
-        () => {
-            setCount(count + 1);
-        },
-        isRunning ? delay : null
-    );
+    const [count, set] = useState(0);
+    const increment = () => set(count => ++count);
+    useKey('ArrowUp', increment);
 
     return (
         <Router>
             <div className='app'>
-                <div>
-                    delay: <input value={delay} onChange={event => setDelay(Number(event.target.value))} />
-                </div>
-                <h1>count: {count}</h1>
-                <div>
-                    <button onClick={() => setIsRunning(v => !v)}>{isRunning ? 'stop' : 'start'}</button>
-                </div>
+                Press arrow up: {count}
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
