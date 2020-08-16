@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useKey } from 'react-use';
+import { useKeyPress } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,73 +39,18 @@ interface IChildProps {
     id?: number;
 }
 
-const defaultMapPropsToArgs = <P extends object>(props: P) => [props];
-
-
-/* const createRenderProp = <S, H extends (...args: any[]) => S, P extends Props<S>>(hook: H, mapPropsToArgs: (props: P) => Parameters<H> = (defaultMapPropsToArgs as any)) => {
-    const RenderProp = (props: P) => {
-        const state = hook(...mapPropsToArgs(props));
-        const { children, render = children } = props;
-        return render ? render(state) || null : null;
-    };
-
-    return RenderProp;
-}; */
-
-const createRenderProp = <H extends (...args: any[]) => any, S extends ReturnType<H>, P extends object>(hook: H, mapPropsToArgs: (props: P) => any = defaultMapPropsToArgs) => {
-    type Render = (state: S) => React.ReactElement;
-
-    type Props = {
-        children?: Render;
-        render?: Render;
-    } & P;
-    
-    const RenderProp: React.FC<Props> = (props: Props) => {
-        const state = (hook(...mapPropsToArgs(props)) as S);
-        const { children, render = children } = props;
-        return render ? (render(state) || null) : null;
-    };
-
-    return RenderProp;
-}
-
-function useTest(id: number, name: string) {
-    return {
-        id: 'ID: ' + id,
-        name: 'NAME: ' + name,
-    }
-}
-
-interface ITestProps {
-    id: number;
-    name: string;
-}
-const Test = createRenderProp(useTest, ({ id, name }: ITestProps) => ([id, name]));
+const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
 const App: React.FC<{}> = () => {
+    const states = [];
+    for (const key of keys) states.push(useKeyPress(key)[0]);
 
     return (
         <Router>
             <div className='app'>
-                {/* Press arrow up: {count} */}
-                <Test id={1} name={'karmiy'} render={state => {
-                    return (
-                        <div>
-                            <p>{state.id}</p>
-                            <p>{state.name}</p>
-                        </div>
-                    )
-                }} />
-                <Test id={1} name={'karloy'}>
-                    {state => {
-                        return (
-                            <div>
-                                <p>{state.id}</p>
-                                <p>{state.name}</p>
-                            </div>
-                        )
-                    }}
-                </Test>
+                Try pressing numbers
+                <br />
+                {states.reduce((s, pressed, index) => s + (pressed ? (s ? ' + ' : '') + keys[index] : ''), '')}
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

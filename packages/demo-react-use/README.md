@@ -118,6 +118,8 @@
 
     - [useKey](./docs/useKey.md) 响应用户键盘事件
 
+    - [useKeyPress](./docs/useKeyPress.md) 响应用户键盘按下抬起
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
