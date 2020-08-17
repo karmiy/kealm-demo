@@ -44,6 +44,10 @@
 
 - [useKey](./docs/useKey.md)
 
+- [useKeyPress](./docs/useKeyPress.md)
+
+- [useKeyPressEvent](./docs/useKeyPressEvent.md)
+
 ## 分类
 
 - Animations
@@ -118,7 +122,9 @@
 
     - [useKey](./docs/useKey.md) 响应用户键盘事件
 
-    - [useKeyPress](./docs/useKeyPress.md) 响应用户键盘按下抬起
+    - [useKeyPress](./docs/useKeyPress.md) 根据键盘按下抬起返回状态值
+
+    - [useKeyPressEvent](./docs/useKeyPressEvent.md) 根据键盘按下抬起执行回调
 
 - UI
 
