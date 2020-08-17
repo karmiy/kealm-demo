@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useKeyPress } from 'react-use';
+import { useKeyPressEvent, useKeyPress } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,18 +39,24 @@ interface IChildProps {
     id?: number;
 }
 
-const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-
 const App: React.FC<{}> = () => {
-    const states = [];
-    for (const key of keys) states.push(useKeyPress(key)[0]);
+    const [count, setCount] = useState(0);
+
+    const increment = () => setCount(count => ++count);
+    const decrement = () => setCount(count => --count);
+    const reset = () => setCount(() => 0);
+
+    useKeyPressEvent(']', increment);
+    useKeyPressEvent('[', decrement);
+    useKeyPressEvent('r', reset);
 
     return (
         <Router>
             <div className='app'>
-                Try pressing numbers
-                <br />
-                {states.reduce((s, pressed, index) => s + (pressed ? (s ? ' + ' : '') + keys[index] : ''), '')}
+                <p>
+                    Try pressing <code>[</code>, <code>]</code>, and <code>r</code> to
+                    see the count incremented and decremented.</p>
+                <p>Count: {count}</p>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
