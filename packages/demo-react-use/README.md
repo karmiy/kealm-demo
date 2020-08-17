@@ -48,6 +48,8 @@
 
 - [useKeyPressEvent](./docs/useKeyPressEvent.md)
 
+- [useKeyboardJs](./docs/useKeyboardJs.md)
+
 ## 分类
 
 - Animations
@@ -125,6 +127,8 @@
     - [useKeyPress](./docs/useKeyPress.md) 根据键盘按下抬起返回状态值
 
     - [useKeyPressEvent](./docs/useKeyPressEvent.md) 根据键盘按下抬起执行回调
+
+    - [useKeyboardJs](./docs/useKeyboardJs.md) 响应键盘组合键
 
 - UI
 
