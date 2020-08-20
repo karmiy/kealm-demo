@@ -50,6 +50,8 @@
 
 - [useKeyboardJs](./docs/useKeyboardJs.md)
 
+- [useLatest](./docs/useLatest.md)
+
 ## 分类
 
 - Animations
@@ -101,6 +103,8 @@
     - [useGetSet](./docs/useGetSet.md) 返回 get set 的 useState
 
     - [useGetSetState](./docs/useGetSetState.md) useGetSet + Class Component 的 setState
+
+    - [useLatest](./docs/useLatest.md) 始终可获取最新状态
 
 - Miscellaneous
 
