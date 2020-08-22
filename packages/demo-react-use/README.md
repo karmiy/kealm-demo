@@ -22,6 +22,8 @@
 
 - [useGetSetState](./docs/useGetSetState.md)
 
+- [useList](./docs/useList.md)
+
 ## 实用
 
 - [useAudio](./docs/useAudio.md)
@@ -108,6 +110,8 @@
 
     - [useLatest](./docs/useLatest.md) 始终可获取最新状态
 
+    - [useList](./docs/useList.md) 管理并更交互式的操作数组
+
 - Miscellaneous
 
     - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 确保使用 forwardRef 时子组件可以拿到 ref
@@ -169,6 +173,8 @@
 - 巧用高阶函数，将不容易变化的数据作为第一阶的参数，返回一个函数，利用 useMemo 缓存该函数。再将容易变化的数据作为返回函数的参数 - useDrop
 
 - 与其作为钩子函数被使用，更灵活的是返回一个状态，这样的做法可以让状态更灵活的被使用。如开发一个 useDidMount 作为生命周期，更灵活的是开发一个 useIsFirstMount 返回是否为第一次 render，这样除了可以让使用者根据返回值自定义 useEffect 实现 useDidMount，该变量还可以让使用者在更多场景判断是否为第一次挂载 - useFirstMountState, useMountedState
+
+- 对于同一个数据结构，通用的一系列方法可以封装起来，让操作更为便捷又形象 - useList
 
 ## Utils 工具
 
