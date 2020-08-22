@@ -19,10 +19,14 @@ type UseEventTarget = ListenerType1 | ListenerType2;
 
 type AddEventListener<T> = T extends ListenerType1 ? T['addEventListener'] : T extends ListenerType2 ? T['on'] : never;
 
+const isClient = typeof window === 'object';
+
+const defaultTarget = isClient ? window : null;
+
 function useEvent<T extends UseEventTarget>(
     name: Parameters<AddEventListener<T>>[0],
     handler?: null | undefined | Parameters<AddEventListener<T>>[1],
-    target: null | T | Window,
+    target: null | T | Window = defaultTarget,
     options?: Parameters<AddEventListener<T>>[2]
 ): void;
 ```
