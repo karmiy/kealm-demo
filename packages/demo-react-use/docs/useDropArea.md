@@ -24,7 +24,7 @@ interface DropAreaState {
 }
 
 function useDropArea(
-    options: DropAreaOptions
+    options: DropAreaOptions = {}
 ): [DropAreaBond, DropAreaState];
 ```
 
