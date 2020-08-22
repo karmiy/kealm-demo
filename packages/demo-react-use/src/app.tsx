@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useLocation } from 'react-use';
+import { useLockBodyScroll, useToggle } from 'react-use';
 import useKeyboardJs from 'react-use/lib/useKeyboardJs';
 
 type ISex = 'man' | 'woman';
@@ -41,14 +41,21 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const state = useLocation();
+    const [locked, setLocked] = useState(false);
+    useLockBodyScroll(locked);
 
     return (
         <Router>
             <div className='app'>
-                <pre>
-                    {JSON.stringify(state, null, 2)}
-                </pre>
+                <div  style={{height: 2000, backgroundColor: 'skyblue'}}></div>
+                <div style={{height: 200, backgroundColor: 'pink', overflow: 'auto'}}>
+                    <div style={{height: 400}}>
+                        inner scroll
+                    </div>
+                </div>
+                <button onClick={() => setLocked(v => !v)}>
+                    {locked ? 'Unlock' : 'Lock'}
+                </button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

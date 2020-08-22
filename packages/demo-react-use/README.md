@@ -86,6 +86,8 @@
 
     - [useLocalStorage](./docs/useLocalStorage.md) 管理 localStorage
 
+    - [useLockBodyScroll](./docs/useLockBodyScroll.md) 阻止 body 滚动
+
 - Lifecycles
 
     - [useCustomCompareEffect](./docs/useCustomCompareEffect.md) 可控比较器的 useEffect
