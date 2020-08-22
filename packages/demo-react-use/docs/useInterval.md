@@ -7,7 +7,7 @@
 ```ts
 function useInterval(
     callback: Function,
-    delay?: number | null
+    delay: number | null = 0
 ): void;
 ```
 
