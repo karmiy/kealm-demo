@@ -11,8 +11,8 @@ export type UseDebounceReturn = [() => boolean | null, () => void];
 
 function useDebounce(
     fn: Function,
-    ms: number,
-    deps: DependencyList
+    ms: number = 0,
+    deps: DependencyList = []
 ): UseDebounceReturn;
 ```
 
