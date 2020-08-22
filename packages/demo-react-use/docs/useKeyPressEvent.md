@@ -13,7 +13,7 @@ function useKeyPressEvent(
     key: string | KeyFilter,
     keydown?: Handler | null | undefined,
     keyup?: Handler | null | undefined,
-    useKeyPress?: typeof useKeyPress
+    useKeyPress: typeof useKeyPress = useKeyPress
 ): void;
 ```
 
