@@ -2,6 +2,8 @@
 
 获取 window.location 相关信息
 
+IE 需要安装 [polyfill](https://github.com/streamich/react-use/issues/73)
+
 ### 结构
 
 ```ts
