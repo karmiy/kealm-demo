@@ -9,7 +9,8 @@
 ```ts
 function useBeforeUnload(
     enabled: boolean | (() => boolean) = true, 
-    message?: string): void;
+    message?: string
+): void;
 ```
 
 ### 函数与返回值
