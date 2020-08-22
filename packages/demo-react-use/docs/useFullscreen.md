@@ -13,7 +13,7 @@ interface FullScreenOptions {
 function useFullscreen(
     ref: RefObject<Element>,
     on: boolean, 
-    options: FullScreenOptions
+    options: FullScreenOptions = {}
 ): boolean;
 ```
 
