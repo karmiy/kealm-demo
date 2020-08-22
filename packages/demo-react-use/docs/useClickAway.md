@@ -5,7 +5,11 @@
 ### 结构
 
 ```ts
-function useClickAway<E extends Event = Event>(ref: RefObject<HTMLElement | null>, onClickAway: (event: E) => void, events: string[]);
+function useClickAway<E extends Event = Event>(
+    ref: RefObject<HTMLElement | null>, 
+    onClickAway: (event: E) => void, 
+    events: string[] = ['mousedown', 'touchstart']
+): void;
 ```
 
 ### 参数与返回值
@@ -16,7 +20,7 @@ function useClickAway<E extends Event = Event>(ref: RefObject<HTMLElement | null
 
     - onClickAway: 点击元素外触发的回调
 
-    - events: 事件名，默认 ['mousedown', 'touchstart']
+    - events: 事件名
 
 ### 作用
 
