@@ -54,6 +54,8 @@
 
 - [useLatest](./docs/useLatest.md)
 
+- [useLocalStorage](./docs/useLocalStorage.md)
+
 ## 分类
 
 - Animations
@@ -62,7 +64,7 @@
 
     - [useInterval](./docs/useInterval.md) setInterval 定时器轮询
 
-- Effect
+- Side-effects
 
     - [useAsyncFn](./docs/useAsyncFn.md) 异步函数
 
@@ -81,6 +83,8 @@
     - [useError](./docs/useError.md) 派发错误
 
     - [useFavicon](./docs/useFavicon.md) 挂载 favicon
+
+    - [useLocalStorage](./docs/useLocalStorage.md) 管理 localStorage
 
 - Lifecycles
 
