@@ -20,9 +20,9 @@ export interface CounterActions {
 }
 
 function useCounter(
-    initialValue: InitialHookState<number>,
-    max: number | null,
-    min: number | null,
+    initialValue: InitialHookState<number> = 0,
+    max: number | null = null,
+    min: number | null = null,
 ): [number, CounterActions];
 ```
 
