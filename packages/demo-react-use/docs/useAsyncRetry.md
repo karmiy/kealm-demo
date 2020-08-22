@@ -22,8 +22,7 @@ type StateFromFnReturningPromise<T> = AsyncState<PromiseType<ReturnType<T>>>; //
 
 function useAsync<T extends FnReturningPromise>(
     fn: T, 
-    deps?: DependencyList, 
-    initialState?: StateFromFnReturningPromise
+    deps?: DependencyList
 ): StateFromFnReturningPromise<T>;
 ```
 
@@ -33,9 +32,7 @@ function useAsync<T extends FnReturningPromise>(
 
     - fn: 异步函数，返回 Promise 对象
 
-    - deps: fn 的依赖项
-
-    - initialState: 初始值
+    - deps: fn 的依赖项，默认 []
 
 - Return:
 
