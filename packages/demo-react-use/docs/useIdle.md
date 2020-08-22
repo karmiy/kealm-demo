@@ -7,10 +7,12 @@
 ```ts
 type Element = ((state: boolean) => React.ReactElement<any>) | React.ReactElement<any>;
 
+const defaultEvents = ['mousemove', 'mousedown', 'resize', 'keydown', 'touchstart', 'wheel'];
+
 function useIdle(
-    ms?: number,
-    initialState?: boolean,
-    events?: string[]
+    ms: number = 60e3,
+    initialState: boolean = false,
+    events: string[] = defaultEvents
 ): [boolean];
 ```
 
