@@ -12,7 +12,7 @@ type InitialHookState<S> = S | (() => S);
 type HookState<S> = S | ((prevState: S) => S);
 
 function useGetSetState<T extends object>(
-    initialState: T
+    initialState: T = {} as T
 ): [() => T, (patch: Partial<T>) => void];
 ```
 
