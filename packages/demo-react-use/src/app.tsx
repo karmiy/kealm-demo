@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useKeyPressEvent } from 'react-use';
+import { useLocation } from 'react-use';
 import useKeyboardJs from 'react-use/lib/useKeyboardJs';
 
 type ISex = 'man' | 'woman';
@@ -41,12 +41,14 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const [isPressed] = useKeyboardJs(['a + b']);
+    const state = useLocation();
 
     return (
         <Router>
             <div className='app'>
-                [a + b] pressed: {isPressed ? 'Yes' : 'No'}
+                <pre>
+                    {JSON.stringify(state, null, 2)}
+                </pre>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

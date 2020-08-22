@@ -144,6 +144,8 @@
 
     - [useKeyboardJs](./docs/useKeyboardJs.md) 响应键盘组合键
 
+    - [useLocation](./docs/useLocation.md) 获取 location 相关信息
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
