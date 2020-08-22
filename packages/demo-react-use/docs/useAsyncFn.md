@@ -30,9 +30,9 @@ function useAsyncFn<T extends FnReturningPromise>(
 
     - fn: 异步函数，返回 Promise 对象
 
-    - deps: fn 的依赖项
+    - deps: fn 的依赖项，默认 []
 
-    - initialState: 初始值
+    - initialState: 初始值，默认 { loading: false }
 
 - Return:
 
