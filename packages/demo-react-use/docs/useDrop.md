@@ -16,8 +16,8 @@ interface DropAreaState {
 }
 
 function useDrop(
-    options: DropAreaOptions,
-    args: Array<any>
+    options: DropAreaOptions = {},
+    args: Array<any> = []
 ): DropAreaState;
 ```
 
