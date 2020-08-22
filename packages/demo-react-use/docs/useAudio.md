@@ -31,7 +31,7 @@ interface HTMLMediaControls {
 }
 
 // props 为原生 audio 属性或 <audio> 元素
-function useAsync(props: HTMLMediaProps | React.ReactElement<HTMLMediaProps>): [React.ReactElement<HTMLMediaProps>, HTMLMediaState, HTMLMediaControls, ref];
+function useAudio(props: HTMLMediaProps | React.ReactElement<HTMLMediaProps>): [React.ReactElement<HTMLMediaProps>, HTMLMediaState, HTMLMediaControls, ref];
 ```
 
 ### 函数与返回值
