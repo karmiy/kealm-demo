@@ -1,6 +1,6 @@
 ## useHoverDirty
 
-管理 ReactElement 的 hover 事件，同 useHover
+管理 DOM 节点的 hover 事件，同 useHover
 
 区别在于：
 
@@ -15,7 +15,7 @@ type Element = ((state: boolean) => React.ReactElement<any>) | React.ReactElemen
 
 function useHoverDirty(
     ref: RefObject<Element>,
-    enabled: boolean
+    enabled: boolean = true
 ): [boolean];
 ```
 
