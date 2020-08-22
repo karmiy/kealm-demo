@@ -18,10 +18,10 @@ interface UseKeyOptions {
 }
 
 function useKey(
-    key: KeyFilter,
-    fn: Handler,
-    opts: UseKeyOptions,
-    deps: React.DependencyList
+    key: KeyFilter = { event: 'keydown' },
+    fn: Handler = () => {},
+    opts: UseKeyOptions = {},
+    deps: React.DependencyList = [key]
 ): void;
 ```
 
