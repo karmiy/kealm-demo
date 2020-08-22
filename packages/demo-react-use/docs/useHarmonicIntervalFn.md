@@ -15,7 +15,7 @@ type HookState<S> = S | ((prevState: S) => S);
 
 function useHarmonicIntervalFn(
     fn: Function,
-    delay: number | null
+    delay?: number | null = 0
 ): void;
 ```
 
@@ -25,7 +25,7 @@ function useHarmonicIntervalFn(
 
     - fn: 定时器回调
 
-    - delay: 定时器延迟，默认 0
+    - delay: 定时器延迟
 
 ### 作用
 
