@@ -122,6 +122,8 @@
 
     - [useList](./docs/useList.md) 管理并更交互式的操作数组
 
+    - [useMap](./docs/useMap.md) 管理并更交互式的操作对象
+
 - Miscellaneous
 
     - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 确保使用 forwardRef 时子组件可以拿到 ref

@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useLongPress } from 'react-use';
+import { useMap } from 'react-use';
 import useKeyboardJs from 'react-use/lib/useKeyboardJs';
 
 type ISex = 'man' | 'woman';
@@ -41,20 +41,26 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const onLongPress = () => {
-        console.log('calls callback after long pressing 300ms');
-    };
-    
-    const defaultOptions = {
-        isPreventDefault: true,
-        delay: 1000,
-    };
-    const longPressEvent = useLongPress(onLongPress, defaultOptions);
+    const [map, {set, setAll, remove, reset}] = useMap<{[key: string]: any}>({
+        hello: 'there',
+    });
 
     return (
         <Router>
             <div className='app'>
-                <button {...longPressEvent}>useLongPress</button>
+                <button onClick={() => set(String(Date.now()), new Date().toJSON())}>
+                    Add
+                </button>
+                <button onClick={() => reset()}>
+                    Reset
+                </button>
+                <button onClick={() => setAll({ hello: 'new', data: 'data' })}>
+                    Set new data
+                </button>
+                <button onClick={() => remove('hello')} disabled={!map.hello}>
+                    Remove hello
+                </button>
+                <pre>{JSON.stringify(map, null, 2)}</pre>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
