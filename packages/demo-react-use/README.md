@@ -56,6 +56,8 @@
 
 - [useLocalStorage](./docs/useLocalStorage.md)
 
+- [useLongPress](./docs/useLongPress.md)
+
 ## 分类
 
 - Animations
@@ -149,6 +151,8 @@
     - [useKeyboardJs](./docs/useKeyboardJs.md) 响应键盘组合键
 
     - [useLocation](./docs/useLocation.md) 获取 location 相关信息
+
+    - [useLongPress](./docs/useLongPress.md) 监听元素长按
 
 - UI
 

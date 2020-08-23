@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useLockBodyScroll, useToggle } from 'react-use';
+import { useLongPress } from 'react-use';
 import useKeyboardJs from 'react-use/lib/useKeyboardJs';
 
 type ISex = 'man' | 'woman';
@@ -41,21 +41,20 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const [locked, setLocked] = useState(false);
-    useLockBodyScroll(locked);
+    const onLongPress = () => {
+        console.log('calls callback after long pressing 300ms');
+    };
+    
+    const defaultOptions = {
+        isPreventDefault: true,
+        delay: 1000,
+    };
+    const longPressEvent = useLongPress(onLongPress, defaultOptions);
 
     return (
         <Router>
             <div className='app'>
-                <div  style={{height: 2000, backgroundColor: 'skyblue'}}></div>
-                <div style={{height: 200, backgroundColor: 'pink', overflow: 'auto'}}>
-                    <div style={{height: 400}}>
-                        inner scroll
-                    </div>
-                </div>
-                <button onClick={() => setLocked(v => !v)}>
-                    {locked ? 'Unlock' : 'Lock'}
-                </button>
+                <button {...longPressEvent}>useLongPress</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
