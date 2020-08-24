@@ -15,8 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useMeasure } from 'react-use';
-import useKeyboardJs from 'react-use/lib/useKeyboardJs';
+import { useMedia } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -41,19 +40,12 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const [ref, { x, y, width, height, top, right, bottom, left }] = useMeasure<HTMLDivElement>();
+    const isWide = useMedia('(min-width: 480px)');
 
     return (
         <Router>
-            <div ref={ref} className='app'>
-                <div>x: {x}</div>	
-                <div>y: {y}</div>
-                <div>width: {width}</div>
-                <div>height: {height}</div>
-                <div>top: {top}</div>
-                <div>right: {right}</div>
-                <div>bottom: {bottom}</div>
-                <div>left: {left}</div>
+            <div className='app'>
+                Screen is wide: {isWide ? 'Yes' : 'No'}
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

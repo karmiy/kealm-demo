@@ -158,6 +158,8 @@
 
     - [useMeasure](./docs/useMeasure.md) 跟踪元素尺寸
 
+    - [useMedia](./docs/useMedia.md) 跟踪 CSS media query
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
