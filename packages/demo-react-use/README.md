@@ -160,6 +160,8 @@
 
     - [useMedia](./docs/useMedia.md) 跟踪 CSS media query
 
+    - [useMediaDevices](./docs/useMediaDevices.md) 跟踪可用的媒体输入和输出设备的列表
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频

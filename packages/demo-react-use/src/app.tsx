@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useMedia } from 'react-use';
+import { useMediaDevices } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -40,12 +40,14 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const isWide = useMedia('(min-width: 480px)');
+    const state = useMediaDevices();
 
     return (
         <Router>
             <div className='app'>
-                Screen is wide: {isWide ? 'Yes' : 'No'}
+                <pre>
+                    {JSON.stringify(state, null, 2)}
+                </pre>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
