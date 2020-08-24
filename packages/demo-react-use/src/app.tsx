@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useMediaDevices } from 'react-use';
+import { useMediatedState } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -40,14 +40,18 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const state = useMediaDevices();
+    const [state, setState] = useMediatedState((s: string) => s.replace(/[\s]+/g, ' '), '');
 
     return (
         <Router>
             <div className='app'>
-                <pre>
-                    {JSON.stringify(state, null, 2)}
-                </pre>
+                <div>You will not be able to enter more than one space</div>
+                <input type="text" min="0" max="10" 
+                    value={state}
+                    onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
+                        setState(ev.target.value);
+                    }}
+                />
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

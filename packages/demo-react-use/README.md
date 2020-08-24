@@ -58,6 +58,8 @@
 
 - [useLongPress](./docs/useLongPress.md)
 
+- [useMediatedState](./docs/useMediatedState.md)
+
 ## 分类
 
 - Animations
@@ -123,6 +125,8 @@
     - [useList](./docs/useList.md) 管理并更交互式的操作数组
 
     - [useMap](./docs/useMap.md) 管理并更交互式的操作对象
+
+    - [useMediatedState](./docs/useMediatedState.md) 赋值时走中间层的 useState
 
 - Miscellaneous
 
