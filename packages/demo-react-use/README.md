@@ -156,6 +156,8 @@
 
     - [useLongPress](./docs/useLongPress.md) 监听元素长按
 
+    - [useMeasure](./docs/useMeasure.md) 跟踪元素尺寸
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
@@ -191,6 +193,8 @@
 - 与其作为钩子函数被使用，更灵活的是返回一个状态，这样的做法可以让状态更灵活的被使用。如开发一个 useDidMount 作为生命周期，更灵活的是开发一个 useIsFirstMount 返回是否为第一次 render，这样除了可以让使用者根据返回值自定义 useEffect 实现 useDidMount，该变量还可以让使用者在更多场景判断是否为第一次挂载 - useFirstMountState, useMountedState
 
 - 对于同一个数据结构，通用的一系列方法可以封装起来，让操作更为便捷又形象 - useList
+
+- 对于操作 DOM 的 hook，除了可以接收 DOM, ref 等参数，也可以向外抛出 useState<HTMLElement | null> 的 setState 作为 ref，让使用者随时可手动挂载在 DOM 的 ref 上，好处在于对于一开始不方便获取 DOM 或 ref 的场景也很适用，不担心获取到空的 element，在挂载 setState 后 hook 内部自动 render，只需在 useEffect 以 state 为依赖挂载事件或操作即可 - useMeasure
 
 ## Utils 工具
 

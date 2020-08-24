@@ -15,7 +15,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useMap } from 'react-use';
+import { useMeasure } from 'react-use';
 import useKeyboardJs from 'react-use/lib/useKeyboardJs';
 
 type ISex = 'man' | 'woman';
@@ -41,26 +41,19 @@ interface IChildProps {
 }
 
 const App: React.FC<{}> = () => {
-    const [map, {set, setAll, remove, reset}] = useMap<{[key: string]: any}>({
-        hello: 'there',
-    });
+    const [ref, { x, y, width, height, top, right, bottom, left }] = useMeasure<HTMLDivElement>();
 
     return (
         <Router>
-            <div className='app'>
-                <button onClick={() => set(String(Date.now()), new Date().toJSON())}>
-                    Add
-                </button>
-                <button onClick={() => reset()}>
-                    Reset
-                </button>
-                <button onClick={() => setAll({ hello: 'new', data: 'data' })}>
-                    Set new data
-                </button>
-                <button onClick={() => remove('hello')} disabled={!map.hello}>
-                    Remove hello
-                </button>
-                <pre>{JSON.stringify(map, null, 2)}</pre>
+            <div ref={ref} className='app'>
+                <div>x: {x}</div>	
+                <div>y: {y}</div>
+                <div>width: {width}</div>
+                <div>height: {height}</div>
+                <div>top: {top}</div>
+                <div>right: {right}</div>
+                <div>bottom: {bottom}</div>
+                <div>left: {left}</div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
