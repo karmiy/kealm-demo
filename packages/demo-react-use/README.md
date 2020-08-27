@@ -60,6 +60,8 @@
 
 - [useMediatedState](./docs/useMediatedState.md)
 
+- [useMethods](./docs/useMethods.md)
+
 ## 分类
 
 - Animations
@@ -127,6 +129,8 @@
     - [useMap](./docs/useMap.md) 管理并更交互式的操作对象
 
     - [useMediatedState](./docs/useMediatedState.md) 赋值时走中间层的 useState
+
+    - [useMethods](./docs/useMethods.md) 策略模式版的 useReducer
 
 - Miscellaneous
 

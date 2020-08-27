@@ -3,6 +3,8 @@ import React, {
     useCallback, 
     useRef, 
     useEffect, 
+    useReducer,
+    Reducer,
     EffectCallback, 
     DependencyList, 
     useMemo, 
@@ -15,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useMediatedState } from 'react-use';
+import { useMethods } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,19 +41,37 @@ interface IChildProps {
     id?: number;
 }
 
+interface State {
+    count: number;
+}
+
+const initialState: State = {
+    count: 0,
+};
+  
+const createMethods = (state: State) => {
+    return {
+        reset() {
+            return initialState;
+        },
+        increment() {
+            return { ...state, count: state.count + 1 };
+        },
+        decrement() {
+            return { ...state, count: state.count - 1 };
+        },
+    };
+}
+
 const App: React.FC<{}> = () => {
-    const [state, setState] = useMediatedState((s: string) => s.replace(/[\s]+/g, ' '), '');
+    const [state, methods] = useMethods(createMethods, initialState);
 
     return (
         <Router>
             <div className='app'>
-                <div>You will not be able to enter more than one space</div>
-                <input type="text" min="0" max="10" 
-                    value={state}
-                    onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
-                        setState(ev.target.value);
-                    }}
-                />
+                <p>Count: {state.count}</p>
+                <button onClick={methods.decrement}>-</button>
+                <button onClick={methods.increment}>+</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
