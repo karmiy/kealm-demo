@@ -38,14 +38,21 @@ function getUsers(sex: ISex) {
 }
 
 const App: React.FC<{}> = () => {
-    const state = useMotion();
+    const [a, set] = useState(0);
+
+    useEffect(() => {
+        console.log('mounted');
+        set(v => v + 1);
+    }, []);
+
+    useEffect(() => {
+        console.log(a);
+    }, [a]);
 
     return (
         <Router>
             <div className='app'>
-                <pre>
-                    {JSON.stringify(state, null, 2)}
-                </pre>
+                
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

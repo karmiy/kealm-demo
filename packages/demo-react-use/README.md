@@ -114,6 +114,8 @@
     
     - [useMount](./docs/useMount.md) 在组件初始挂载时执行
 
+    - [useMountedState](./docs/useMountedState.md) 以函数调用的方式获取组件是否挂载完成
+
 - State
 
     - [useCounter](./docs/useCounter.md) 数值管理
