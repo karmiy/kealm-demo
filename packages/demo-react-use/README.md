@@ -24,6 +24,8 @@
 
 - [useList](./docs/useList.md)
 
+- [useMount](./docs/useMount.md)
+
 ## 实用
 
 - [useAudio](./docs/useAudio.md)
@@ -109,6 +111,8 @@
     - [useLifecycles](./docs/useLifecycles.md) 组件初始与销毁生命周期钩子
 
     - [useLogger](./docs/useLogger.md) 在组件生命周期打印日志
+    
+    - [useMount](./docs/useMount.md) 在组件初始挂载时执行
 
 - State
 
