@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useMethods } from 'react-use';
+import { useMotion } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -37,41 +37,15 @@ function getUsers(sex: ISex) {
     });
 }
 
-interface IChildProps {
-    id?: number;
-}
-
-interface State {
-    count: number;
-}
-
-const initialState: State = {
-    count: 0,
-};
-  
-const createMethods = (state: State) => {
-    return {
-        reset() {
-            return initialState;
-        },
-        increment() {
-            return { ...state, count: state.count + 1 };
-        },
-        decrement() {
-            return { ...state, count: state.count - 1 };
-        },
-    };
-}
-
 const App: React.FC<{}> = () => {
-    const [state, methods] = useMethods(createMethods, initialState);
+    const state = useMotion();
 
     return (
         <Router>
             <div className='app'>
-                <p>Count: {state.count}</p>
-                <button onClick={methods.decrement}>-</button>
-                <button onClick={methods.increment}>+</button>
+                <pre>
+                    {JSON.stringify(state, null, 2)}
+                </pre>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

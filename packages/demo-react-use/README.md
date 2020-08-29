@@ -170,6 +170,8 @@
 
     - [useMediaDevices](./docs/useMediaDevices.md) 跟踪可用的媒体输入和输出设备的列表
 
+    - [useMotion](./docs/useMotion.md) H5 设备运动监听
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
