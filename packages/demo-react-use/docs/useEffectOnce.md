@@ -1,6 +1,6 @@
 ## useEffectOnce
 
-只执行一次的 useEffect，相当于异步的 componentDidMount（称其异步，因为内部使用的是 useEffect 而不是 useLayoutEffect）
+只执行一次的 useEffect，相当于异步的 componentDidMount（称其异步，因为内部使用的是 useEffect 而不是 useLayoutEffect）+ componentWillMount
 
 ### 结构
 
