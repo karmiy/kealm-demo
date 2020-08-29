@@ -24,6 +24,8 @@ function useEffectOnce(effect: EffectCallback): void;
 
 - 当执行的内容需要在组件初始化时执行，且只执行一次
 
+- 初始化执行，伴随着可选的卸载操作
+
 ### 应用场景
 
 - 页面初始化时挂载页面 scroll 事件
