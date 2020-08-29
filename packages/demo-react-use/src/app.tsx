@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useMotion } from 'react-use';
+import { useMouseHovered } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -38,21 +38,25 @@ function getUsers(sex: ISex) {
 }
 
 const App: React.FC<{}> = () => {
-    const [a, set] = useState(0);
+    const ref = useRef(null);
 
-    useEffect(() => {
-        console.log('mounted');
-        set(v => v + 1);
-    }, []);
-
-    useEffect(() => {
-        console.log(a);
-    }, [a]);
+    const { docX, docY, posX, posY, elX, elY, elW, elH } = useMouseHovered(ref, {
+        bound: true,
+        whenHovered: true,
+    });
 
     return (
         <Router>
             <div className='app'>
-                
+                <div>Mouse position in document - x:{docX} y:{docY}</div>
+                <div>Mouse position in element - x:{elX} y:{elY}</div>
+                <div>Element position- x:{posX} y:{posY}</div>
+                <div>Element dimensions - {elW}x{elH}</div>
+                <div ref={ref} style={{
+                    width: 100,
+                    height: 100,
+                    border: '1px solid skyblue',
+                }}></div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

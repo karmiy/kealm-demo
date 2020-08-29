@@ -26,6 +26,8 @@
 
 - [useMount](./docs/useMount.md)
 
+- [useMountedState](./docs/useMountedState.md)
+
 ## 实用
 
 - [useAudio](./docs/useAudio.md)
@@ -63,6 +65,10 @@
 - [useMediatedState](./docs/useMediatedState.md)
 
 - [useMethods](./docs/useMethods.md)
+
+- [useMouse](./docs/useMouse.md)
+
+- [useMouseHovered](./docs/useMouseHovered.md)
 
 ## 分类
 
@@ -177,6 +183,10 @@
     - [useMediaDevices](./docs/useMediaDevices.md) 跟踪可用的媒体输入和输出设备的列表
 
     - [useMotion](./docs/useMotion.md) H5 设备运动监听
+
+    - [useMouse](./docs/useMouse.md) 监听鼠标的位置与元素尺寸
+
+    - [useMouseHovered](./docs/useMouseHovered.md) 监听鼠标的位置与元素尺寸
 
 - UI
 
