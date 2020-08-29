@@ -25,6 +25,8 @@ function useHoverDirty(
 
     - ref: useRef 挂载的节点
 
+    - enabled: 是否开启监听
+
 - Return:
 
     - hovered: 当前是否 hover 中
