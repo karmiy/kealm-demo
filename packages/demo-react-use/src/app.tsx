@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useMouseHovered } from 'react-use';
+import { useNetwork } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -37,26 +37,17 @@ function getUsers(sex: ISex) {
     });
 }
 
-const App: React.FC<{}> = () => {
-    const ref = useRef(null);
+const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
 
-    const { docX, docY, posX, posY, elX, elY, elW, elH } = useMouseHovered(ref, {
-        bound: true,
-        whenHovered: true,
-    });
+const App: React.FC<{}> = () => {
+    const state = useNetwork();
 
     return (
         <Router>
             <div className='app'>
-                <div>Mouse position in document - x:{docX} y:{docY}</div>
-                <div>Mouse position in element - x:{elX} y:{elY}</div>
-                <div>Element position- x:{posX} y:{posY}</div>
-                <div>Element dimensions - {elW}x{elH}</div>
-                <div ref={ref} style={{
-                    width: 100,
-                    height: 100,
-                    border: '1px solid skyblue',
-                }}></div>
+                <pre>
+                    {JSON.stringify(state, null, 2)}
+                </pre>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

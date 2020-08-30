@@ -144,9 +144,11 @@
 
     - [useMethods](./docs/useMethods.md) 策略模式版的 useReducer
 
+    - [useMultiStateValidator](./docs/useMethods.md) 策略模式版的 useReducer
+
 - Miscellaneous
 
-    - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 确保使用 forwardRef 时子组件可以拿到 ref
+    - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 多状态校验
 
 - Sensors
 
@@ -215,6 +217,8 @@
 - hook 初始值定义为 InitialHookState 类型 - useCounter
 
 - set 方法相关的参数定义为 HookState 类型 - useCounter
+
+- set 方法除了可以定义为上述 (s: HooState) => void，也可以定义为 Dispatch<SetStateAction\<S>> - useStateValidator
 
 - 当需要返回一个功能对象时，利用 useMemo 对该对象进行缓存，防止用户使用该对象作为 dep 时出现多余无用 render - useCounter
 
