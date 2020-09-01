@@ -72,6 +72,8 @@
 
 - [usePrevious](./docs/usePrevious.md)
 
+- [usePreviousDistinct](./docs/usePreviousDistinct.md)
+
 ## 分类
 
 - Animations
@@ -150,11 +152,13 @@
 
     - [useMultiStateValidator](./docs/useMethods.md) 策略模式版的 useReducer
 
+    - [usePrevious](./docs/usePrevious.md) 获取前一次 render 时的状态
+
+    - [usePreviousDistinct](./docs/usePreviousDistinct.md) 获取前一次旧状态
+
 - Miscellaneous
 
     - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 多状态校验
-
-    - [usePrevious](./docs/usePrevious.md) 获取前一次 render 时的状态
 
 - Sensors
 
