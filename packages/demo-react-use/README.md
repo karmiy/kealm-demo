@@ -156,6 +156,8 @@
 
     - [useMultiStateValidator](./docs/useMethods.md) 策略模式版的 useReducer
 
+    - [useObservable](./docs/useObservable.md) 跟踪可观察者最新值
+
     - [usePrevious](./docs/usePrevious.md) 获取前一次 render 时的状态
 
     - [usePreviousDistinct](./docs/usePreviousDistinct.md) 获取前一次旧状态

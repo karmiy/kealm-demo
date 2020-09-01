@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useNetwork } from 'react-use';
+import { useObservable } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,15 +39,50 @@ function getUsers(sex: ISex) {
 
 const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
 
+class Subject<T> {
+    private listeners: Array<(value: T) => void> = [];
+
+    public subscribe(listener: (value: T) => void) {
+        this.listeners.push(listener);
+
+        return {
+            unsubscribe: () => {
+                const index = this.listeners.indexOf(listener);
+                this.listeners[index] = this.listeners[this.listeners.length - 1];
+                this.listeners.pop();
+            }
+        }
+    }
+
+    public next(value: T) {
+        this.listeners.forEach(listener => listener(value));
+    }
+}
+
+const subject = new Subject<number>();
+
+const Button: React.FC<{}> = () => {
+    const value = useObservable(subject, 0);
+
+    return <button onClick={() => subject.next(value + 1)}>Clicked {value} times</button>
+}
+
+const Content: React.FC<{}> = () => {
+    const value = useObservable(subject, 0);
+
+    return <div>Value is {value}</div>
+}
+
 const App: React.FC<{}> = () => {
-    const state = useNetwork();
 
     return (
         <Router>
             <div className='app'>
-                <pre>
-                    {JSON.stringify(state, null, 2)}
-                </pre>
+                {/* <button onClick={() => subject.next(value + 1)}>
+                    Clicked {value} times
+                </button> */}
+                <Button />
+                <Content />
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
