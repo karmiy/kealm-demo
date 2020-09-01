@@ -194,6 +194,8 @@
 
     - [useOrientation](./docs/useOrientation.md) 监听设备的纵横方向
 
+    - [usePageLeave](./docs/usePageLeave.md) 响应离开当前页
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
