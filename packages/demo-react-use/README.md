@@ -192,6 +192,8 @@
 
     - [useNetwork](./docs/useNetwork.md) 监听网络状态
 
+    - [useOrientation](./docs/useOrientation.md) 监听设备的纵横方向
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
