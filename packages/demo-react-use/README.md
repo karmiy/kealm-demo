@@ -160,6 +160,8 @@
 
     - [usePreviousDistinct](./docs/usePreviousDistinct.md) 获取前一次旧状态
 
+    - [useQueue](./docs/useQueue.md) 管理 FIFO 队列
+
 - Miscellaneous
 
     - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 多状态校验
