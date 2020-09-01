@@ -70,6 +70,8 @@
 
 - [useMouseHovered](./docs/useMouseHovered.md)
 
+- [usePrevious](./docs/usePrevious.md)
+
 ## 分类
 
 - Animations
@@ -151,6 +153,8 @@
 - Miscellaneous
 
     - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 多状态校验
+
+    - [usePrevious](./docs/usePrevious.md) 获取前一次 render 时的状态
 
 - Sensors
 
