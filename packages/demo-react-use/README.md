@@ -74,6 +74,8 @@
 
 - [usePreviousDistinct](./docs/usePreviousDistinct.md)
 
+- [usePromise](./docs/usePromise.md)（名称可以取的更通俗易懂点）
+
 ## 分类
 
 - Animations
@@ -127,6 +129,8 @@
     - [useMount](./docs/useMount.md) 在组件初始挂载时执行
 
     - [useMountedState](./docs/useMountedState.md) 以函数调用的方式获取组件是否挂载完成
+
+    - [usePromise](./docs/usePromise.md) 包装 promise 对象，防止组件卸载后状态更新导致的错误
 
 - State
 
