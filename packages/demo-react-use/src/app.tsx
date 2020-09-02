@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useObservable } from 'react-use';
+import { useRafLoop } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,50 +39,28 @@ function getUsers(sex: ISex) {
 
 const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
 
-class Subject<T> {
-    private listeners: Array<(value: T) => void> = [];
-
-    public subscribe(listener: (value: T) => void) {
-        this.listeners.push(listener);
-
-        return {
-            unsubscribe: () => {
-                const index = this.listeners.indexOf(listener);
-                this.listeners[index] = this.listeners[this.listeners.length - 1];
-                this.listeners.pop();
-            }
-        }
-    }
-
-    public next(value: T) {
-        this.listeners.forEach(listener => listener(value));
-    }
-}
-
-const subject = new Subject<number>();
-
-const Button: React.FC<{}> = () => {
-    const value = useObservable(subject, 0);
-
-    return <button onClick={() => subject.next(value + 1)}>Clicked {value} times</button>
-}
-
-const Content: React.FC<{}> = () => {
-    const value = useObservable(subject, 0);
-
-    return <div>Value is {value}</div>
-}
-
 const App: React.FC<{}> = () => {
+    const [left, setLeft] = useState(0);
+    const directiveRef = useRef(true);
+    const [loopStop, loopStart, isActive] = useRafLoop(() => {
+        setLeft(value => {
+            const nextValue = value + (directiveRef.current ? 1 : -1);
+            (nextValue === 500 || nextValue === 0) && (directiveRef.current = !directiveRef.current);
+            return nextValue;    
+        });
+    }, false);
 
     return (
         <Router>
             <div className='app'>
-                {/* <button onClick={() => subject.next(value + 1)}>
-                    Clicked {value} times
-                </button> */}
-                <Button />
-                <Content />
+                <div style={{
+                    position: 'relative',
+                    width: 100,
+                    height: 100,
+                    border: '1px solid #1394ff',
+                    left,
+                }} />
+                <button onClick={() => isActive() ? loopStop() : loopStart()}>Toggle</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

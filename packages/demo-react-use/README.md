@@ -76,6 +76,8 @@
 
 - [usePromise](./docs/usePromise.md)（名称可以取的更通俗易懂点）
 
+- [useRafLoop](./docs/useRafLoop.md)（可调接收参数）
+
 ## 分类
 
 - Animations
@@ -111,6 +113,8 @@
     - [useLockBodyScroll](./docs/useLockBodyScroll.md) 阻止 body 滚动
 
     - [usePermission](./docs/usePermission.md) 查询 APIs 权限状态
+
+    - [useRafLoop](./docs/useRafLoop.md) 循环以 raf 调用回调
 
 - Lifecycles
 
