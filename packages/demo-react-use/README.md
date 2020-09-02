@@ -84,6 +84,8 @@
 
     - [useInterval](./docs/useInterval.md) setInterval 定时器轮询
 
+    - [useRaf](./docs/useRaf.md) 一定时间内不断调用 raf 触发组件 render
+
 - Side-effects
 
     - [useAsyncFn](./docs/useAsyncFn.md) 异步函数
