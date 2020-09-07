@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useScroll } from 'react-use';
+import { useScrollbarWidth } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -42,21 +42,12 @@ const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2)
 
 const App: React.FC<{}> = () => {
 
-    const scrollRef = React.useRef(null);
-    const {x, y} = useScroll(scrollRef);
+    const sbw = useScrollbarWidth();
 
     return (
         <Router>
             <div className='app'>
-                <div>x: {x}</div>
-                <div>y: {y}</div>
-                <div ref={scrollRef} style={{
-                    height: 200,
-                    border: '1px solid #1394ff',
-                    overflow: 'auto',
-                }}>
-                    <div style={{height: 1000}} />
-                </div>
+                {sbw === undefined ? `DOM is not ready yet, SBW detection delayed` : `Browser's scrollbar width is ${sbw}px`}
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

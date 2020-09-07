@@ -232,6 +232,8 @@
 
     - [useScroll](./docs/useScroll.md) 监听滚动元素的当前滚动信息
 
+    - [useScrollbarWidth](./docs/useScrollbarWidth.md) 获取页面滚动条宽度
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
