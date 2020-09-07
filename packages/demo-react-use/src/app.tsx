@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useRafState } from 'react-use';
+import { useRendersCount, useUpdate } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -40,30 +40,15 @@ function getUsers(sex: ISex) {
 const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
 
 const App: React.FC<{}> = () => {
-    const [state, setState] = useRafState({
-        width: 0,
-        height: 0,
-    });
-
-    useEffect(() => {
-        const onResize = () => {
-            setState({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-      
-        window.addEventListener('resize', onResize);
-      
-        return () => {
-            window.removeEventListener('resize', onResize);
-        };
-    }, []);
+    const update = useUpdate();
+    const rendersCount = useRendersCount();
 
     return (
         <Router>
             <div className='app'>
-                <pre>{JSON.stringify(state, null, 2)}</pre>
+                <span>Renders count: {rendersCount}</span>
+                <br />
+                <button onClick={update}>re-render</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

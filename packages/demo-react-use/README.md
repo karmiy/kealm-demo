@@ -174,6 +174,8 @@
 
     - [useRafState](./docs/useRafState.md) 以 raf 防抖的  useState
 
+    - [useRendersCount](./docs/useRendersCount.md) 获取组件 render 次数
+
 - Miscellaneous
 
     - [useEnsuredForwardedRef](./docs/useEnsuredForwardedRef.md) 多状态校验
