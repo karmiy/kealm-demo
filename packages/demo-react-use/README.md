@@ -78,6 +78,8 @@
 
 - [useRafLoop](./docs/useRafLoop.md)（可调接收参数）
 
+- [useRafState](./docs/useRafState.md)
+
 ## 分类
 
 - Animations
@@ -169,6 +171,8 @@
     - [usePreviousDistinct](./docs/usePreviousDistinct.md) 获取前一次旧状态
 
     - [useQueue](./docs/useQueue.md) 管理 FIFO 队列
+
+    - [useRafState](./docs/useRafState.md) 以 raf 防抖的  useState
 
 - Miscellaneous
 

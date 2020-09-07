@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useRafLoop } from 'react-use';
+import { useRafState } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -40,27 +40,30 @@ function getUsers(sex: ISex) {
 const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
 
 const App: React.FC<{}> = () => {
-    const [left, setLeft] = useState(0);
-    const directiveRef = useRef(true);
-    const [loopStop, loopStart, isActive] = useRafLoop(() => {
-        setLeft(value => {
-            const nextValue = value + (directiveRef.current ? 1 : -1);
-            (nextValue === 500 || nextValue === 0) && (directiveRef.current = !directiveRef.current);
-            return nextValue;    
-        });
-    }, false);
+    const [state, setState] = useRafState({
+        width: 0,
+        height: 0,
+    });
+
+    useEffect(() => {
+        const onResize = () => {
+            setState({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        };
+      
+        window.addEventListener('resize', onResize);
+      
+        return () => {
+            window.removeEventListener('resize', onResize);
+        };
+    }, []);
 
     return (
         <Router>
             <div className='app'>
-                <div style={{
-                    position: 'relative',
-                    width: 100,
-                    height: 100,
-                    border: '1px solid #1394ff',
-                    left,
-                }} />
-                <button onClick={() => isActive() ? loopStop() : loopStart()}>Toggle</button>
+                <pre>{JSON.stringify(state, null, 2)}</pre>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
