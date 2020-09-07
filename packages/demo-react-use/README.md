@@ -226,6 +226,8 @@
 
     - [usePageLeave](./docs/usePageLeave.md) 响应离开当前页
 
+    - [useScratch](./docs/useScratch.md) 跟踪鼠标/触屏的 scratch 状态
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
