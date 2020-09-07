@@ -242,6 +242,8 @@
 
 ## 心得
 
+- 不能使用 useRef 返回的 ref 作为依赖，因为它的引用始终不变，应使用 ref.current
+
 - 尽可能的灵活 - useAudio
 
 - 不做无用渲染，区分状态应该存储在 useState 还是 useRef - useMountedState
