@@ -401,3 +401,7 @@ function App() {
     )
 }
 ```
+
+- 利用 [react-universal-interface](https://www.npmjs.com/package/react-universal-interface) 快速创建 render props, FC, Component Prop 的组件
+
+可以参考 [useScratch](https://github.com/streamich/react-use/blob/master/src/useScratch.ts) 的使用方式
