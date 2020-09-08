@@ -5,14 +5,9 @@
 ### 结构
 
 ```ts
-interface State {
-    x: number;
-    y: number;
-}
-
 function useScrolling(
     ref: React.RefObject<HTMLElement>
-): State;
+): boolean;
 ```
 
 ### 函数与返回值
@@ -23,54 +18,47 @@ function useScrolling(
 
 - Return:
 
-    - state: 当前滚动状态
-
-        - x: 水平方向滚动距离
-
-        - y: 垂直方向滚动距离
+    - scrolling: 当前是否正在滚动中
 
 ### 作用
 
-- 监听元素的滚动信息
+- 监听元素当前是否正在滚动中
 
 ### 何时使用
 
-- 希望监听元素的滚动信息
+- 希望判断元素是否正在滚动中
 
 ### 应用场景
 
-- 实现加载更多效果，监听元素的滚动信息，在滚到底部时加载更多内容
+- 需判断元素是否滚动中的任何场景
 
 ### 源码细节
 
-[useScroll 源码地址](https://github.com/streamich/react-use/blob/master/src/useScroll.ts)
+[useScrolling 源码地址](https://github.com/streamich/react-use/blob/master/src/useScrolling.ts)
 
-- 使用 useRafState 对滚动回调进行防抖处理
+- 在滚动事件中利用 setTimeout 延迟 150ms 来判断是否停止滚动，如果 150ms 后未触发下次滚动，表示停止滚动
 
 ```tsx
-const [state, setState] = useRafState<State>({
-    x: 0,
-    y: 0,
-});
+const handleScrollEnd = () => {
+    setScrolling(false);
+};
+const handleScroll = () => {
+    setScrolling(true);
+    clearTimeout(scrollingTimeout);
+    scrollingTimeout = setTimeout(() => handleScrollEnd(), 150);
+};
 ```
-
-### 更多看法
-
-- 可以用 useState\<HTMLElement | null> 传递 ref 绑定，这样更为灵活，useEffect 的依赖也更为有效，源码中使用 ref 作为依赖的意义不大，通常引用地址是不变的
-
-- 可在没有传递元素时默认绑定如 window
 
 ### 示例
 
 ```tsx
 function App() {
     const scrollRef = React.useRef(null);
-    const {x, y} = useScroll(scrollRef);
+    const scrolling = useScrolling(scrollRef);
 
     return (
         <div className='app'>
-            <div>x: {x}</div>
-            <div>y: {y}</div>
+            <div>{scrolling ? "Scrolling" : "Not scrolling"}</div>
             <div ref={scrollRef} style={{
                 height: 200,
                 border: '1px solid #1394ff',

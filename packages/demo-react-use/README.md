@@ -82,6 +82,8 @@
 
 - [useRafState](./docs/useRafState.md)
 
+- [useScrolling](./docs/useScrolling.md)
+
 ## 分类
 
 - Animations
@@ -233,6 +235,8 @@
     - [useScroll](./docs/useScroll.md) 监听滚动元素的当前滚动信息
 
     - [useScrollbarWidth](./docs/useScrollbarWidth.md) 获取页面滚动条宽度
+
+    - [useScrolling](./docs/useScrolling.md) 获取元素当前是否正在滚动
 
 - UI
 
