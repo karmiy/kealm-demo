@@ -11,13 +11,13 @@ import React, {
     forwardRef,
     Dispatch,
 } from 'react';
-import { HashRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './app.scss';
 import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useScrolling } from 'react-use';
+import { useSearchParam } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -42,19 +42,20 @@ const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2)
 
 const App: React.FC<{}> = () => {
 
-    const scrollRef = React.useRef(null);
-    const scrolling = useScrolling(scrollRef);
+    const edit = useSearchParam('edit');
 
     return (
         <Router>
             <div className='app'>
-                <div>{scrolling ? "Scrolling" : "Not scrolling"}</div>
-                <div ref={scrollRef} style={{
-                    height: 200,
-                    border: '1px solid #1394ff',
-                    overflow: 'auto',
-                }}>
-                    <div style={{height: 1000}} />
+                <div>edit: {edit || '🤷‍♂️'}</div>
+                <div>
+                    <button onClick={() => history.pushState({}, '', location.pathname + '?edit=123')}>Edit post 123 (?edit=123)</button>
+                </div>
+                <div>
+                    <button onClick={() => history.pushState({}, '', location.pathname + '?edit=999')}>Edit post 999 (?edit=999)</button>
+                </div>
+                <div>
+                    <button onClick={() => history.pushState({}, '', location.pathname)}>Close modal</button>
                 </div>
             </div>
             {/* {renderRoutes(routes)} */}

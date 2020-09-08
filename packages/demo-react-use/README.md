@@ -238,6 +238,8 @@
 
     - [useScrolling](./docs/useScrolling.md) 获取元素当前是否正在滚动
 
+    - [useSearchParam](./docs/useSearchParam.md) 获取 location.search 参数值
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
