@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useShallowCompareEffect, useDeepCompareEffect, useUpdate, useRendersCount } from 'react-use';
+import { useSize } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,19 +39,20 @@ function getUsers(sex: ISex) {
 
 const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
 
-const App: React.FC<{}> = () => {
-    const [visible, setVisible] = useState(false);
-    const option = { step: 2 };
 
-    useShallowCompareEffect(() => {
-        console.log(111);
-    }, [option]);
+const App: React.FC<{}> = () => {
+    const [sized, {width, height}] = useSize(
+        ({width}) => <div style={{background: 'red'}}>Size me up! ({width}px)</div>,
+        { width: 100, height: 100 }
+    );
+    
 
     return (
         <Router>
             <div className='app'>
-                <p>useCustomCompareEffect with shallow comparison: {String(visible)}</p>
-                <button onClick={() => setVisible(v => !v)}>toggle</button>
+                {sized}
+                <div>width: {width}</div>
+                <div>height: {height}</div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
