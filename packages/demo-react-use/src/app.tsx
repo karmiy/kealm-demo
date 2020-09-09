@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useSet } from 'react-use';
+import { useSetState } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -42,18 +42,23 @@ const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2)
 
 const App: React.FC<{}> = () => {
 
-    const [set, { add, has, remove, toggle, reset }] = useSet(new Set(['hello']));
+    const [state, setState] = useSetState<{ hello?: string; foo?: string; count?: number }>({});
 
     return (
         <Router>
             <div className='app'>
-                <button onClick={() => add(String(Date.now()))}>Add</button>
-                <button onClick={() => reset()}>Reset</button>
-                <button onClick={() => remove('hello')} disabled={!has('hello')}>
-                    Remove hello
+                <pre>{JSON.stringify(state, null, 2)}</pre>
+                <button onClick={() => setState({hello: 'world'})}>hello</button>
+                <button onClick={() => setState({foo: 'bar'})}>foo</button>
+                <button 
+                    onClick={() => {
+                        setState((prevState) => ({
+                            count: (prevState.count || 0) + 1,
+                        }))
+                    }}
+                >
+                    count
                 </button>
-                <button onClick={() => toggle('hello')}>Toggle hello</button>
-                <pre>{JSON.stringify(Array.from(set), null, 2)}</pre>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

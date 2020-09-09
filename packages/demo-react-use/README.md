@@ -30,6 +30,8 @@
 
 - [useScroll](./docs/useScroll.md)
 
+- [useSetState](./docs/useSetState.md)
+
 ## 实用
 
 - [useAudio](./docs/useAudio.md)
@@ -187,6 +189,8 @@
     - [useRendersCount](./docs/useRendersCount.md) 获取组件 render 次数
 
     - [useSet](./docs/useSet.md) 管理并更交互式的操作 Set 集合
+
+    - [useSetState](./docs/useSetState.md) 管理对象状态，并以类组件 this.setState 的方式更新状态
 
 - Miscellaneous
 
