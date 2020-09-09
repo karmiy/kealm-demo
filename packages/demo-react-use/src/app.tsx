@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useSize } from 'react-use';
+import { useSlider } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -41,18 +41,19 @@ const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2)
 
 
 const App: React.FC<{}> = () => {
-    const [sized, {width, height}] = useSize(
-        ({width}) => <div style={{background: 'red'}}>Size me up! ({width}px)</div>,
-        { width: 100, height: 100 }
-    );
+    const ref = React.useRef(null);
+    const { isSliding, value } = useSlider(ref);
     
 
     return (
         <Router>
             <div className='app'>
-                {sized}
-                <div>width: {width}</div>
-                <div>height: {height}</div>
+                <div ref={ref} style={{ position: 'relative' }}>
+                    <p style={{ textAlign: 'center', color: isSliding ? 'red' : 'green' }}>
+                        {Math.round(value * 100)}%
+                    </p>
+                    {/* <div style={{ position: 'absolute', left: pos }}>🎚</div> */}
+                </div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

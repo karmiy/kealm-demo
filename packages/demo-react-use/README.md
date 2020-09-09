@@ -94,6 +94,8 @@
 
 - [useSize](./docs/useSize.md)（同 useMeasure，实现不同）
 
+- [useSlider](./docs/useSlider.md)
+
 ## 分类
 
 - Animations
@@ -273,6 +275,8 @@
     - [useDropArea](./docs/useDropArea.md) 特定元素拖拽、粘贴事件响应
 
     - [useFullscreen](./docs/useFullscreen.md) 使用全屏
+
+    - [useSlider](./docs/useSlider.md) 滑块功能
 
 ## 心得
 
