@@ -2,6 +2,8 @@
 
 深度比较依赖的 useCustomCompareEffect
 
+即 deps 中的某一个对象 { id: 1, obj: { name: 2 } }，即使引用变了，也不会触发 useEffect 回调
+
 ### 结构
 
 ```ts
@@ -46,7 +48,7 @@ function useCustomCompareEffect<TDeps extends DependencyList>(
 ```tsx
 function App() {
     const [visible, setVisible] = useState(false);
-    const option = useMemo(() => ({ visible }), [visible]);
+    const option = { step: 2, obj: { id: 10 } };
 
     useDeepCompareEffect(() => {
         console.log(111);
