@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useSearchParam } from 'react-use';
+import { useSessionStorage } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -42,21 +42,14 @@ const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2)
 
 const App: React.FC<{}> = () => {
 
-    const edit = useSearchParam('edit');
+    const [value, setValue] = useSessionStorage('my-key', 'foo');
 
     return (
         <Router>
             <div className='app'>
-                <div>edit: {edit || '🤷‍♂️'}</div>
-                <div>
-                    <button onClick={() => history.pushState({}, '', location.pathname + '?edit=123')}>Edit post 123 (?edit=123)</button>
-                </div>
-                <div>
-                    <button onClick={() => history.pushState({}, '', location.pathname + '?edit=999')}>Edit post 999 (?edit=999)</button>
-                </div>
-                <div>
-                    <button onClick={() => history.pushState({}, '', location.pathname)}>Close modal</button>
-                </div>
+                <div>Value: {value}</div>
+                <button onClick={() => setValue('bar')}>bar</button>
+                <button onClick={() => setValue('baz')}>baz</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

@@ -122,6 +122,8 @@
 
     - [useRafLoop](./docs/useRafLoop.md) 循环以 raf 调用回调
 
+    - [useSessionStorage](./docs/useSessionStorage.md) 管理 sessionStorage
+
 - Lifecycles
 
     - [useCustomCompareEffect](./docs/useCustomCompareEffect.md) 可控比较器的 useEffect
