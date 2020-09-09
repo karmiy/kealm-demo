@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useSessionStorage } from 'react-use';
+import { useSet } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -42,14 +42,18 @@ const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2)
 
 const App: React.FC<{}> = () => {
 
-    const [value, setValue] = useSessionStorage('my-key', 'foo');
+    const [set, { add, has, remove, toggle, reset }] = useSet(new Set(['hello']));
 
     return (
         <Router>
             <div className='app'>
-                <div>Value: {value}</div>
-                <button onClick={() => setValue('bar')}>bar</button>
-                <button onClick={() => setValue('baz')}>baz</button>
+                <button onClick={() => add(String(Date.now()))}>Add</button>
+                <button onClick={() => reset()}>Reset</button>
+                <button onClick={() => remove('hello')} disabled={!has('hello')}>
+                    Remove hello
+                </button>
+                <button onClick={() => toggle('hello')}>Toggle hello</button>
+                <pre>{JSON.stringify(Array.from(set), null, 2)}</pre>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

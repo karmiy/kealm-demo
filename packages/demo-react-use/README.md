@@ -64,6 +64,8 @@
 
 - [useLongPress](./docs/useLongPress.md)
 
+- [useMap](./docs/useMap.md)（名称可以换成 useObject）
+
 - [useMediatedState](./docs/useMediatedState.md)
 
 - [useMethods](./docs/useMethods.md)
@@ -83,6 +85,8 @@
 - [useRafState](./docs/useRafState.md)
 
 - [useScrolling](./docs/useScrolling.md)
+
+- [useSet](./docs/useSet.md)
 
 ## 分类
 
@@ -181,6 +185,8 @@
     - [useRafState](./docs/useRafState.md) 以 raf 防抖的  useState
 
     - [useRendersCount](./docs/useRendersCount.md) 获取组件 render 次数
+
+    - [useSet](./docs/useSet.md) 管理并更交互式的操作 Set 集合
 
 - Miscellaneous
 
