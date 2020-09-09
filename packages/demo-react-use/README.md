@@ -32,6 +32,8 @@
 
 - [useSetState](./docs/useSetState.md)
 
+- [useShallowCompareEffect](./docs/useShallowCompareEffect.md)
+
 ## 实用
 
 - [useAudio](./docs/useAudio.md)
@@ -151,6 +153,8 @@
     - [useMountedState](./docs/useMountedState.md) 以函数调用的方式获取组件是否挂载完成
 
     - [usePromise](./docs/usePromise.md) 包装 promise 对象，防止组件卸载后状态更新导致的错误
+
+    - [useShallowCompareEffect](./docs/useShallowCompareEffect.md) 浅比较的 useCustomCompareEffect
 
 - State
 
@@ -276,7 +280,7 @@
 
 - 对于一些对象参数，如函数，在不希望作为依赖但需要获取最新的引用时，除了保存引用，也可以让使用者传递一个 deps 帮助实时更新 - useKey
 
-- 合理结合优秀的第三方库 - useCookie, useCopyToClipboard, useHarmonicIntervalFn, useIdle, useScrollbarWidth
+- 合理结合优秀的第三方库 - useCookie, useCopyToClipboard, useHarmonicIntervalFn, useIdle, useScrollbarWidth, useShallowCompareEffect
 
 - hook 初始值定义为 InitialHookState 类型 - useCounter
 
