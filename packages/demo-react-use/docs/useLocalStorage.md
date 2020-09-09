@@ -34,7 +34,7 @@ function useLocalStorage<T>(
 
     - options:
 
-        - raw: 如果为 true，hook 将使用 JON.stringify 或 parse 来做序列化与反序列化
+        - raw: 如果为 false，hook 将使用 JON.stringify 或 parse 来做序列化与反序列化
 
         - serializer: 序列化函数，将 T 转为 string，默认 JON.stringify
 
