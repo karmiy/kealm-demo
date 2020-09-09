@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useSetState } from 'react-use';
+import { useShallowCompareEffect, useDeepCompareEffect, useUpdate, useRendersCount } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,26 +39,19 @@ function getUsers(sex: ISex) {
 
 const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
 
-
 const App: React.FC<{}> = () => {
+    const [visible, setVisible] = useState(false);
+    const option = { step: 2 };
 
-    const [state, setState] = useSetState<{ hello?: string; foo?: string; count?: number }>({});
+    useShallowCompareEffect(() => {
+        console.log(111);
+    }, [option]);
 
     return (
         <Router>
             <div className='app'>
-                <pre>{JSON.stringify(state, null, 2)}</pre>
-                <button onClick={() => setState({hello: 'world'})}>hello</button>
-                <button onClick={() => setState({foo: 'bar'})}>foo</button>
-                <button 
-                    onClick={() => {
-                        setState((prevState) => ({
-                            count: (prevState.count || 0) + 1,
-                        }))
-                    }}
-                >
-                    count
-                </button>
+                <p>useCustomCompareEffect with shallow comparison: {String(visible)}</p>
+                <button onClick={() => setVisible(v => !v)}>toggle</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
