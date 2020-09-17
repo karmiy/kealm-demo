@@ -278,6 +278,8 @@
 
     - [useSlider](./docs/useSlider.md) 滑块功能
 
+    - [useSpeech](./docs/useSpeech.md) 语音合成
+
 ## 心得
 
 - 不能使用 useRef 返回的 ref 作为依赖，因为它的引用始终不变，应使用 ref.current

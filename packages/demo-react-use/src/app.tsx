@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useSlider } from 'react-use';
+import { useSpeech } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,21 +39,17 @@ function getUsers(sex: ISex) {
 
 const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
 
+const voices = window.speechSynthesis.getVoices();
 
 const App: React.FC<{}> = () => {
-    const ref = React.useRef(null);
-    const { isSliding, value } = useSlider(ref);
+    const state = useSpeech('Hello world!', { rate: 0.8, pitch: 0.5, voice: voices[0] });
     
-
     return (
         <Router>
             <div className='app'>
-                <div ref={ref} style={{ position: 'relative' }}>
-                    <p style={{ textAlign: 'center', color: isSliding ? 'red' : 'green' }}>
-                        {Math.round(value * 100)}%
-                    </p>
-                    {/* <div style={{ position: 'absolute', left: pos }}>🎚</div> */}
-                </div>
+                <pre>
+                    {JSON.stringify(state, null, 2)}
+                </pre> 
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
