@@ -96,6 +96,8 @@
 
 - [useSlider](./docs/useSlider.md)
 
+- [useSpring](./docs/useSpring.md)
+
 ## 分类
 
 - Animations
@@ -105,6 +107,8 @@
     - [useInterval](./docs/useInterval.md) setInterval 定时器轮询
 
     - [useRaf](./docs/useRaf.md) 一定时间内不断调用 raf 触发组件 render
+
+    - [useSpring](./docs/useSpring.md) 弹簧动力效果
 
 - Side-effects
 
@@ -281,6 +285,8 @@
     - [useSpeech](./docs/useSpeech.md) 语音合成
 
 ## 心得
+
+- 将逻辑尽可能的与 UI 抽离，将逻辑交互完全抽离为 hook，UI 可以更灵活的变更，这是做组件库最理想的情况，当组件 UI 不适用时，直接使用对应 hook 自行展示需要的 UI
 
 - 不能使用 useRef 返回的 ref 作为依赖，因为它的引用始终不变，应使用 ref.current
 

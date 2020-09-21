@@ -17,7 +17,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useSpeech } from 'react-use';
+import { useStartTyping } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -42,14 +42,11 @@ const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2)
 const voices = window.speechSynthesis.getVoices();
 
 const App: React.FC<{}> = () => {
-    const state = useSpeech('Hello world!', { rate: 0.8, pitch: 0.5, voice: voices[0] });
+    useStartTyping(() => alert('Started typing...'));
     
     return (
         <Router>
             <div className='app'>
-                <pre>
-                    {JSON.stringify(state, null, 2)}
-                </pre> 
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
