@@ -42,7 +42,7 @@ const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2)
 const voices = window.speechSynthesis.getVoices();
 
 const App: React.FC<{}> = () => {
-    useStartTyping(() => alert('Started typing...'));
+    useStartTyping(() => console.log('Started typing...'));
     
     return (
         <Router>

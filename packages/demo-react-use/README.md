@@ -266,6 +266,8 @@
 
     - [useSize](./docs/useSize.md) 跟踪元素的大小
 
+    - [useStartTyping](./docs/useStartTyping.md) 监听用户打字
+
 - UI
 
     - [useAudio](./docs/useAudio.md) 音频
