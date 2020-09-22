@@ -98,6 +98,8 @@
 
 - [useSpring](./docs/useSpring.md)
 
+- [useStateList](./docs/useStateList.md)
+
 ## 分类
 
 - Animations
@@ -203,6 +205,8 @@
     - [useSet](./docs/useSet.md) 管理并更交互式的操作 Set 集合
 
     - [useSetState](./docs/useSetState.md) 管理对象状态，并以类组件 this.setState 的方式更新状态
+
+    - [useStateList](./docs/useStateList.md) 管理数组列表项与下标
 
 - Miscellaneous
 
