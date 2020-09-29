@@ -146,6 +146,8 @@
 
     - [useSessionStorage](./docs/useSessionStorage.md) 管理 sessionStorage
 
+    - [useThrottle](./docs/useThrottle.md) 对一个状态的赋值操作进行节流
+
 - Lifecycles
 
     - [useCustomCompareEffect](./docs/useCustomCompareEffect.md) 可控比较器的 useEffect

@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useStateWithHistory } from 'react-use';
+import { useThrottle } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -40,18 +40,14 @@ function getUsers(sex: ISex) {
 
 
 const App: React.FC<{}> = () => {
-    const [state, setState, stateHistory] = useStateWithHistory(10);
+    const [value, setValue] = useState(0);
+    const throttledValue = useThrottle(value, 500);
 
     return (
         <Router>
             <div className='app'>
-                <p>state: {state}</p>
-                <p>stateHistory: {stateHistory.history.join(',')}</p>
-                <p>position: {stateHistory.position}</p>
-                <button onClick={() => setState(state + 1)}>Add</button>
-                <button onClick={() => stateHistory.go(2)}>Go index 2</button>
-                <button onClick={() => stateHistory.back(1)}>Back index 1</button>
-                <button onClick={() => stateHistory.forward(1)}>Forward index 1</button>
+                {throttledValue}
+                <button onClick={() => setValue(v => v + 1)}>Add</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
