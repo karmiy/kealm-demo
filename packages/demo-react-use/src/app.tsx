@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useThrottle } from 'react-use';
+import { useThrottleFn } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -40,14 +40,35 @@ function getUsers(sex: ISex) {
 
 
 const App: React.FC<{}> = () => {
-    const [value, setValue] = useState(0);
-    const throttledValue = useThrottle(value, 500);
+    const [left, setLeft] = useState(0);
+    const [clientX, setClientX] = useState(0);
+
+    useThrottleFn(
+        setLeft,
+        16,
+        [clientX]
+    );
+
+    useEffect(() => {
+        const mouseMove = (e: MouseEvent) => {
+            setClientX(e.clientX);
+        }
+
+        document.addEventListener('mousemove', mouseMove);
+
+        return () => document.removeEventListener('mousemove', mouseMove);
+    }, []);
 
     return (
         <Router>
             <div className='app'>
-                {throttledValue}
-                <button onClick={() => setValue(v => v + 1)}>Add</button>
+                <div style={{
+                    position: 'absolute',
+                    width: 100,
+                    height: 100,
+                    left,
+                    backgroundColor: '#1394ff',
+                }} />
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

@@ -104,6 +104,8 @@
 
 - [useStateWithHistory](./docs/useStateWithHistory.md)
 
+- [useThrottleFn](./docs/useThrottleFn.md)（与 useDebounce 对应，名称不匹配建议某一方调整）
+
 ## 分类
 
 - Animations
@@ -130,7 +132,7 @@
 
     - [useCopyToClipboard](./docs/useCopyToClipboard.md) 复制文本到剪切板
 
-    - [useDebounce](./docs/useDebounce.md) 执行防抖
+    - [useDebounce](./docs/useDebounce.md) 对状态变更时执行的函数进行防抖
 
     - [useError](./docs/useError.md) 派发错误
 
@@ -147,6 +149,8 @@
     - [useSessionStorage](./docs/useSessionStorage.md) 管理 sessionStorage
 
     - [useThrottle](./docs/useThrottle.md) 对一个状态的赋值操作进行节流
+
+    - [useThrottleFn](./docs/useThrottleFn.md) 对状态变更时执行的函数进行节流
 
 - Lifecycles
 
