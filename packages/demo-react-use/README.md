@@ -102,6 +102,8 @@
 
 - [useStateValidator](./docs/useStateValidator.md)
 
+- [useStateWithHistory](./docs/useStateWithHistory.md)
+
 ## 分类
 
 - Animations
@@ -211,6 +213,8 @@
     - [useStateList](./docs/useStateList.md) 管理数组列表项与下标
 
     - [useStateValidator](./docs/useStateValidator.md) 校验状态是否满足条件
+
+    - [useStateWithHistory](./docs/useStateWithHistory.md) 管理状态的历史堆
 
 - Miscellaneous
 

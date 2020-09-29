@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useStateValidator } from 'react-use';
+import { useStateWithHistory } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -38,26 +38,20 @@ function getUsers(sex: ISex) {
     });
 }
 
-const DemoStateValidator = (s: string): [boolean] => [s === '' ? false :  +s % 2 === 0];
 
 const App: React.FC<{}> = () => {
-    const [state, setState] = React.useState<string>('0');
-    const [[isValid]] = useStateValidator(state, DemoStateValidator, [false]);
-    
+    const [state, setState, stateHistory] = useStateWithHistory(10);
+
     return (
         <Router>
             <div className='app'>
-                <div>Below field is valid only if number is even</div>
-                <input
-                    type="number"
-                    min="0"
-                    max="10"
-                    value={state}
-                    onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
-                        setState(ev.target.value);
-                    }}
-                />
-                {isValid !== null && <span>{isValid ? 'Valid!' : 'Invalid'}</span>}
+                <p>state: {state}</p>
+                <p>stateHistory: {stateHistory.history.join(',')}</p>
+                <p>position: {stateHistory.position}</p>
+                <button onClick={() => setState(state + 1)}>Add</button>
+                <button onClick={() => stateHistory.go(2)}>Go index 2</button>
+                <button onClick={() => stateHistory.back(1)}>Back index 1</button>
+                <button onClick={() => stateHistory.forward(1)}>Forward index 1</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
