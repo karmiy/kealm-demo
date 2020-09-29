@@ -10,6 +10,7 @@ import React, {
     useMemo, 
     forwardRef,
     Dispatch,
+    SetStateAction,
 } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './app.scss';
@@ -17,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useStateList } from 'react-use';
+import { useStateValidator } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -37,32 +38,26 @@ function getUsers(sex: ISex) {
     });
 }
 
-const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
-
-const voices = window.speechSynthesis.getVoices();
-
-const stateSet = ['first', 'second', 'third', 'fourth', 'fifth'];
+const DemoStateValidator = (s: string): [boolean] => [s === '' ? false :  +s % 2 === 0];
 
 const App: React.FC<{}> = () => {
-    const { state, prev, next, setStateAt, setState, currentIndex } = useStateList(stateSet);
-    const indexInput = useRef<HTMLInputElement>(null);
-    const stateInput = useRef<HTMLInputElement>(null);
+    const [state, setState] = React.useState<string>('0');
+    const [[isValid]] = useStateValidator(state, DemoStateValidator, [false]);
     
     return (
         <Router>
             <div className='app'>
-                <pre>
-                    {state} [index: {currentIndex}]
-                </pre>
-                <button onClick={() => prev()}>prev</button>
-                <br />
-                <button onClick={() => next()}>next</button>
-                <br />
-                <input type="text" ref={indexInput} style={{ width: 120 }} />
-                <button onClick={() => setStateAt((indexInput.current!.value as unknown) as number)}>set state by index</button>
-                <br />
-                <input type="text" ref={stateInput} style={{ width: 120 }} />
-                <button onClick={() => setState(stateInput.current!.value)}> set state by value</button>
+                <div>Below field is valid only if number is even</div>
+                <input
+                    type="number"
+                    min="0"
+                    max="10"
+                    value={state}
+                    onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
+                        setState(ev.target.value);
+                    }}
+                />
+                {isValid !== null && <span>{isValid ? 'Valid!' : 'Invalid'}</span>}
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
