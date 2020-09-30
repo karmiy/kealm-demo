@@ -110,6 +110,8 @@
 
 - [useTimeoutFn](./docs/useTimeoutFn.md)（需调整）
 
+- [useTitle](./docs/useTitle.md)（可微调）
+
 ## 分类
 
 - Animations
@@ -159,6 +161,8 @@
     - [useThrottle](./docs/useThrottle.md) 对一个状态的赋值操作进行节流
 
     - [useThrottleFn](./docs/useThrottleFn.md) 对状态变更时执行的函数进行节流
+
+    - [useTitle](./docs/useTitle.md) 管理页面 document.title
 
 - Lifecycles
 

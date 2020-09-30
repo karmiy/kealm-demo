@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useTimeout } from 'react-use';
+import { useTitle } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -38,25 +38,13 @@ function getUsers(sex: ISex) {
     });
 }
 
-function TestComponent(props: { ms?: number } = {}) {
-    const ms = props.ms || 5000;
-    const [isReady, cancel] = useTimeout(ms);
-  
-    return (
-        <div>
-            { isReady() ? 'I\'m reloaded after timeout' : `I will be reloaded after ${ ms / 1000 }s` }
-            { isReady() === false ? <button onClick={ cancel }>Cancel</button> : '' }
-        </div>
-    );
-}
-
 const App: React.FC<{}> = () => {
+
+    useTitle('Hello world!');
 
     return (
         <Router>
             <div className='app'>
-                <TestComponent />
-                <TestComponent ms={ 2000 } />
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
