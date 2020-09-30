@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useTitle } from 'react-use';
+import { useToggle } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,12 +39,15 @@ function getUsers(sex: ISex) {
 }
 
 const App: React.FC<{}> = () => {
-
-    useTitle('Hello world!');
+    const [on, toggle] = useToggle(true);
 
     return (
         <Router>
             <div className='app'>
+                <div>{on ? 'ON' : 'OFF'}</div>
+                <button onClick={toggle}>Toggle</button>
+                <button onClick={() => toggle(true)}>set ON</button>
+                <button onClick={() => toggle(false)}>set OFF</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
