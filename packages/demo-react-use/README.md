@@ -106,6 +106,8 @@
 
 - [useThrottleFn](./docs/useThrottleFn.md)（与 useDebounce 对应，名称不匹配建议某一方调整）
 
+- [useTimeoutFn](./docs/useTimeoutFn.md)（需调整）
+
 ## 分类
 
 - Animations
@@ -117,6 +119,8 @@
     - [useRaf](./docs/useRaf.md) 一定时间内不断调用 raf 触发组件 render
 
     - [useSpring](./docs/useSpring.md) 弹簧动力效果
+
+    - [useTimeoutFn](./docs/useTimeoutFn.md) 初始化时延迟一段时间执行函数，可获取执行状态，可清除或手动触发
 
 - Side-effects
 

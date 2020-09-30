@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useThrottleFn } from 'react-use';
+import { useTimeout } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -38,37 +38,25 @@ function getUsers(sex: ISex) {
     });
 }
 
+function TestComponent(props: { ms?: number } = {}) {
+    const ms = props.ms || 5000;
+    const [isReady, cancel] = useTimeout(ms);
+  
+    return (
+        <div>
+            { isReady() ? 'I\'m reloaded after timeout' : `I will be reloaded after ${ ms / 1000 }s` }
+            { isReady() === false ? <button onClick={ cancel }>Cancel</button> : '' }
+        </div>
+    );
+}
 
 const App: React.FC<{}> = () => {
-    const [left, setLeft] = useState(0);
-    const [clientX, setClientX] = useState(0);
-
-    useThrottleFn(
-        setLeft,
-        16,
-        [clientX]
-    );
-
-    useEffect(() => {
-        const mouseMove = (e: MouseEvent) => {
-            setClientX(e.clientX);
-        }
-
-        document.addEventListener('mousemove', mouseMove);
-
-        return () => document.removeEventListener('mousemove', mouseMove);
-    }, []);
 
     return (
         <Router>
             <div className='app'>
-                <div style={{
-                    position: 'absolute',
-                    width: 100,
-                    height: 100,
-                    left,
-                    backgroundColor: '#1394ff',
-                }} />
+                <TestComponent />
+                <TestComponent ms={ 2000 } />
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
