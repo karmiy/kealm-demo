@@ -69,10 +69,14 @@ function TestComponent(props: { ms?: number } = {}) {
 }
 
 function App() {
+    
+    useTimeoutFn(() => {
+        console.log('delay 2s');
+    }, 2000);
+
     return (
         <div className='app'>
-            <TestComponent />
-            <TestComponent ms={ 2000 } />
+            ...
         </div>
     )
 }
