@@ -130,6 +130,8 @@
 
     - [useTimeoutFn](./docs/useTimeoutFn.md) 初始化时延迟一段时间执行函数，可获取执行状态，可清除或手动触发
 
+    - [useTween](./docs/useTween.md) easing 缓动函数返回一个 0 - 1 的值
+
 - Side-effects
 
     - [useAsyncFn](./docs/useAsyncFn.md) 异步函数
@@ -489,3 +491,5 @@ function App() {
 - 利用 [react-universal-interface](https://www.npmjs.com/package/react-universal-interface) 快速创建 render props, FC, Component Prop 的组件
 
 可以参考 [useScratch](https://github.com/streamich/react-use/blob/master/src/useScratch.ts) 的使用方式
+
+- 工具库缓动函数 [ts-easing](https://github.com/streamich/ts-easing/blob/master/src/index.ts)
