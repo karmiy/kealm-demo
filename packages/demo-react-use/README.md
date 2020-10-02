@@ -194,6 +194,8 @@
 
     - [useShallowCompareEffect](./docs/useShallowCompareEffect.md) 浅比较的 useCustomCompareEffect
 
+    - [useUnmount](./docs/useUnmount.md) 组件卸载时调用
+
 - State
 
     - [useCounter](./docs/useCounter.md) 数值管理
