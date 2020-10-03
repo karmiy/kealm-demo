@@ -36,10 +36,6 @@ function useUnmountPromise(): Race;
 
 [useUnmountPromise 源码地址](https://github.com/streamich/react-use/blob/master/src/useUnmountPromise.ts)
 
-### 更多看法
-
-- 可以新增配置项，或时长为 null 时不执行，因为如执行动画可能并不是组件初始就立即执行的，灵活性不够
-
 ### 示例
 
 ```tsx
