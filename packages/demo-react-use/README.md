@@ -124,6 +124,8 @@
 
 - [useVideo](./docs/useVideo.md)
 
+- [useWindowScroll](./docs/useWindowScroll.md)
+
 ## 分类
 
 - Animations
@@ -321,6 +323,8 @@
     - [useSize](./docs/useSize.md) 跟踪元素的大小
 
     - [useStartTyping](./docs/useStartTyping.md) 监听用户打字
+
+    - [useWindowScroll](./docs/useWindowScroll.md) 监听并获取 window 当前滚动距离
 
 - UI
 

@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useToggle, useVibrate } from 'react-use';
+import { useWindowScroll } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,14 +39,19 @@ function getUsers(sex: ISex) {
 }
 
 const App: React.FC<{}> = () => {
-    const [vibrating, toggleVibrating] = useToggle(false);
-
-    useVibrate(vibrating, [300, 100, 200, 100, 1000, 300], false);
+    const {x, y} = useWindowScroll();
 
     return (
         <Router>
-            <div className='app'>
-                <button onClick={toggleVibrating}>{vibrating ? 'Stop' : 'Vibrate'}</button>
+            <div className='app' style={{ height: 2000 }}>
+                <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                }}>
+                    <div>x: {x}</div>
+                    <div>y: {y}</div>
+                </div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
