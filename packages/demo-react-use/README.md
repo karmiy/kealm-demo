@@ -122,6 +122,8 @@
 
 - [useUnmountPromise](./docs/useUnmountPromise.md)
 
+- [useVideo](./docs/useVideo.md)
+
 ## 分类
 
 - Animations
@@ -339,6 +341,8 @@
     - [useSpeech](./docs/useSpeech.md) 语音合成
 
     - [useVibrate](./docs/useVibrate.md) 设备震动
+
+    - [useVideo](./docs/useVideo.md) 视频
 
 ## 心得
 
