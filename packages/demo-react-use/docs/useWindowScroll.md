@@ -41,7 +41,7 @@ function useWindowScroll(): State;
 
 [useWindowScroll 源码地址](https://github.com/streamich/react-use/blob/master/src/useWindowScroll.ts)
 
-- 使用 useRafState 对 setState 更新状态的操作进行防抖
+- 监听非 window 环境时返回 0，并使用 useRafState 对 setState 更新状态的操作进行防抖
 
 ```tsx
 const [state, setState] = useRafState<State>({
