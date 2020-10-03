@@ -38,6 +38,8 @@
 
 - [useUpdate](./docs/useUpdate.md)
 
+- [useUpdateEffect](./docs/useUpdateEffect.md)（可以扩展带 prev 的 useWatch）
+
 ## 实用
 
 - [useAudio](./docs/useAudio.md)
@@ -203,6 +205,8 @@
     - [useUnmount](./docs/useUnmount.md) 组件卸载时调用
 
     - [useUnmountPromise](./docs/useUnmountPromise.md) 包装 promise 对象确保组件卸载后无法 resolve 或 reject
+
+    - [useUpdateEffect](./docs/useUpdateEffect.md) 忽略 useEffect 第一次，相当于监听依赖更新
 
 - State
 
