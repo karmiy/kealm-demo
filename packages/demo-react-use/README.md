@@ -126,6 +126,8 @@
 
 - [useWindowScroll](./docs/useWindowScroll.md)
 
+- [useWindowSize](./docs/useWindowSize.md)
+
 ## 分类
 
 - Animations
@@ -325,6 +327,8 @@
     - [useStartTyping](./docs/useStartTyping.md) 监听用户打字
 
     - [useWindowScroll](./docs/useWindowScroll.md) 监听并获取 window 当前滚动距离
+
+    - [useWindowSize](./docs/useWindowSize.md) 监听并获取页面当前窗口大小
 
 - UI
 

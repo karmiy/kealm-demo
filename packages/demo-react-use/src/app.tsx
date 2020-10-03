@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useWindowScroll } from 'react-use';
+import { useWindowSize } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -39,19 +39,13 @@ function getUsers(sex: ISex) {
 }
 
 const App: React.FC<{}> = () => {
-    const {x, y} = useWindowScroll();
+    const {width, height} = useWindowSize();
 
     return (
         <Router>
-            <div className='app' style={{ height: 2000 }}>
-                <div style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                }}>
-                    <div>x: {x}</div>
-                    <div>y: {y}</div>
-                </div>
+            <div className='app'>
+                <div>width: {width}</div>
+                <div>height: {height}</div>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
