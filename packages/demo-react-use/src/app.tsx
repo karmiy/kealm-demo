@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useTween } from 'react-use';
+import { useUnmountPromise } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -38,19 +38,29 @@ function getUsers(sex: ISex) {
     });
 }
 
+const Child = () => {
+    const wrapper = useUnmountPromise();
+
+    const requestUser = async () => {
+        const users = await wrapper(getUsers('man'));
+        console.log(users);
+    };
+
+    useEffect(() => {
+        requestUser();
+    }, []);
+
+    return <div>child</div>;
+}
+
 const App: React.FC<{}> = () => {
-    const t = useTween('inCirc', 2000);
+    const [show, setShow] = useState(true);
 
     return (
         <Router>
             <div className='app'>
-                <div style={{
-                    position: 'relative',
-                    width: 100,
-                    height: 100,
-                    border: '1px solid #1394ff',
-                    left: 300 * t,
-                }} />
+                {show && <Child />}
+                <button onClick={() => setShow(v => !v)}>Toggle</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>

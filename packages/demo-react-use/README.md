@@ -116,6 +116,8 @@
 
 - [useTween](./docs/useTween.md)（需调整）
 
+- [useUnmountPromise](./docs/useUnmountPromise.md)
+
 ## 分类
 
 - Animations
@@ -195,6 +197,8 @@
     - [useShallowCompareEffect](./docs/useShallowCompareEffect.md) 浅比较的 useCustomCompareEffect
 
     - [useUnmount](./docs/useUnmount.md) 组件卸载时调用
+
+    - [useUnmountPromise](./docs/useUnmountPromise.md) 包装 promise 对象确保组件卸载后无法 resolve 或 reject
 
 - State
 
