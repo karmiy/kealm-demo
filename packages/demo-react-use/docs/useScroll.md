@@ -25,9 +25,9 @@ function useScroll(
 
     - state: 当前滚动状态
 
-        - x: 水平方向滚动距离
+        - x: 水平方向滚动距离，即 scrollLeft
 
-        - y: 垂直方向滚动距离
+        - y: 垂直方向滚动距离，即 scrollTop
 
 ### 作用
 
