@@ -36,6 +36,8 @@
 
 - [useToggle](./docs/useToggle.md)
 
+- [useUpdate](./docs/useUpdate.md)
+
 ## 实用
 
 - [useAudio](./docs/useAudio.md)
@@ -135,6 +137,8 @@
     - [useTimeoutFn](./docs/useTimeoutFn.md) 初始化时延迟一段时间执行函数，可获取执行状态，可清除或手动触发
 
     - [useTween](./docs/useTween.md) easing 缓动函数返回一个 0 - 1 的值
+
+    - [useUpdate](./docs/useUpdate.md) forceUpdate
 
 - Side-effects
 
@@ -360,7 +364,7 @@
 
 - 对于操作 DOM 的 hook，除了可以接收 DOM, ref 等参数，也可以向外抛出 useState<HTMLElement | null> 的 setState 作为 ref，让使用者随时可手动挂载在 DOM 的 ref 上，好处在于对于一开始不方便获取 DOM 或 ref 的场景也很适用，不担心获取到空的 element，在挂载 setState 后 hook 内部自动 render，只需在 useEffect 以 state 为依赖挂载事件或操作即可 - useMeasure
 
-- 对于通用的状态赋值逻辑，考虑使用 useReducer 替换 useState - useToggle
+- 对于通用的状态赋值逻辑，考虑使用 useReducer 替换 useState - useToggle, useUpdate
 
 ## Utils 工具
 
