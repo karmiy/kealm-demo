@@ -338,6 +338,8 @@
 
     - [useSpeech](./docs/useSpeech.md) 语音合成
 
+    - [useVibrate](./docs/useVibrate.md) 设备震动
+
 ## 心得
 
 - 将逻辑尽可能的与 UI 抽离，将逻辑交互完全抽离为 hook，UI 可以更灵活的变更，这是做组件库最理想的情况，当组件 UI 不适用时，直接使用对应 hook 自行展示需要的 UI

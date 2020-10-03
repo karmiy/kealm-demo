@@ -18,7 +18,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from '@router';
 
 // -------------------
-import { useUnmountPromise } from 'react-use';
+import { useToggle, useVibrate } from 'react-use';
 
 type ISex = 'man' | 'woman';
 
@@ -38,29 +38,15 @@ function getUsers(sex: ISex) {
     });
 }
 
-const Child = () => {
-    const wrapper = useUnmountPromise();
-
-    const requestUser = async () => {
-        const users = await wrapper(getUsers('man'));
-        console.log(users);
-    };
-
-    useEffect(() => {
-        requestUser();
-    }, []);
-
-    return <div>child</div>;
-}
-
 const App: React.FC<{}> = () => {
-    const [show, setShow] = useState(true);
+    const [vibrating, toggleVibrating] = useToggle(false);
+
+    useVibrate(vibrating, [300, 100, 200, 100, 1000, 300], false);
 
     return (
         <Router>
             <div className='app'>
-                {show && <Child />}
-                <button onClick={() => setShow(v => !v)}>Toggle</button>
+                <button onClick={toggleVibrating}>{vibrating ? 'Stop' : 'Vibrate'}</button>
             </div>
             {/* {renderRoutes(routes)} */}
         </Router>
