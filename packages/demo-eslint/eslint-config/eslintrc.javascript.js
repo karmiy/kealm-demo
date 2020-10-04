@@ -4,38 +4,38 @@ module.exports = {
     /** 规则 */
     rules: {
         /** Possible Errors */
-        'for-direction': 2, // 禁止 for(let i = 0; i < 10, i--) 这种计数器方向错误
-        'getter-return': 2, // Getter 函数需要 return
-        'no-async-promise-executor': 2, // 禁止 new Promise(async () => {})
-        'no-compare-neg-zero': 2, // 禁止 if(x === -0) 判断 -0，改用 Object(x, -0)
-        'no-cond-assign': [2, 'except-parens'], // 禁止 if、for、while 和 do...while 出现赋值运算符，如 if(x = 1)，除非被括起来，如 if((x = 1))
-        'no-constant-condition': 2, // 禁止条件中用常量表达式，如 if(true)、true ? 1 : 2
-        'no-control-regex': 2, // 禁止正则中使用控制字符
-        'no-dupe-args': 2, // 禁止 function(a, b, a) 参数重名
-        'no-dupe-keys': 2, // 禁止 const obj = { id: 1, id: 2 } 键重名
-        'no-duplicate-case': 2, // 禁止 switch 中重复的 case
-        'no-empty': 2, // 禁止 try、catch、finally、if、while、switch 里空语句块，如 if() {}，可只含注释 if() {/** 1 */}
-        'no-empty-character-class': 2, // 禁止正则里出现空字符集，如 /^abc[]/
-        'no-ex-assign': 2, // 禁止对 catch 参数赋值
-        'no-extra-boolean-cast': 2, // 禁止不必要的 bool 转换，如 const flag = !!x 已转换，又多余的 !!flag
-        'no-extra-semi': 2, // 禁止不必要的分号，如 const x = 1;; function fn() {};
-        'no-func-assign': 2, // 禁止 function 声明重复赋值
-        'no-inner-declarations': 2, // 禁止嵌套语句块中(if、while、for)出现 function，如 if() { function a() {} }
-        'no-invalid-regexp': 2, // 禁止 RegExp 构造函数中存在无效的正则表达式字符串
-        'no-irregular-whitespace': 2, // 禁止不规则的空白
-        'no-misleading-character-class': 2, // 不允许在字符类语法中出现由多个代码点组成的字符，如 /^[👍]$/，应改为 /^[👍]$/u
-        'no-obj-calls': 2, // 禁止将全局对象当作函数进行调用，如 const math = Math();
-        'no-prototype-builtins': 2, // 禁止直接调用 Object.prototypes 的内置属性，如 foo.hasOwnProperty("bar") 应改为 Object.prototype.hasOwnProperty.call(foo, "bar")
-        'no-regex-spaces': 2, // 禁止正则字面量出现多空格，如 const re = /foo   bar/，应改为 const re = /foo {3}bar/
-        'no-sparse-arrays': 2, // 禁止稀疏数组，即 , 前无元素，如 const arr = [1, , 3]
+        'for-direction': 2, // ---- RECOMMENDED ---- 禁止 for(let i = 0; i < 10, i--) 这种计数器方向错误
+        'getter-return': 2, // ---- RECOMMENDED ---- Getter 函数需要 return
+        'no-async-promise-executor': 2, // ---- RECOMMENDED ---- 禁止 new Promise(async () => {})
+        'no-compare-neg-zero': 2, // ---- RECOMMENDED ---- 禁止 if(x === -0) 判断 -0，改用 Object(x, -0)
+        'no-cond-assign': [2, 'except-parens'], // ---- RECOMMENDED ---- 禁止 if、for、while 和 do...while 出现赋值运算符，如 if(x = 1)，除非被括起来，如 if((x = 1))
+        'no-constant-condition': 2, // ---- RECOMMENDED ---- 禁止条件中用常量表达式，如 if(true)、true ? 1 : 2
+        'no-control-regex': 2, // ---- RECOMMENDED ---- 禁止正则中使用控制字符
+        'no-dupe-args': 2, // ---- RECOMMENDED ---- 禁止 function(a, b, a) 参数重名
+        'no-dupe-keys': 2, // ---- RECOMMENDED ---- 禁止 const obj = { id: 1, id: 2 } 键重名
+        'no-duplicate-case': 2, // ---- RECOMMENDED ---- 禁止 switch 中重复的 case
+        'no-empty': 2, // ---- RECOMMENDED ---- 禁止 try、catch、finally、if、while、switch 里空语句块，如 if() {}，可只含注释 if() {/** 1 */}
+        'no-empty-character-class': 2, // ---- RECOMMENDED ---- 禁止正则里出现空字符集，如 /^abc[]/
+        'no-ex-assign': 2, // ---- RECOMMENDED ---- 禁止对 catch 参数赋值
+        'no-extra-boolean-cast': 2, // ---- RECOMMENDED ---- 禁止不必要的 bool 转换，如 const flag = !!x 已转换，又多余的 !!flag
+        'no-extra-semi': 2, // ---- RECOMMENDED ---- 禁止不必要的分号，如 const x = 1;; function fn() {};
+        'no-func-assign': 2, // ---- RECOMMENDED ---- 禁止 function 声明重复赋值
+        'no-inner-declarations': 2, // ---- RECOMMENDED ---- 禁止嵌套语句块中(if、while、for)出现 function，如 if() { function a() {} }
+        'no-invalid-regexp': 2, // ---- RECOMMENDED ---- 禁止 RegExp 构造函数中存在无效的正则表达式字符串
+        'no-irregular-whitespace': 2, // ---- RECOMMENDED ---- 禁止不规则的空白
+        'no-misleading-character-class': 2, // ---- RECOMMENDED ---- 不允许在字符类语法中出现由多个代码点组成的字符，如 /^[👍]$/，应改为 /^[👍]$/u
+        'no-obj-calls': 2, // ---- RECOMMENDED ---- 禁止将全局对象当作函数进行调用，如 const math = Math();
+        'no-prototype-builtins': 2, // ---- RECOMMENDED ---- 禁止直接调用 Object.prototypes 的内置属性，如 foo.hasOwnProperty("bar") 应改为 Object.prototype.hasOwnProperty.call(foo, "bar")
+        'no-regex-spaces': 2, // ---- RECOMMENDED ---- 禁止正则字面量出现多空格，如 const re = /foo   bar/，应改为 const re = /foo {3}bar/
+        'no-sparse-arrays': 2, // ---- RECOMMENDED ---- 禁止稀疏数组，即 , 前无元素，如 const arr = [1, , 3]
         'no-template-curly-in-string': 2, // 禁止常规字符串用模板字符串语法，如 'HHH, ${a}'
-        'no-unexpected-multiline': 2, // 禁止使用令人困惑的多行表达式，如 let x = function() {} `hello`，应改为 let x = function() {}; `hello`
-        'no-unreachable': 2, // 禁止在 return、throw、continue 和 break 后出现执行不到的代码，如 return 3; console.log(1);
-        'no-unsafe-finally': 2, // 禁止 finally 中出现控制流语句，如 try {} catch(err) {} finally { return 3 }
-        'no-unsafe-negation': 2, // 禁止对关系运算符的左操作数使用 ! 操作符，如 if (!key in object) 应改为 if (!(key in object))
-        'require-atomic-updates': 2, // 禁止 await、yield 可能导致出现竞态条件的赋值，如 x += await getPageLength()，异步返回前单独更新 x 效果，会在异步返回后丢失
-        'use-isnan': 2, // 要求调用 Number.isNaN 或全局 isNaN 来判断 NaN
-        'valid-typeof': [2, { 'requireStringLiterals': true }], // 要求 typeof 与有效的字符串或其他 typeof 表达式进行比较
+        'no-unexpected-multiline': 2, // ---- RECOMMENDED ---- 禁止使用令人困惑的多行表达式，如 let x = function() {} `hello`，应改为 let x = function() {}; `hello`
+        'no-unreachable': 2, // ---- RECOMMENDED ---- 禁止在 return、throw、continue 和 break 后出现执行不到的代码，如 return 3; console.log(1);
+        'no-unsafe-finally': 2, // ---- RECOMMENDED ---- 禁止 finally 中出现控制流语句，如 try {} catch(err) {} finally { return 3 }
+        'no-unsafe-negation': 2, // ---- RECOMMENDED ---- 禁止对关系运算符的左操作数使用 ! 操作符，如 if (!key in object) 应改为 if (!(key in object))
+        'require-atomic-updates': 2, // ---- RECOMMENDED ---- 禁止 await、yield 可能导致出现竞态条件的赋值，如 x += await getPageLength()，异步返回前单独更新 x 效果，会在异步返回后丢失
+        'use-isnan': 2, // ---- RECOMMENDED ---- 要求调用 Number.isNaN 或全局 isNaN 来判断 NaN
+        'valid-typeof': [2, { 'requireStringLiterals': true }], // ---- RECOMMENDED ---- 要求 typeof 与有效的字符串或其他 typeof 表达式进行比较
         /** Best Practices */
         'array-callback-return': 2, // 强制数组方法回调有 return 语句，含：from、prototype.every/filter/find/findIndex/map/reduce/reduceRight/some/sort
         'block-scoped-var': 2, // 把 var 语句看作是在块级作用域范围内，如不能 if(...) { var x = 1 } console.log(x);
@@ -48,40 +48,41 @@ module.exports = {
         'eqeqeq': 2, // 要求使用全等 === 与 !==
         'guard-for-in': 2, // For 循环里需要 if 语句，if(Object.prototype.hasOwnProperty.call(obj, key))
         'no-caller': 2, // 禁用 arguments.caller 和 arguments.callee
-        'no-case-declarations': 2, // 禁止在 case、default 子句中出现词法声明，如 case 1: let x = 1; break; 应改为 case 1: { let x = 1; break; }
+        'no-case-declarations': 2, // ---- RECOMMENDED ---- 禁止在 case、default 子句中出现词法声明，如 case 1: let x = 1; break; 应改为 case 1: { let x = 1; break; }
         'no-else-return': 2, // 禁止 if 中 return 语句后有 else 块，因为是多余的
-        'no-empty-pattern': 2, // 禁止使用空解构模式，如 const { a: {} } = obj; 这样 a 是没意义的
+        'no-empty-pattern': 2, // ---- RECOMMENDED ---- 禁止使用空解构模式，如 const { a: {} } = obj; 这样 a 是没意义的
         'no-eq-null': 2, // 禁止用 == 与 != 比较 null，应使用 === 与 !==
         'no-eval': 2, // 禁用 eval，可能受到注入攻击
         'no-extra-bind': 2, // 禁止不必要的 bind，如函数中没有 this 调用，bind 显然是不需要的，除非是用 bind 传参
-        'no-fallthrough': 2, // 禁止 case 语句落空，即 case 中没有 break 结尾
-        'no-global-assign': 2, // 禁止对原生对象或只读全局对象赋值，如 window = 2;
+        'no-fallthrough': 2, // ---- RECOMMENDED ---- 禁止 case 语句落空，即 case 中没有 break 结尾
+        'no-global-assign': 2, // ---- RECOMMENDED ---- 禁止对原生对象或只读全局对象赋值，如 window = 2;
         'no-implied-eval': 2, // 禁用隐式 eval，如 setTimeout('alert("Hi!");', 100);
         'no-multi-spaces': 2, // 禁止出现多个空格，如 if(foo  === 'bar')，foo 与 === 之间 2 个空格
         'no-multi-str': 2, // 禁止多行字符串，如 const x = 'line 1 \' line 2'; 应改为 const x = 'line 1\n' + 'line 2';
         'no-new': 2, // 禁止使用 new 不存储，如 new Person(); 应改为 const person = new Person(); 也不能单纯 new Promise，需要后面跟内容如 .then
         'no-new-wrappers': 2, // 禁止对 String，Number 和 Boolean 使用 new 操作符，应使用字面量
-        'no-octal': 2, // 禁止八进制字面量，ECMAScript 5 已弃用
+        'no-octal': 2, // ---- RECOMMENDED ---- 禁止八进制字面量，ECMAScript 5 已弃用
         'no-param-reassign': 2, // 禁止对函数参数再赋值，可能误导读者，也会改变 arguments 对象，建议纯函数
-        'no-redeclare': 2, // 禁止重新声明变量
-        'no-self-assign': 2, // 禁止自身赋值，如 foo = foo;
+        'no-redeclare': 2, // ---- RECOMMENDED ---- 禁止重新声明变量
+        'no-self-assign': 2, // ---- RECOMMENDED ---- 禁止自身赋值，如 foo = foo;
         'no-self-compare': 2, // 禁止自身比较
         'no-unused-expressions': 2, // 禁止出现未使用过的表达式，如 obj.id，这个语句什么都没做
         'no-useless-call': 2, // 禁止不必要的 call、apply
-        'no-useless-catch': 2, // 禁止不必要的 catch 语句，如只抛出原始错误的 catch(e) { throw e; } 是冗余里，应改为 { doSomething(); throw e }
+        'no-useless-catch': 2, // ---- RECOMMENDED ---- 禁止不必要的 catch 语句，如只抛出原始错误的 catch(e) { throw e; } 是冗余里，应改为 { doSomething(); throw e }
         'no-useless-concat': 2, // 禁止不必要的字符拼接，如 'a' + 'b'，应改为 'ab'，这个拼接过程是不必要的
+        'no-useless-escape': 2, // ---- RECOMMENDED ---- 禁用不必要的转义，如 "\'" 是没意义的，直接 "'" 即可
         'no-useless-return': 2, // 禁止多余的 return 语句，如 function foo() { return; }
-        'no-with': 2, // 禁用 with 语句
+        'no-with': 2, // ---- RECOMMENDED ---- 禁用 with 语句
         'require-await': 2, // 禁止使用不带 await 表达式的 async 函数
         'yoda': 2, // 禁止Yoda条件，如 if('red' === color)，应改为 if(color === 'red')
         /** Variables */
-        'no-delete-var': 0, // 禁止 delete 语句，此处配置 delete 可用不报错
+        'no-delete-var': 0, // ---- RECOMMENDED ---- 禁止 delete 语句，此处配置 delete 可用不报错，不适用推荐配置
         'no-shadow': 0, // 禁止变量声明与外层作用域的变量同名，此处配置可同名
-        'no-shadow-restricted-names': 2, // 禁止将标识符定义为受限名字，如 const undefined = 'foo';
-        'no-undef': 2, // 禁用未定义变量，如 const a = 1; b = 10; 此处 b 未声明，需在 global 配置
+        'no-shadow-restricted-names': 2, // ---- RECOMMENDED ---- 禁止将标识符定义为受限名字，如 const undefined = 'foo';
+        'no-undef': 2, // ---- RECOMMENDED ---- 禁用未定义变量，如 const a = 1; b = 10; 此处 b 未声明，需在 global 配置
         'no-undef-init': 2, // 禁止初始化未 undefined，如 let a = undefined; 应改为 let a = undefined
         'no-undefined': 2, // 禁止使用 undefined 变量，如 const undefined = "hi";
-        'no-unused-vars': 2, // 禁止定义变量未使用
+        'no-unused-vars': 2, // ---- RECOMMENDED ---- 禁止定义变量未使用
         /** Stylistic Issues */
         'array-bracket-newline': [2, { 'multiline': true }], // 配置数组元素内或元素间有换行，则要求开闭括号 [] 换行
         'array-bracket-spacing': [2, 'never'], // 禁止数组括号前后空格，如 [ 1, 2 ] 应改为 [1, 2]
@@ -112,7 +113,7 @@ module.exports = {
         'newline-per-chained-call': [2, { 'ignoreChainWithDepth': 2 }], // 要求方法链中每个调用都有换行符，如 d3.select('body')\n.selectAll('p')\n.data([1, 2, 3]);
         'no-array-constructor': 2, // 禁用 Array 构造函数，只能 Array(10)、new Array(10)
         'no-lonely-if': 2, // 禁止 if 语句作为唯一语句出现在 else 块中，如 if() { ... } else { if() { ... } }
-        'no-mixed-spaces-and-tabs': 2, // 禁止空格和 tab 混合缩进
+        'no-mixed-spaces-and-tabs': 2, // ---- RECOMMENDED ---- 禁止空格和 tab 混合缩进
         'no-multiple-empty-lines': [2, { 'max': 2 }], // 禁止多个空行，最多 2 空行
         'no-nested-ternary': 2, // 禁止嵌套的三目运算，会使代码难以理解
         'no-new-object': 2, // 禁用 Object 构造函数，如 const o = new Object(); 应该为 const o = {};
@@ -140,14 +141,14 @@ module.exports = {
         /** ECMAScript 6 */
         'arrow-parens': [2, 'as-needed'], // 要求箭头函数使用圆括号将参数括起，此处配置在单参数时强制不使用括号，如 (a) => 10; 应改为 a => 10;
         'arrow-spacing': [2, { 'before': true, 'after': true }], // 要求箭头函数的箭头前后有空格，如 a=>10 应改为 a => 10
-        'constructor-super': 2, // 验证构造函数中的 super 调用
+        'constructor-super': 2, // ---- RECOMMENDED ---- 验证构造函数中的 super 调用
         'generator-star-spacing': [2, 'after'], // 强制 generator 函数中 * 号后有空格
-        'no-class-assign': 2, // 禁止修改类声明的变量，如 class User {} User = 10;
-        'no-const-assign': 2, // 禁止修改 const 声明的变量，如 const a = 1; a = 2;
-        'no-dupe-class-members': 2, // 禁止类成员重复名称，如 class User { bar() {} bar() {} }
+        'no-class-assign': 2, // ---- RECOMMENDED ---- 禁止修改类声明的变量，如 class User {} User = 10;
+        'no-const-assign': 2, // ---- RECOMMENDED ---- 禁止修改 const 声明的变量，如 const a = 1; a = 2;
+        'no-dupe-class-members': 2, // ---- RECOMMENDED ---- 禁止类成员重复名称，如 class User { bar() {} bar() {} }
         'no-duplicate-imports': 2, // 禁止重复导入，如 import { zf } from 'jquery'; import { zb } from 'jquery'; 应改为 import { zf, zb } from 'jquery';
-        'no-new-symbol': 2, // 禁止 Symbol 与 new 一起使用，new Symbol() 是错误的，Symbol 是函数
-        'no-this-before-super': 2, // 禁止在 super() 前调用 this 或 super
+        'no-new-symbol': 2, // ---- RECOMMENDED ---- 禁止 Symbol 与 new 一起使用，new Symbol() 是错误的，Symbol 是函数
+        'no-this-before-super': 2, // ---- RECOMMENDED ---- 禁止在 super() 前调用 this 或 super
         'no-useless-computed-key': 2, // 禁止在对象中使用不必要的计算属性，如 { ['v']: 10 } 应改为 { v: 10 }
         'no-useless-constructor': 2, // 禁止不必要的构造函数，如空的 constructor() {} 是没有意义的
         'no-useless-rename': 2, // 禁止 import/export 解构赋值时将引用重命名为相同名字，如 import { create as create } from 'XXX';
@@ -155,7 +156,7 @@ module.exports = {
         'object-shorthand': 2, // 要求对象字面量简写语法，如 { x: x } 应改为 { x }
         'prefer-const': 2, // 要求声明后不再被修改的变量，使用 const 声明，如 let i = 0; 之后未对 i 进行修改，应该改为 const i = 0;
         'prefer-rest-params': 2, // 要求使用剩余参数 (...args) 代替 arguments
-        'require-yield': 2, // 要求 generator 函数中有 yield
+        'require-yield': 2, // ---- RECOMMENDED ---- 要求 generator 函数中有 yield
         'rest-spread-spacing': [2, 'never'], // 强制剩余参数和扩展运算符及其表达式之间无空格，如 ... a 应改为 ...a
         'symbol-description': 2, // 要求 symbol 描述
         'template-curly-spacing': [2, 'never'], // 禁止模板字符串中的空格，如 `${ obj.id }` 应改为 `${obj.id}`
@@ -172,5 +173,9 @@ module.exports = {
 
         /** import */
         'import/prefer-default-export': 0, // 文件 export default 配置非必要
+
+        /** miss in recommended */
+        // 'no-debugger': 2, // 禁用 debugger
+        // 'no-unused-labels': 2, // 禁用未使用过的标签
     },
 };
