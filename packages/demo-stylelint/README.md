@@ -91,3 +91,14 @@ a {
 ### extends
 
 - [stylelint-config-recommended-scss](https://github.com/kristerkari/stylelint-config-recommended-scss#readme): scss 的推荐规则
+
+## 命令
+
+```json
+{
+    "scripts": {
+        "lint:css": "stylelint ./**/*.{css,scss}",
+        "lint:style": "stylelint ./**/*.{html,vue}"
+    }
+}
+```
