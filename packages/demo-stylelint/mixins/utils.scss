@@ -1,0 +1,105 @@
+@import '../common/var';
+
+/* user-select */
+@mixin utils-user-select($value) {
+    -moz-user-select: $value;
+    -webkit-user-select: $value;
+    -ms-user-select: $value;
+}
+
+/* 清除浮动 */
+@mixin utils-clear-fix {
+    $selector: &;
+
+    @at-root {
+        #{$selector}::before,
+        #{$selector}::after {
+            display: table;
+            content: '';
+        }
+        #{$selector}::after {
+            clear: both
+        }
+    }
+}
+
+/* 垂直居中 */
+@mixin utils-vertical-center {
+    $selector: &;
+
+    @at-root {
+        #{$selector}::after {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            content: ''
+        }
+    }
+}
+
+/* 单行超出省略 */
+@mixin utils-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 多行超出省略 */
+@mixin utils-ellipsis-multiple($line: 2) {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+}
+
+/* 1px mixin */
+// 元素需要设置 postion 如 relative
+@mixin thinBorder($directionMaps: bottom, $color: $border-color-base, $radius:(0, 0, 0, 0), $position: after) {
+    &:#{$position} {
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        width: 200%;
+        height: 200%;
+        border: 0 solid $color;
+        transform: scale(0.5);
+        transform-origin: 0 0;
+        content: '';
+        pointer-events: none;
+
+        @if(list == type-of($radius)) {
+            border-radius: 
+                nth($radius, 1) * 2 
+                nth($radius, 2) * 2 
+                nth($radius, 3) * 2 
+                nth($radius, 4) * 2;
+        }
+
+        @else {
+            border-radius: $radius * 2;
+        }
+
+        @each $directionMap in $directionMaps {
+            border-#{$directionMap}-width: 0.1rem;
+        }
+    }
+}
+
+/* iphoneX Media 查询 */
+@mixin iphoneXMedia {
+    /*iphoneX, iphonex xs*/
+    @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+        @content;
+    }
+
+    /*iphonexs max*/
+    @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+        @content;
+    }
+
+    /*iphone xr*/
+    @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+        @content;
+    }
+}

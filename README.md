@@ -8,6 +8,8 @@ practice the following items:
 
 - eslint
 
+- stylelint
+
 - jest
 
 - karma
