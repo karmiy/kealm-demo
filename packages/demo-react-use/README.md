@@ -429,7 +429,7 @@ export function resolveHookState<S, C extends S>(newState: ResolvableHookState<S
 const isPrimitive = (val: any) => val !== Object(val);
 ```
 
-- EffectCallback: React.EffectCallback 标注 effect 类型
+- EffectCallback: React.EffectCallback 标准 effect 类型
 
 ```ts
 type EffectCallback = () => (void | (() => void | undefined));
