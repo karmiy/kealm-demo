@@ -48,6 +48,8 @@ function useAsyncFn<T extends FnReturningPromise>(
 
 ### 何时使用
 
+- 初始时不调用，希望手动调用
+
 - 希望以同步的方式获取到异步函数的返回值
 
 - 希望执行异步函数时能知悉 loading 状态
