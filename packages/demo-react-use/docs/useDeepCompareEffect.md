@@ -7,11 +7,9 @@
 ### 结构
 
 ```ts
-// TODO: 官方是 (prevDeps: TDeps, nextDeps: TDeps)，看了源码感觉是错的，应该是反过来
-// https://github.com/streamich/react-use/issues/1390
 import { DependencyList, EffectCallback } from 'react';
 
-function useCustomCompareEffect<TDeps extends DependencyList>(
+function useDeepCompareEffect<TDeps extends DependencyList>(
     effect: EffectCallback,
     deps: TDeps,
 ): void;
