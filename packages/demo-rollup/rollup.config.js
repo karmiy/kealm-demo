@@ -10,6 +10,8 @@ export default {
         // name: 'myBundle',
         // format: 'umd',
         format: 'cjs',
+        banner: '/* my-library version ' + '1.0.0' + ' */',
+        footer: '/* follow me on Twitter! @rich_harris */'
     },
     plugins: [
         commonjs(), 

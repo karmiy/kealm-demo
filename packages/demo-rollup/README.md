@@ -232,7 +232,9 @@ export default {
     ]
 };
 ```
+## 配置列表
 
+[大选项列表](https://www.rollupjs.com/guide/big-list-of-options)
 
 ## 插件
 

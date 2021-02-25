@@ -1,14 +1,17 @@
+/* my-library version 1.0.0 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var version = "1.0.0";
 
-const foo = id => {
+var foo = function foo(id) {
   console.log(id);
 };
-const p = new Promise(r => r(10));
-p.then(() => {
+var p = new Promise(function (r) {
+  return r(10);
+});
+p.then(function () {
   console.log('100');
 });
 console.log(version);
@@ -22,3 +25,4 @@ console.log(b);
 console.log(debounce(() => console.log('debounce'))); */
 
 exports.foo = foo;
+/* follow me on Twitter! @rich_harris */
