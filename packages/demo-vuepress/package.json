@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev vuepress dev docs",
     "build": "vuepress build docs",
-    "upload": "node build/upload.js"
+    "upload": "node build/upload.js",
+    "publish": "npm run build && npm run upload"
   },
   "keywords": [],
   "author": "",
