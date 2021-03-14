@@ -1,0 +1,18 @@
+{
+  "name": "demo-vuepress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev vuepress dev docs",
+    "build": "vuepress build docs",
+    "upload": "node build/upload.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "vuepress": "^1.8.2"
+  }
+}
