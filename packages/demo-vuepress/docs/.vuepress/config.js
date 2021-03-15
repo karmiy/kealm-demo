@@ -13,6 +13,14 @@ module.exports = {
                 children: [
                     '/react-native/general/button'
                 ]
+            },
+            {
+                title: 'Basic 基础',
+                collapsable: false,
+                sidebarDepth: 3,
+                children: [
+                    '/react-native/basic/pop'
+                ]
             }
         ],
         /* sidebar: [
