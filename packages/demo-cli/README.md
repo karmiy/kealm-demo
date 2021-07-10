@@ -1,6 +1,12 @@
 ![logo](../../shared/static/imgs/logo-kealm.png)
 
-## Cli 命令行 bin
+# Cli
+
+## 学习来源
+
+学习自 [动态生成代码模板](https://juejin.cn/post/6977567286013984776#heading-5)
+
+## 发布运用流程
 
 ### 本地测试
 

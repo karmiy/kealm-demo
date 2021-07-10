@@ -1,8 +1,8 @@
 ![logo](../../shared/static/imgs/logo-kealm.png)
 
-## Jest
+# Jest
 
-### Install 
+## Install 
 
 - jest
 
@@ -12,7 +12,7 @@
 
 - babel-jest, @babel/core, @babel/preset-env: 让 jest 使用 Babel 编译 JavaScript 代码
 
-### Run
+## Run
 
 - npm run test
 
@@ -28,7 +28,7 @@
 
 - npm run test:c
 
-### Example
+## Example
 
 - [基本测试](./src/__tests__/general/base.spec.ts)
 
@@ -56,7 +56,7 @@
 
 - [模拟 webpack 引入资源测试](./src/__tests__/general/using-webpack.spec.ts)
 
-### Globals
+## Globals
 
 [Global Methods](https://jestjs.io/docs/zh-Hans/api)
 
@@ -94,7 +94,7 @@
 
 - test.todo
 
-### Expect
+## Expect
 
 [Expect Methods](https://jestjs.io/docs/zh-Hans/expect)
 
@@ -154,7 +154,7 @@ expect(...).toBe(...);
 
 - any: 创建对应构造函数，一般用于创建类型
 
-### Mock Functions
+## Mock Functions
 
 [Mock Functions API](https://jestjs.io/docs/zh-Hans/mock-function-api)
 
@@ -194,7 +194,7 @@ expect(...).toBe(...);
 
 - mockFn.mockRejectedValueOnce(value)
 
-### Jest Object
+## Jest Object
 
 [Jest Object API](https://jestjs.io/docs/zh-Hans/jest-object)
 
@@ -218,11 +218,11 @@ expect(...).toBe(...);
 
 - jest.clearAllTimers: 清除全部定时器
 
-### Configuring Jest
+## Configuring Jest
 
 [jest.config.js 配置](https://jestjs.io/docs/zh-Hans/configuration)
 
-### Jest CLI Options
+## Jest CLI Options
 
 [Jest 命令行](https://jestjs.io/docs/zh-Hans/cli)
 
@@ -236,7 +236,7 @@ expect(...).toBe(...);
 
 - jest --coverage: 生成覆盖率报告
 
-### Testing React
+## Testing React
 
 测试选择:
 
@@ -254,7 +254,7 @@ expect(...).toBe(...);
 
 更多示例参考 [demo-karma-react](https://github.com/karmiy/demo-karma)
 
-### Testing Vue
+## Testing Vue
 
 安装:
 

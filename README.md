@@ -27,3 +27,7 @@ practice the following items:
 - react-use
 
 - rollup
+
+- css in js
+
+- cli

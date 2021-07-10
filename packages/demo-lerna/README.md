@@ -1,10 +1,12 @@
 ![logo](../../shared/static/imgs/logo-kealm.png)
 
-## Lerna
+# Lerna
 
 Monorepo 模式下统一管理 package，可以统一的安装包、添加依赖、执行脚本、移除 node_modules、发布等
 
 [GitHub Lerna](https://github.com/lerna/lerna/)
+
+## 配置
 
 - lerna.json 配置
 
@@ -27,7 +29,7 @@ Monorepo 模式下统一管理 package，可以统一的安装包、添加依赖
 }
 ```
 
-- 初始化项目结构
+## 初始化项目结构
 
 ```js
 npx lerna init
@@ -36,6 +38,8 @@ npx lerna init --independent // 各个包之间独立
 
 // independent 生成的 lerna.json 里 version 是 independent，非 independent 是 0.0.0 各个包共享版本
 ```
+
+## 常用命令
 
 - 新增 package
 

@@ -1,5 +1,7 @@
 ![logo](../../shared/static/imgs/logo-kealm.png)
 
+# Mockjs
+
 ## 启动项目
 
 ```js
@@ -8,7 +10,7 @@ npm run dev
 
 根据对 mockjs api 测试需求打开 src/index.ts 相应注释块即可
 
-## MockJs
+## Library
 
 [官方 GitHub 地址](https://github.com/nuysoft/Mock/wiki)
 

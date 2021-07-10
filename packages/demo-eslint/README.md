@@ -1,5 +1,7 @@
 ![logo](../../shared/static/imgs/logo-kealm.png)
 
+# Esling
+
 ## VSCode 配置
 
 ### 安装
@@ -23,7 +25,7 @@
 ]
 ```
 
-### 命令
+## 命令
 
 ```js
 // --ext 命令行选项指定一个逗号分隔的扩展名列表

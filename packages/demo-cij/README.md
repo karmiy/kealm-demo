@@ -1,12 +1,16 @@
-## CSS in JS
+![logo](../../shared/static/imgs/logo-kealm.png)
 
-学习至 [CSS-in-JS：一个充满争议的技术方案](https://zhuanlan.zhihu.com/p/165089496)
+# CSS in JS
 
-### 常规 CSS 的存在问题
+## 学习来源
+
+学习自 [CSS-in-JS：一个充满争议的技术方案](https://zhuanlan.zhihu.com/p/165089496)
+
+## 常规 CSS 的存在问题
 
 - CSS 一旦生效就应用全局，难免可能出现选择器冲突
 
-### 内联样式的解决方案
+## 内联样式的解决方案
 
 优点：
 
@@ -20,7 +24,7 @@
 
 - 不支持预处理器，浏览器兼容性受限制
 
-### 替代方案
+## 替代方案
 
 - CSS 模块化：类似 Angular 的 viewEncapsulation 与 Vue 的 scoped，将模块内的选择器附上特殊的哈希字符串，以实现样式的局部作用域，通常这种方案已经足够
 
@@ -28,7 +32,7 @@
 
 - Shadow DOM：借助如 [direflow.io](https://direflow.io/) 将 React 组件输出为 Web Components，但很少有项目这样做
 
-### CSS-in-JS 的出现
+## CSS-in-JS 的出现
 
 借助 JS 解决许多 CSS 的缺陷：
 
@@ -48,7 +52,7 @@
 
 - CIJ 运行时性能损耗
 
-### 趋势、标准
+## 趋势、标准
 
 虽然 CIJ 还没形成真正的标准，但在接口 API 设计、功能和使用体验，实现方案也越来越接近
 
@@ -72,7 +76,7 @@
 
 - 利用 vscode-styled-components、stylelint 等插件，在 JS 代码中增强对 CSS 语法高亮支持
 
-### CSS Prop vs Styled Components
+## CSS Prop vs Styled Components
 
 - CSS Prop
 
@@ -87,7 +91,7 @@
 缺点：不如内联样式更方便直接，而且需要给额外多出来的样式组件定义新的标签名，会在一定程度上影响开发效率
 
 
-### 我的理解
+## 我的理解
 
 思考：
 
@@ -115,7 +119,7 @@
 
 - 带来了性能损耗（解析样式，在需要时加前缀，并放到 CSS 类中；生成 hash；利用 CSSOM 创建和更新样式），CIJ 的运行时损耗有时是可感知的，可能对用户体验造成影响
 
-### CSS 原子化
+## CSS 原子化
 
 CSS 原子化是使用纯 CSS 的一种流行方案。这种方案中，用户使用库提供的功能性CSS 类修饰 DOM 结构，以 [tailwindcss](https://tailwindcss.com/) 为代表
 

@@ -1,5 +1,7 @@
 ![logo](../../shared/static/imgs/logo-kealm.png)
 
+# Standard
+
 ## 前端规范
 
 - [变量命名规范](./variate/README.md)
