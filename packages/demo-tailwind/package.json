@@ -1,0 +1,34 @@
+{
+  "name": "consultation",
+  "version": "0.0.0",
+  "scripts": {
+    "setup": "npm install --registry=http://registry.cnpm.seeyouyima.com",
+    "dev": "vite",
+    "build": "tsc && vite build && npm run upload",
+    "serve": "vite preview",
+    "upload": "ossutil cp -r dist oss://front-static/www.meiyoudoctor.com/consultation --update"
+  },
+  "dependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "tailwindcss": "^2.2.4"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "autoprefixer": "^10.3.0",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.3.2",
+    "sass": "^1.34.0",
+    "typescript": "^4.1.2",
+    "vite": "^2.3.4",
+    "vite-plugin-style-import": "^0.10.1"
+  }
+}

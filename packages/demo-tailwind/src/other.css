@@ -1,0 +1,12 @@
+/* 加了 @layer 后这部分代码会被打到 base 的对应对象 */
+/* 要注意的是，需要前面加 \@tailwind base，否则不生效 */
+/* 还需要注意的是，如果前面加 \@tailwind base，base 样式会被打 2 份 */
+/* 所以这种操作行为，要 main.tsx 那的 tailwindcss/tailwind.css 不能共存 */
+
+/* @tailwind base;
+
+@layer base {
+  h1 {
+    @apply p-4;
+  }
+} */
