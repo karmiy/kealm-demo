@@ -23,10 +23,6 @@ Tailwind 包含了一系列有用的开箱即用的基础样式 Preflight
 如果要将某些基本样式应用于特定元素，最容易的方法是将其添加到 CSS 中
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
   h1 {
     @apply text-2xl;
@@ -37,7 +33,7 @@ Tailwind 包含了一系列有用的开箱即用的基础样式 Preflight
 }
 ```
 
-> @layer 指令告诉 Tailwind 要把这些样式隶属至哪一层，如上会放到 base 层，这样就不用担心 CSS 顺序问题
+> @layer 指令告诉 Tailwind 要把这些样式隶属至哪一层，如上会放到 base 层，这样就不用担心在源文件中的正确放置顺序
 
 通过使用 @layer 指令：
 
@@ -50,10 +46,6 @@ Tailwind 包含了一系列有用的开箱即用的基础样式 Preflight
 可以使用相同的方式添加 @font-face 规则
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
   @font-face {
     font-family: Proxima Nova;

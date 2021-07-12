@@ -8,6 +8,7 @@ const App: React.FC = () => {
         <div className='my-app flow-root'>
             <h1>???</h1>
             <div className='my-app__content hover:bg-purple-700'>app</div>
+            <button>按钮</button>
         </div>
     );
 };
