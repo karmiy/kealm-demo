@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build && npm run upload",
     "serve": "vite preview",
-    "upload": "ossutil cp -r dist oss://front-static/www.meiyoudoctor.com/consultation --update"
+    "upload": "ossutil cp -r dist oss://front-static/demo-tailwind --update"
   },
   "dependencies": {
     "react": "^17.0.0",

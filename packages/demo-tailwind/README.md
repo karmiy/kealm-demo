@@ -14,7 +14,11 @@
 
 - [dark 深色模式](./docs/dark.md)
 
-- [base 基础样式](./docs/base.md)
+- [custom-base 自定义基础样式](./docs/custom-base.md)
 
-- [apply 提取组件](./docs/apply.md)
+- [custom-components 提取组件 @apply](./docs/custom-components.md)
+
+- [custom-variants 自定义功能变体](./docs/custom-variants.md)
+
+- [function-directive 函数与指令](./docs/function-directive.md)
 

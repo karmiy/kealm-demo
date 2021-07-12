@@ -7,7 +7,7 @@ const { resolve } = require('path');
 export default defineConfig({
     base:
         process.env.NODE_ENV === 'production'
-            ? 'https://static.seeyouyima.com/www.meiyoudoctor.com/consultation/'
+            ? 'https://static.seeyouyima.com/demo-tailwind/'
             : './',
     plugins: [reactRefresh()],
     resolve: {

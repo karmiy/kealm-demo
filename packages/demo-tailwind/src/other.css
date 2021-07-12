@@ -1,6 +1,7 @@
 @layer base {
   h1 {
     @apply p-4;
+    color: pink;
   }
 }
 
@@ -14,7 +15,30 @@
   .popover {
     @apply bg-blue-400;
   }
-  .popover-12 {
-    font-size: 12px;
+}
+
+@layer utilities {
+  @variants responsive {
+    .full {
+      flex: 1;
+    }
+  }
+}
+
+@layer utilities {
+  /* @variants hover, focus {
+    .filter-none {
+      filter: none;
+    }
+    .filter-grayscale {
+      filter: grayscale(100%);
+    }
+  } */
+
+  @variants hover, focus {
+    .filter-grayscale {
+      filter: grayscale(100%);
+    }
+    /* ... */
   }
 }
