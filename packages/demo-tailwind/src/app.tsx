@@ -13,7 +13,7 @@ const App: React.FC = () => {
             <p className='full md:full'>max</p>
             <div className='hover:filter-grayscale focus:filter-grayscale' />
             <p className='text-red-100'>spacing</p>
-            <div className='flex-auto text-k-100'>flex</div>
+            <div className='flex-auto'>flex</div>
         </div>
     );
 };

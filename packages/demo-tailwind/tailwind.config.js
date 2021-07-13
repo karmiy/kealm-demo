@@ -7,12 +7,12 @@ module.exports = {
     // darkMode: 'false', // or 'media' or 'class'
     // darkMode: 'class', // or 'media' or 'class'
     theme: {
-        colors: {
+        /* colors: {
             ...colors,
             k: {
                 100: 'pink',
             },
-        },
+        }, */
         extend: {},
     },
     variants: {
