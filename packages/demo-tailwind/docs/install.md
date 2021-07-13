@@ -19,6 +19,27 @@ module.exports = {
 npx tailwindcss init
 ```
 
+也可以自定义名称：
+
+```sh
+npx tailwindcss init tailwindcss-config.js
+```
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: {
+    tailwindcss: { config: './tailwindcss-config.js' },
+  },
+}
+```
+
+还可以直接生成完整配置：
+
+```sh
+npx tailwindcss init --full
+```
+
 ```js
 // 在项目入口文件引入默认样式
 // @tailwind base; // 重置浏览器样式，即 normalize，可以不用

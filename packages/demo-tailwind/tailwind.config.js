@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
     // 清除选项
@@ -6,6 +7,12 @@ module.exports = {
     // darkMode: 'false', // or 'media' or 'class'
     // darkMode: 'class', // or 'media' or 'class'
     theme: {
+        colors: {
+            ...colors,
+            k: {
+                100: 'pink',
+            },
+        },
         extend: {},
     },
     variants: {

@@ -22,3 +22,7 @@
 
 - [function-directive 函数与指令](./docs/function-directive.md)
 
+- [config 配置](./docs/config.md)
+
+- [theme 主题](./docs/theme.md)
+
