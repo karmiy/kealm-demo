@@ -94,3 +94,64 @@ module.exports = {
   }
 }
 ```
+
+## 多范围断点
+
+有时可能需要在多范围的断点展示不同样式，如侧边栏的显示范围为 2 个区间：
+
+- 668 - 767
+
+- >= 868
+
+这时就可以配置 2 个范围：
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    screens: {
+      'sm': '500px',
+      'md': [
+        {'min': '668px', 'max': '767px'},
+        {'min': '868px'}
+      ],
+      'lg': '1100px',
+      'xl': '1400px',
+    }
+  }
+}
+```
+
+## 自定义媒体查询
+
+如果需要为断点设置自定义媒体查询，而非 minWidth, maxWidth，可以通过 raw 键对象实现：
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      screens: {
+        'portrait': {'raw': '(orientation: portrait)'},
+        // => @media (orientation: portrait) { ... }
+      }
+    }
+  }
+}
+```
+
+raw 还可以专门对打印应用不同风格：
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      screens: {
+        'print': {'raw': 'print'}, // print:text-black
+        // => @media print { ... }
+      }
+    }
+  }
+}
+```
