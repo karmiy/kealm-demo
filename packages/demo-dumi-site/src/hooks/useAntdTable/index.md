@@ -16,7 +16,7 @@ Demo:
 
 ```tsx
 import React from 'react';
-import { Button } from '@meetyou/react-components';
+// import { Button } from '@meetyou/react-components';
 
-export default () => <Button>Hello dumi!</Button>;
+export default () => <div>Hello dumi!</div>;
 ```
