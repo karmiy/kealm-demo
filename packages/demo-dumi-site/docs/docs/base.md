@@ -1,8 +1,5 @@
 ---
 order: 1
-nav:
-  title: 指南
-  order: 1
 ---
 
 # 基本使用
@@ -16,6 +13,15 @@ import { Nav } from 'demo-dumi-site';
 export default () => <Nav>Hello dumi!</Nav>;
 ```
 
+## 引用 RN 组件
+
+```jsx
+import React from 'react';
+import { View, Text } from 'react-native';
+
+export default () => <View><Text style={{ color: 'skyblue' }}>This is RN View</Text></View>;
+```
+
 ## 不渲染代码块
 
 ```jsx | pure
@@ -27,16 +33,6 @@ export default () => <div>Hello dumi!</div>;
 
 ## 外部代码
 
-<code src="./demo.tsx"></code>
+引用外部 code 还可以用 FrontMatter 配置项
 
-## FrontMatter - 捕获 fixed 元素
-
-
-```tsx
-/**
- * transform: true
- */
-import React from 'react';
-
-export default () => <h1 style={{ position: 'fixed', top: 0, left: 0 }}>我不会飞出去</h1>;
-```
+<code src="./demo.tsx" title="demo 的名称"></code>

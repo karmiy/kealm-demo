@@ -1,8 +1,5 @@
 ---
-order: 4
-nav:
-  title: 指南
-  order: 1
+order: 3
 ---
 
 # API

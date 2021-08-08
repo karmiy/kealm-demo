@@ -1,8 +1,5 @@
 ---
-order: 3
-nav:
-  title: 指南
-  order: 1
+order: 2
 ---
 
 # 内置组件
