@@ -20,9 +20,9 @@
     $selector: selectorToString($selector);
 
     @if str-index($selector, '.' + $state-prefix) {
-        @return true
+        @return true;
     } @else {
-        @return false
+        @return false;
     }
 }
 
@@ -30,9 +30,9 @@
     $selector: selectorToString($selector);
 
     @if str-index($selector, ':') {
-        @return true
+        @return true;
     } @else {
-        @return false
+        @return false;
     }
 }
 
