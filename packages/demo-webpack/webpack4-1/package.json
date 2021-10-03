@@ -1,0 +1,27 @@
+{
+  "name": "demo-webpack4-1",
+  "version": "1.0.0",
+  "scripts": {
+    "dev:runner": "webpack-dev-server --config build/webpack.dev.conf.js",
+    "prod:runner": "webpack --progress --config build/webpack.prod.conf.js",
+    "dev": "npm run dev:runner",
+    "build": "npm run prod:runner"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.5.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.4.5",
+    "style-loader": "^0.12.4",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.1"
+  }
+}
