@@ -1,0 +1,54 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <block wx:if="{{canIUseOpenData}}">
+      <view class="userinfo-avatar" bindtap="bindViewTap">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <open-data type="userNickName"></open-data>
+    </block>
+    <block wx:elif="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+    </block>
+    <block wx:else>
+      <image bind:tap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+    <text class="userinfo-text" style="color: aquamarine; font-size: 48rpx;" bindtap="wx.scanCode">0.0.2 版本...</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+ <!--  <view class="view {{!motto ? 'is-focus' : ''}}" />
+  <wxs src='./index.wxs' module="index" />
+  <view>{{index.a}}</view> -->
+
+  <!-- <view 
+    class="danmu-item" 
+    animation="{{animationData}}"
+    bindtransitionend='transitionend'
+    bindanimationiteration="animationiteration"
+    bindanimationend="animationend"
+   /> -->
+
+    <!-- <status-alert model:value1="{{value1}}" model:value2="{{value2}}" />
+    <text>[value1 - outer]: {{value1}}</text>
+    <text>[value2 - outer]: {{value2}}</text> -->
+
+   <!--  <view style="height: 200px" />
+    <view class="intersection" style="width: 100px; height: 100px; background-color: aquamarine;">
+      intersection
+    </view> -->
+
+    <view 
+      class="animation-wrap" 
+      bindtransitionend="transitionend"
+      bindanimationstart="animationstart"
+      bindanimationiteration="animationiteration"
+      bindanimationend="animationend"
+    />
+
+    <status-alert class="k" />
+</view>

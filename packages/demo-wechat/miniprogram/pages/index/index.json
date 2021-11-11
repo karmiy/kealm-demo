@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "status-alert": "/components/status-alert/status-alert"
+  }
+}
