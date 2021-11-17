@@ -1,0 +1,13 @@
+<!--components/status-alert/status-alert.wxml-->
+<!-- <input model:value="{{value1}}" />
+<text>[value1 - inner]: {{value1}}</text>
+<input model:value="{{value2}}" />
+<text>[value2 - inner]: {{value2}}</text> -->
+<view>
+  <text>
+    Status Alert
+  </text>
+  <text class="a">
+    <text class="b">B</text>
+  </text>
+</view>

@@ -1,0 +1,8 @@
+/* components/status-alert/status-alert.wxss */
+:host {
+  color:  aqua;
+}
+
+.a .b {
+  color: blueviolet;
+}

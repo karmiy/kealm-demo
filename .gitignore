@@ -3,5 +3,6 @@ package-lock.json
 .idea
 publish/**
 dist/**
+**/dist/
 lib/**
 **/coverage/
