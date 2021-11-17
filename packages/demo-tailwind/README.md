@@ -28,3 +28,10 @@
 
 - [config-screen 断点](./docs/config-screen.md)
 
+## VSCode 配置
+
+```json
+{
+    "tailwindCSS.rootFontSize": 10,
+}
+```
