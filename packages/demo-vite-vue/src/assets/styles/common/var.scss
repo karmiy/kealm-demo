@@ -1,0 +1,100 @@
+/* -------------------------- basic -------------------------- */
+// 蓝
+$color-blue-a: #4794FF !default;
+$color-blue-a-12: #E9F2FF !default;
+$color-blue-b: #5388D2 !default;
+
+// 黄
+$color-yellow-a: #FAA700 !default;
+$color-yellow-a-12: #FEF4E0 !default;
+$color-yellow-b: #C59A44 !default;
+$color-yellow-c: #F7C31B !default;
+
+// 红
+$color-red-a: #FF4D88 !default;
+$color-red-a-12: #FFEAF1 !default;
+$color-red-b: #FF4D4D !default;
+
+// 绿
+$color-green-a: #00CD9A !default;
+$color-green-a-12: #E0F9F3 !default;
+$color-green-b: #42BD89 !default;
+
+// 橙
+$color-orange-a: #FF8800 !default;
+
+// 紫
+$color-purple-a: #8C75FF !default;
+
+// 中立色
+$color-black-1: #000 !default;
+$color-black-2: #323232 !default;
+$color-black-3: #555 !default;
+$color-black-4: #666 !default;
+$color-black-5: #999 !default;
+$color-black-6: #B2B2B2 !default;
+$color-black-7: #B5B5B5 !default;
+$color-black-8: #CCC !default;
+$color-black-9: #DDD !default;
+$color-black-10: #E8E8E8 !default;
+$color-black-11: #EEE !default;
+$color-black-12: #F2F2F2 !default;
+$color-black-13: #F5F5F5 !default;
+$color-black-14: #FAFAFA !default;
+
+/* -------------------------- theme -------------------------- */
+// general-color
+$color-primary: $color-blue-a !default; // #4794FF
+$color-regular: $color-red-a !default; // #FF4D88
+
+// text-color
+$text-color-primary: $color-black-2 !default; // #323232
+$text-color-regular: $color-black-4 !default; // #666
+$text-color-secondary: $color-black-5 !default; // #999
+
+// border-color
+$border-color-primary: $color-black-10 !default; // #E8E8E8
+
+// background-color
+$background-color-primary: $color-black-12 !default; // #F2F2F2
+$background-color-regular: $color-black-13 !default; // #F5F5F5
+$background-color-secondary: $color-black-14 !default; // #FAFAFA
+
+/* transparent */
+$color-text-thin-dark-1: rgba(0, 0, 0, .1) !default;
+$color-text-thin-dark-2: rgba(0, 0, 0, .2) !default;
+$color-text-thin-dark-3: rgba(0, 0, 0, .3) !default;
+$color-text-thin-dark-4: rgba(0, 0, 0, .4) !default;
+$color-text-thin-dark-5: rgba(0, 0, 0, .5) !default;
+$color-text-thin-dark-6: rgba(0, 0, 0, .6) !default;
+$color-text-thin-dark-7: rgba(0, 0, 0, .7) !default;
+$color-text-thin-dark-8: rgba(0, 0, 0, .8) !default;
+$color-text-thin-dark-9: rgba(0, 0, 0, .9) !default;
+
+/* z-index */
+$z-index-negative: -1 !default;
+$z-index-s: 1 !default;
+$z-index-m: 10 !default;
+$z-index-l: 100 !default;
+$z-index-xl: 1000 !default;
+
+/* animation-duration */
+$animation-duration-slow: 0.3s !default;
+$animation-duration-base: 0.2s !default;
+$animation-duration-fast: 0.15s !default;
+
+/* timing-function */
+$ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 1) !default;
+$ease-base-in: cubic-bezier(0.9, 0, 0.3, 0.7) !default;
+$ease-out: cubic-bezier(0.215, 0.61, 0.355, 1) !default;
+$ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19) !default;
+$ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1) !default;
+$ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46) !default;
+$ease-in-back: cubic-bezier(0.71, -0.46, 0.88, 0.6) !default;
+$ease-in-out-back: cubic-bezier(0.71, -0.46, 0.29, 1.46) !default;
+$ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1) !default;
+$ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34) !default;
+$ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86) !default;
+$ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1) !default;
+$ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06) !default;
+$ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1) !default;

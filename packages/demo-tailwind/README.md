@@ -35,3 +35,7 @@
     "tailwindCSS.rootFontSize": 10,
 }
 ```
+
+## VSCode 插件
+
+- Tailwind CSS IntelliSense

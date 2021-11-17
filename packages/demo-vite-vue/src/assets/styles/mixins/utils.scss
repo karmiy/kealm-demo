@@ -1,0 +1,17 @@
+@import '../common/var';
+@import './mixins';
+
+/* 单行超出省略 */
+@mixin utils-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 多行超出省略 */
+@mixin utils-ellipsis-multiple($line: 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+}

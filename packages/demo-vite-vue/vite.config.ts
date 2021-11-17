@@ -1,4 +1,4 @@
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import styleImport from 'vite-plugin-style-import';
 const { resolve } = require('path');
@@ -7,14 +7,17 @@ const { resolve } = require('path');
 export default defineConfig({
     base: process.env.NODE_ENV === 'production' ? '/' : './',
     plugins: [
-        reactRefresh(),
+        vue(),
         styleImport({
             libs: [
                 {
-                    libraryName: 'antd',
-                    esModule: true,
+                    libraryName: 'element-plus',
                     resolveStyle: name => {
-                        return `antd/es/${name}/style/index.css`;
+                        name = name.slice(3);
+                        return `element-plus/packages/theme-chalk/src/${name}.scss`;
+                    },
+                    resolveComponent: name => {
+                        return `element-plus/lib/${name}`;
                     },
                 },
             ],
@@ -27,19 +30,23 @@ export default defineConfig({
             '@assets': resolve(__dirname, 'src/assets'),
             '@components': resolve(__dirname, 'src/components'),
             '@hooks': resolve(__dirname, 'src/hooks'),
-            '@views': resolve(__dirname, 'src/views'),
-            '@router': resolve(__dirname, 'src/router'),
-            '@shared': resolve(__dirname, 'src/shared'),
+            '@pages': resolve(__dirname, 'src/pages'),
             '@store': resolve(__dirname, 'src/store'),
+            '@utils': resolve(__dirname, 'src/utils'),
         },
     },
     server: {
-        host: '0.0.0.0',
         proxy: {
-            '/xxx-api': {
-                target: 'https://xxxxx.com',
+            '/diagnose-api': {
+                // target: 'https://test-myyq.seeyouyima.com/diagnose-api',
+                target: 'http://test-api.meiyoudoctor.com',
                 changeOrigin: true,
-                rewrite: path => path.replace(/^\/xxx-api/, ''),
+                rewrite: path => path.replace(/^\/diagnose-api/, ''),
+            },
+            '/user-api': {
+                target: 'http://test-users.seeyouyima.com',
+                changeOrigin: true,
+                rewrite: path => path.replace(/^\/user-api/, ''),
             },
         },
     },
