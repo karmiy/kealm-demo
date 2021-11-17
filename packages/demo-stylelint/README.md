@@ -7,10 +7,13 @@
 ```json
 "css.validate": true,
 "scss.validate": true,
+"stylelint.validate": ["css", "scss"],
 "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": true
 },
 ```
+
+> 插件 v1.2.0 无法保存格式化，需降级 v1.1.0
 
 ## 核心
 
