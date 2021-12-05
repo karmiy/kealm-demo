@@ -35,3 +35,5 @@ practice the following items:
 - webpack
 
 - vite
+
+- nginx
