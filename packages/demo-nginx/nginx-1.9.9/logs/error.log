@@ -1,0 +1,23 @@
+2021/12/05 16:26:35 [emerg] 20444#18128: invalid URL prefix in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:46
+2021/12/05 16:27:43 [emerg] 20624#8696: invalid URL prefix in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:46
+2021/12/05 16:27:48 [emerg] 22324#20836: invalid URL prefix in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:46
+2021/12/05 16:28:06 [emerg] 16052#20244: invalid URL prefix in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:46
+2021/12/05 16:28:09 [emerg] 2524#21660: invalid URL prefix in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:46
+2021/12/05 16:28:39 [emerg] 20824#19056: invalid URL prefix in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:46
+2021/12/05 16:29:27 [emerg] 18204#19936: invalid URL prefix in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:46
+2021/12/05 16:33:57 [notice] 11500#10104: signal process started
+2021/12/05 16:45:53 [notice] 10076#19736: signal process started
+2021/12/05 16:46:41 [notice] 7424#20844: signal process started
+2021/12/05 16:46:43 [error] 20544#22144: *13 CreateFile() "F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/html/logo-kealm.png" failed (2: The system cannot find the file specified), client: 192.168.2.243, server: localhost, request: "GET /logo-kealm.png HTTP/1.1", host: "192.168.2.243"
+2021/12/05 16:46:44 [error] 20544#22144: *13 CreateFile() "F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/html/logo-kealm.png" failed (2: The system cannot find the file specified), client: 192.168.2.243, server: localhost, request: "GET /logo-kealm.png HTTP/1.1", host: "192.168.2.243"
+2021/12/05 16:46:44 [error] 20544#22144: *13 CreateFile() "F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/html/logo-kealm.png" failed (2: The system cannot find the file specified), client: 192.168.2.243, server: localhost, request: "GET /logo-kealm.png HTTP/1.1", host: "192.168.2.243"
+2021/12/05 16:46:44 [error] 20544#22144: *13 CreateFile() "F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/html/logo-kealm.png" failed (2: The system cannot find the file specified), client: 192.168.2.243, server: localhost, request: "GET /logo-kealm.png HTTP/1.1", host: "192.168.2.243"
+2021/12/05 16:46:44 [error] 20544#22144: *13 CreateFile() "F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/html/logo-kealm.png" failed (2: The system cannot find the file specified), client: 192.168.2.243, server: localhost, request: "GET /logo-kealm.png HTTP/1.1", host: "192.168.2.243"
+2021/12/05 16:48:17 [notice] 18916#18560: signal process started
+2021/12/05 17:33:26 [notice] 23632#23312: signal process started
+2021/12/05 18:23:03 [emerg] 1940#22868: invalid host in upstream "http://127.0.0.1:3001" in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:36
+2021/12/05 18:23:39 [emerg] 24756#23616: invalid host in upstream "http://127.0.0.1:3001" in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:36
+2021/12/05 19:48:42 [emerg] 24628#21724: "upstream" directive is not allowed here in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:16
+2021/12/05 19:49:07 [emerg] 20916#17496: invalid host in upstream "http://127.0.0.1:3001" in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:36
+2021/12/05 22:04:52 [emerg] 4072#23096: invalid parameter "weight" in F:\github\kealm-demo\packages\demo-nginx\nginx-1.9.9/conf/nginx.conf:36
+2021/12/05 22:20:39 [notice] 22888#19288: signal process started
