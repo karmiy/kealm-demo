@@ -1,0 +1,54 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "fix": "eslint ./src --fix",
+    "pl": "umi plugin list --key"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/pro-layout": "^6.5.0",
+    "axios": "^0.24.0",
+    "mockjs": "^1.1.0",
+    "react": "17.x",
+    "react-dom": "17.x",
+    "umi": "^3.5.20"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@types/mockjs": "^1.0.4",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
+    "@umijs/plugin-sass": "^1.1.1",
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.5.20",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "lint-staged": "^10.0.7",
+    "node-sass": "^7.0.1",
+    "prettier": "^2.2.0",
+    "sass-loader": "^12.4.0",
+    "typescript": "^4.1.2",
+    "yorkie": "^2.0.0"
+  }
+}
