@@ -1,13 +1,86 @@
 import mockjs from 'mockjs';
 import { Request, Response } from 'umi';
+import { sleep } from '../src/utils/base';
 
+const USER_LIST: Array<ApiNS.User> = [
+    {
+        name: 'karmiy',
+        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+        userId: '00000001',
+        email: '532981481@qq.com',
+        signature: 'core',
+        title: 'developer',
+        group: 'omc',
+        tags: [
+            {
+                key: '0',
+                label: '很有想法的',
+            },
+            {
+                key: '1',
+                label: '专注设计',
+            },
+        ],
+        access: 'admin',
+        address: '厦门市思明区',
+        phone: '18888888888',
+    },
+    {
+        name: 'karloy',
+        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+        userId: '00000002',
+        email: '532981481@qq.com',
+        signature: 'core',
+        title: 'developer',
+        group: 'omc',
+        tags: [
+            {
+                key: '0',
+                label: '很听话',
+            },
+            {
+                key: '1',
+                label: '很懂事',
+            },
+        ],
+        access: 'admin',
+        address: '厦门市思明区',
+        phone: '19999999999',
+    },
+    {
+        name: 'test',
+        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+        userId: '00000003',
+        email: '123456789@qq.com',
+        signature: 'core',
+        title: 'developer',
+        group: 'omc',
+        tags: [
+            {
+                key: '0',
+                label: '游客',
+            },
+        ],
+        access: 'guest',
+        address: '厦门市思明区',
+        phone: '16666666666',
+    },
+];
+
+/* let access = '';
+
+const getAccess = () => {
+    return access;
+}; */
+let currentUser: ApiNS.User | null = null;
+
+// 支持值为 Object 和 Array（GET 可忽略）
+// 支持自定义函数
 export default {
-    // 支持值为 Object 和 Array（GET 可忽略）
     'GET /api/user/list': mockjs.mock({
         'list|100': [{ 'id|1-100': 50, name: '@name', 'type|0-2': 1 }],
     }),
 
-    // 支持自定义函数
     'GET /api/user/get': (req: Request, res: Response) => {
         const id = req.query.id;
         // 添加跨域请求头
@@ -18,5 +91,75 @@ export default {
                 name: 'karmiy',
             }),
         );
+    },
+
+    // 获取登录状态
+    'GET /api/currentUser': async (req: Request, res: Response) => {
+        // await sleep(2000);
+        if (!currentUser) {
+            res.status(401).send({
+                success: true,
+                data: {
+                    isLogin: false,
+                },
+                errorCode: '401',
+                errorMessage: '请先登录！',
+            });
+            return;
+        }
+        res.send({
+            success: true,
+            data: currentUser,
+        });
+    },
+
+    // 登录
+    'POST /api/login/account': async (req: Request, res: Response) => {
+        const { password, username, mobile, type } = req.body;
+        await sleep(2000);
+
+        if (username && password === '123456') {
+            const user = USER_LIST.find(item => item.name === username);
+
+            if (user) {
+                res.send({
+                    status: 'ok',
+                    type,
+                    currentAuthority: user.access,
+                    message: '登录成功',
+                });
+                currentUser = user;
+                return;
+            }
+        }
+        if (type === 'mobile') {
+            const user = USER_LIST.find(item => item.phone === mobile);
+
+            if (user) {
+                res.send({
+                    status: 'ok',
+                    type,
+                    currentAuthority: user?.access,
+                    message: '登录成功',
+                });
+                currentUser = user;
+                return;
+            }
+        }
+
+        res.send({
+            status: 'error',
+            type,
+            currentAuthority: 'guest',
+            message: '登录失败，请重试！',
+        });
+        // access = 'guest';
+    },
+
+    // 登出
+    'POST /api/login/outLogin': (req: Request, res: Response) => {
+        // access = '';
+        currentUser = null;
+        res.send({ data: {}, success: true });
     },
 };

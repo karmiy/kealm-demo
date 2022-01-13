@@ -1,0 +1,23 @@
+$action-hover-bg: rgba(0, 0, 0, 0.025);
+
+.spin {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.action {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background: $action-hover-bg;
+    }
+}
+
+.avatar {
+    margin-right: 8px;
+}

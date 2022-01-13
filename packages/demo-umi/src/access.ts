@@ -1,10 +1,10 @@
-export default function (initialState: InitialState) {
-    const { role } = initialState;
-    // console.log('inn', initialState);
+export default function (initialState: { currentUser?: ApiNS.User }) {
+    const { currentUser } = initialState;
 
+    const isAmin = currentUser?.access === 'admin';
     return {
-        canRead: true,
-        canUpdate: role === 'admin',
-        canDelete: role === 'admin' || role === 'manager',
+        canRead: isAmin,
+        canUpdate: isAmin,
+        canDelete: isAmin,
     };
 }

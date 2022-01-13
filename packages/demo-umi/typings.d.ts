@@ -43,3 +43,36 @@ interface InitialState {
     userName: string;
     role: string;
 }
+
+declare namespace ApiNS {
+    interface User {
+        name: string;
+        avatar: string;
+        userId: string;
+        email: string;
+        signature: string;
+        title: string;
+        group: string;
+        tags: Array<{
+            key: string;
+            label: string;
+        }>;
+        access: string;
+        address: string;
+        phone: string;
+    }
+
+    interface LoginParams {
+        username?: string;
+        password?: string;
+        autoLogin?: boolean;
+        type?: string;
+    }
+
+    interface LoginResult {
+        status?: string;
+        type?: string;
+        currentAuthority?: string;
+        message?: string;
+    }
+}

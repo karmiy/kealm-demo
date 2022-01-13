@@ -1,9 +1,24 @@
 import React from 'react';
-import { History, history, IRouteComponentProps, Location, Plugin } from 'umi';
 // import { IConfigFromPlugins } from '@@/core/pluginConfig';
+import { BookOutlined, LinkOutlined } from '@ant-design/icons';
+import { PageLoading } from '@ant-design/pro-layout';
+import {
+    History,
+    history,
+    IRouteComponentProps,
+    Link,
+    Location,
+    Plugin,
+    RunTimeLayoutConfig,
+} from 'umi';
 import { sleep } from '@/utils/base';
+import { getCurrentUser } from './services/user';
+import { Footer, RightContent } from './components';
 
 // console.log('entry app');
+
+const isDev = process.env.NODE_ENV === 'development';
+const LOGIN_PATH = '/login';
 
 /**
  * 执行顺序：render => patchRoutes => onRouteChange
@@ -11,7 +26,7 @@ import { sleep } from '@/utils/base';
 
 /* -------------------- BLOCK: render 可控 -------------------- */
 export async function render(oldRender: Function) {
-    console.log('render');
+    // console.log('render');
 
     // 场景：做鉴权
     // await sleep();
@@ -28,7 +43,7 @@ export function patchRoutes({ routes }: { routes: UmiNS.Route }) {
         exact: true,
         component: require('@/pages/login').default,
     }); */
-    console.log('routes', routes);
+    // console.log('routes', routes);
 }
 
 /* -------------------- BLOCK: 路由变化监听 -------------------- */
@@ -39,7 +54,7 @@ export function onRouteChange({
     matchedRoutes,
     action,
 }: UmiNS.RouteChangeParams) {
-    console.log(location, routes, matchedRoutes, action);
+    // console.log(location, routes, matchedRoutes, action);
 }
 
 /* -------------------- BLOCK: 根节点渲染 -------------------- */
@@ -50,7 +65,7 @@ const ThemeContext = React.createContext(DEFAULT_THEME);
 // 比如用于在外面包一个 Provider
 export function rootContainer(
     container: React.ComponentType,
-    args: { history: History; plugin: Plugin; routes: UmiNS.Route[] },
+    // args: { history: History; plugin: Plugin; routes: UmiNS.Route[] },
 ) {
     // console.log(container, args);
     const Provider = ({ children, routes }: IRouteComponentProps) => {
@@ -65,29 +80,101 @@ export function rootContainer(
     return React.createElement(Provider, null, container);
 }
 
-/* export const rootContainer2 = (
-    container: React.ReactNode,
-    ) => {
-    const Provider = ({ children, routes }: any) => {
-        const newChildren = React.cloneElement(children, {
-        ...children.props,
-        routes,
-        });
-        
-        return <ApolloProvider client={apolloClient}>{newChildren}</ApolloProvider>;
-    };
-    
-    return React.createElement(Provider, null, container);
-}; */
-
 /* -------------------- BLOCK: @umijs/plugin-initial-state -------------------- */
+// 如果 getInitialState 有异步操作，如下面 sleep，那会阻塞页面渲染导致白屏
+// initialStateConfig 即可解决这个问题，配置 loading 会使其在 getInitialState 解决前展示 loading 效果
+export const initialStateConfig = {
+    loading: <PageLoading />,
+};
+
 export async function getInitialState() {
-    // console.log('getInitialState');
-    // 会阻塞页面渲染
-    await sleep();
+    // 会阻塞页面渲染，且在懒加载路由 js 文件前
+    // await sleep(2000);
+
+    const fetchUserInfo = async () => {
+        try {
+            const msg = await getCurrentUser();
+            return msg.data;
+        } catch (error) {
+            history.push(LOGIN_PATH);
+        }
+        return undefined;
+    };
+
+    // 如果是登录页面，不执行
+    if (history.location.pathname !== LOGIN_PATH) {
+        const currentUser = await fetchUserInfo();
+        return {
+            fetchUserInfo,
+            currentUser,
+            settings: {},
+        };
+    }
     return {
-        userId: 1,
-        userName: 'karmiy',
-        role: 'admin',
+        fetchUserInfo,
+        settings: {},
     };
 }
+
+// ProLayout 支持的api https://procomponents.ant.design/components/layout
+// 也可以看这边配置 https://umijs.org/zh-CN/plugins/plugin-layout
+export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
+    return {
+        // title: '这是标题', // 定制 document.title
+        // iconfontUrl: '//at.alicdn.com/t/XXX.js', // 配置 iconfont 链接，也对应了 routes 那的菜单 icon 图标，可见 https://pro.ant.design/zh-CN/docs/new-page#%E5%9C%A8%E8%8F%9C%E5%8D%95%E4%B8%AD%E4%BD%BF%E7%94%A8-iconfont
+        rightContentRender: () => <RightContent />,
+        disableContentMargin: true, // 移除内容部分的 margin: 24px
+        waterMarkProps: {
+            // 水印，页面中 <PageContainer> 会生成一个 .ant-pro-layout-watermark-wrapper 的 background
+            content: initialState?.currentUser?.name,
+        },
+        footerRender: () => <Footer />, // 会在 content 下补充内容
+        onPageChange: () => {
+            // 页面/路由变化时触发，初始也会执行
+            const { location } = history;
+            // 如果没有登录，重定向到 login
+            if (!initialState?.currentUser && location.pathname !== LOGIN_PATH) {
+                history.push(LOGIN_PATH);
+            }
+        },
+        links: isDev
+            ? [
+                  <Link to='/umi/plugin/openapi' target='_blank'>
+                      <LinkOutlined />
+                      <span>OpenAPI 文档</span>
+                  </Link>,
+                  <Link to='/~docs'>
+                      <BookOutlined />
+                      <span>业务组件文档</span>
+                  </Link>,
+              ]
+            : [],
+        menuHeaderRender: undefined, // 菜单头部（图标 + Umi Menus 那个）
+        // 自定义 403 页面
+        // unAccessible: <div>unAccessible</div>, // access 没权限时（如 route 配置了 access canRead），显示的页面
+        // 增加一个 loading 的状态
+        childrenRender: (children, props) => {
+            // console.log('initialState', initialState);
+            // if (initialState?.loading) return <PageLoading />;
+
+            return (
+                <>
+                    {children}
+                    {/* {!props.location?.pathname?.includes('/login') && (
+                        <SettingDrawer
+                            enableDarkTheme
+                            settings={initialState?.settings}
+                            onSettingChange={settings => {
+                                setInitialState(preInitialState => ({
+                                    ...preInitialState,
+                                    settings,
+                                }));
+                            }}
+                        />
+                    )} */}
+                </>
+            );
+        },
+        ...initialState?.settings,
+    };
+};
