@@ -94,6 +94,7 @@ export const routes = [
         icon: 'formatPainter',
         title: '动态主题',
         locale: false,
+        // parentKeys: ['/welcome'], // 在匹配 /theme 高亮的同时，也让 /welcome 高亮
     },
     {
         path: '/',

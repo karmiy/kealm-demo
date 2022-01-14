@@ -150,3 +150,104 @@ export const routes = [
     }
 }
 ```
+
+### 如何做动态菜单
+
+可以尝试以下几种方式：
+
+- src/app.tsx 中 patchRoutes 动态添加路由
+
+```ts
+export function patchRoutes({ routes }: { routes: UmiNS.Route }) {
+    routes?.unshift({
+        path: '/login',
+        exact: true,
+        component: require('@/pages/xxx').default,
+    });
+}
+```
+
+- src/app.tsx 中 layout 配置 menu.request 动态请求并路由
+
+
+```ts
+export const layoutActionRef = createRef<{ reload: () => void }>();
+
+export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
+    return {
+        actionRef: layoutActionRef as any,
+        menu: {
+            // 每当 initialState?.currentUser?.userId 发生修改时重新执行 request
+            params: {
+                userId: initialState?.currentUser?.userId,
+            },
+            // params 对应上面
+            // defaultMenuData 即 .umirc.ts 里配置得 routes
+            request: async (params, defaultMenuData) => {
+                // 动态请求菜单
+                const menuData = await fetchMenuData();
+                return menuData;
+            },
+        },
+        ...
+    };
+};
+
+setTimeout(() => {
+    // 可手动的控制菜单刷新
+    layoutActionRef.current?.reload();
+}, 2000);
+```
+
+### 如何实现菜单项多处高亮
+
+```ts
+export default [
+    {
+        path: '/product',
+        hideInMenu: true,
+        name: '产品管理',
+    },
+    {
+        path: '/list/:id',
+        hideInMenu: true,
+        name: '列表详情',
+        parentKeys: ['/product'], // 可以在/list/:id路径的时候，也高亮 /product, parentKeys 中的 key 一般是路径，如果不方便设置为路径的话可以在 菜单配置中增加 key 属性，Layout 会优先使用配置的 Key 属性
+    },
+];
+```
+
+### 怎么定义多环境变量
+
+可以尝试以下几种：
+
+- .umirc 配置文件通过 define 定制
+
+```ts
+import { defineConfig } from 'umi';
+
+export default defineConfig({
+    define: {
+        // 添加这个自定义的环境变量
+        "process.env.LW_ENV": process.env.LW_ENV, // * 本地开发环境：dev，测试服：test，正式服：pro
+    },
+});
+```
+
+```ts
+// package.json 中 scripts
+{
+    "scripts": {
+        "start": "cross-env LW_ENV=dev umi dev",
+    },
+}
+```
+
+```ts
+// 代码中
+console.log(process.env.LW_ENV);
+```
+
+### 怎么定义多环境的配置文件
+
+[多环境多份配置](https://umijs.org/zh-CN/docs/config#%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%A4%9A%E4%BB%BD%E9%85%8D%E7%BD%AE)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 // import { IConfigFromPlugins } from '@@/core/pluginConfig';
 import { SettingDrawer } from '@ant-design/pro-layout';
@@ -10,12 +10,14 @@ import {
     Link,
     Location,
     Plugin,
+    RequestConfig,
     RunTimeLayoutConfig,
 } from 'umi';
+// console.log('entry app');
+import { Context, RequestOptionsInit } from 'umi-request';
 import { sleep } from '@/utils/base';
 import { getCurrentUser } from './services/user';
 import { Footer, RightContent } from './components';
-// console.log('entry app');
 
 const isDev = process.env.NODE_ENV === 'development';
 const LOGIN_PATH = '/login';
@@ -116,8 +118,11 @@ export async function getInitialState() {
     };
 }
 
+/* -------------------- BLOCK: layout 动态配置 -------------------- */
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 // 也可以看这边配置 https://umijs.org/zh-CN/plugins/plugin-layout
+export const layoutActionRef = createRef<{ reload: () => void }>();
+
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
     return {
         // title: '这是标题', // 定制 document.title
@@ -178,6 +183,65 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
                 </>
             );
         },
+        actionRef: layoutActionRef as React.MutableRefObject<{
+            reload: () => void;
+        }>,
+        menu: {
+            // 每当 initialState?.currentUser?.userId 发生修改时重新执行 request
+            params: {
+                userId: initialState?.currentUser?.userId,
+            },
+            // params 对应上面
+            // defaultMenuData 即 .umirc.ts 里配置得 routes
+            request: async (params, defaultMenuData) => {
+                console.log('menu.request');
+                // 动态请求菜单
+                /* const menuData = await fetchMenuData();
+                return menuData; */
+                return defaultMenuData;
+            },
+        },
         ...initialState?.settings,
     };
+};
+
+/* setTimeout(() => {
+    // 手动的控制菜单刷新
+    layoutActionRef.current?.reload();
+}, 2000); */
+
+/* -------------------- BLOCK: @umijs/plugin-request -------------------- */
+const middleware1 = async (ctx: Context, next: () => void) => {
+    console.log('request1');
+    await next();
+    console.log('response1');
+};
+
+const middleware2 = async (ctx: Context, next: () => void) => {
+    console.log('request2');
+    await next();
+    console.log('response2');
+};
+
+const authHeaderInterceptor = (url: string, options: RequestOptionsInit) => {
+    const authHeader = { Authorization: 'Bearer xxxxxx' };
+    return {
+        url: `${url}`,
+        options: { ...options, interceptors: true, headers: authHeader },
+    };
+};
+
+const demoResponseInterceptors = (response: Response, options: RequestOptionsInit) => {
+    response.headers.append('interceptors', 'yes yo');
+    return response;
+};
+
+export const request: RequestConfig = {
+    // 中间件：做网络请求前后的增强处理
+    // 走洋葱模式，执行顺序：request1 -> request2 -> response -> response2 -> response1
+    // middlewares: [middleware1, middleware2],
+    // 请求拦截器，通常用于请求带上 token
+    // requestInterceptors: [authHeaderInterceptor],
+    // 响应拦截器
+    // responseInterceptors: [demoResponseInterceptors],
 };
