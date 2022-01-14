@@ -30,10 +30,16 @@ practice the following items:
 
 - css in js
 
+- tailwind
+
 - cli
 
 - webpack
 
 - vite
 
+- koa
+
 - nginx
+
+- umi
