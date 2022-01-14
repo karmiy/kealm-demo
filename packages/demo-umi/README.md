@@ -125,3 +125,28 @@ export const routes = [
     },
 ];
 ```
+
+### 如何在 CSS Module 中定义全局样式
+
+```scss
+/* example.scss */
+.title {
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+/* 定义全局样式 */
+:global(.text) {
+    font-size: 16px;
+}
+
+/* 定义多个全局样式 */
+:global {
+    .footer {
+        color: #ccc;
+    }
+    .slider {
+        background: #ebebeb;
+    }
+}
+```

@@ -39,4 +39,7 @@ export default defineConfig({
     // default zh-CN
     default: 'zh-CN',
   },
+  theme: {
+    'root-entry-name': 'variable',
+  },
 });

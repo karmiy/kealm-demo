@@ -1,6 +1,7 @@
 import React from 'react';
-// import { IConfigFromPlugins } from '@@/core/pluginConfig';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
+// import { IConfigFromPlugins } from '@@/core/pluginConfig';
+import { SettingDrawer } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
 import {
     History,
@@ -14,7 +15,6 @@ import {
 import { sleep } from '@/utils/base';
 import { getCurrentUser } from './services/user';
 import { Footer, RightContent } from './components';
-
 // console.log('entry app');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -47,7 +47,6 @@ export function patchRoutes({ routes }: { routes: UmiNS.Route }) {
 }
 
 /* -------------------- BLOCK: 路由变化监听 -------------------- */
-// 初始也会执行
 export function onRouteChange({
     location,
     routes,
@@ -87,6 +86,7 @@ export const initialStateConfig = {
     loading: <PageLoading />,
 };
 
+// 初始化时会执行
 export async function getInitialState() {
     // 会阻塞页面渲染，且在懒加载路由 js 文件前
     // await sleep(2000);
@@ -160,18 +160,21 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
             return (
                 <>
                     {children}
-                    {/* {!props.location?.pathname?.includes('/login') && (
+                    {props.location?.pathname?.includes('/theme') && (
                         <SettingDrawer
                             enableDarkTheme
                             settings={initialState?.settings}
                             onSettingChange={settings => {
-                                setInitialState(preInitialState => ({
-                                    ...preInitialState,
-                                    settings,
-                                }));
+                                setInitialState(
+                                    preInitialState =>
+                                        ({
+                                            ...preInitialState,
+                                            settings,
+                                        } as any),
+                                );
                             }}
                         />
-                    )} */}
+                    )}
                 </>
             );
         },

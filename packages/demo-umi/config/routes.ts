@@ -64,20 +64,36 @@ export const routes = [
     },
     {
         path: '/admin',
-        name: '管理页', // 左侧 menus 对应项的名称
+        name: '管理页',
         component: '@/pages/admin',
         icon: 'crown',
         title: '管理页',
         access: 'canRead', // 只有 access.ts 里的该 key 通过才能打开页面，否则会用 Layout 插件内置的错误页面
-        locale: false, // 不走国际化
+        locale: false,
     },
     {
         path: '/model',
-        name: '状态管理', // 左侧 menus 对应项的名称
+        name: '状态管理',
         component: '@/pages/model',
         icon: 'sync',
         title: '状态管理',
-        locale: false, // 不走国际化
+        locale: false,
+    },
+    {
+        path: '/personal-center',
+        name: '个人中心',
+        component: '@/pages/personal-center',
+        icon: 'user',
+        title: '个人中心',
+        locale: false,
+    },
+    {
+        path: '/theme',
+        name: '动态主题',
+        component: '@/pages/theme',
+        icon: 'formatPainter',
+        title: '动态主题',
+        locale: false,
     },
     {
         path: '/',

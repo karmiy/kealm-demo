@@ -50,6 +50,7 @@ declare namespace ApiNS {
         avatar: string;
         userId: string;
         email: string;
+        age: number;
         signature: string;
         title: string;
         group: string;
@@ -60,6 +61,7 @@ declare namespace ApiNS {
         access: string;
         address: string;
         phone: string;
+        introduction?: string;
     }
 
     interface LoginParams {
