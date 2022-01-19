@@ -22,13 +22,22 @@ function destroy() {
   app?.unmount();
 }
 
-type Props = Record<string, unknown>;
+type Props = Record<string, any>;
 
 export async function bootstrap(props?: Props): Promise<void> {
-  console.log("bootstrap", props);
+  console.log("micro vue bootstrap", props);
 }
 export async function mount(props?: Props): Promise<void> {
   render(props);
+
+  // 第二个参数 true 即立即执行
+  props?.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
+    // console.log('micro vue onGlobalStateChange', state, prev);
+  }, true);
+
+  /* props?.setGlobalState({
+    theme: 'dark',
+  }); */
 }
 export async function unmount(props?: Props): Promise<void> {
   destroy();
