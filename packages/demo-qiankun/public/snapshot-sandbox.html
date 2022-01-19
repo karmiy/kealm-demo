@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class SnapshotSandbox {
+            constructor() {
+                this.proxy = window;
+                this.modifyPropsMap = {}; // 记录 window 上修改
+                this.active();
+            }
+
+            // 拍照记录当前 window
+            // 如果之前有记录过修改的，就打补丁
+            active() {
+                this.windowSnapshot = {}; // 拍照
+
+                for(const prop in window) {
+                    if (window.hasOwnProperty(prop)) {
+                        this.windowSnapshot[prop] = window[prop];
+                    }
+                }
+                
+                Object.keys(this.modifyPropsMap).forEach(prop => {
+                    window[prop] = this.modifyPropsMap[prop];
+                });
+            }
+
+            inactive() {
+                for(const prop in window) {
+                    if (window.hasOwnProperty(prop) && window[prop] !== this.windowSnapshot[prop]) {
+                        this.modifyPropsMap[prop] = window[prop]; // 记录修改的
+                        window[prop] = this.windowSnapshot[prop]; // 还原
+                    }
+                }
+            }
+        }
+
+        const sandbox = new SnapshotSandbox();
+
+        ((window) => {
+            window.a = 1;
+            window.b = 2;
+
+            console.log(window.a, window.b);
+            sandbox.inactive();
+            console.log(window.a, window.b);
+            sandbox.active();
+            console.log(window.a, window.b);
+        })(sandbox.proxy);
+    </script>
+</body>
+</html>

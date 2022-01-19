@@ -43,3 +43,7 @@ practice the following items:
 - nginx
 
 - umi
+
+- single-spa
+
+- qiankun

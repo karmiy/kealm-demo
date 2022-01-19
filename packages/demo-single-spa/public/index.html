@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="#/app1">app1</a>
+    <a href="#/app2">app2</a>
+    <script src="https://cdn.jsdelivr.net/npm/single-spa@5.9.3/lib/umd/single-spa.min.js"></script>
+    <script>
+        const { registerApplication, start } = singleSpa;
+
+        const app1 = {
+            // 数组表示可多个，也可是一个函数
+            bootstrap: [
+                async (customProps) => {
+                    console.log('app1 bootstrap');
+                },
+            ],
+            mount: async (customProps) => {
+                console.log('app1 mount');
+            },
+            unmount: async (customProps) => {
+                console.log('app1 unmount');
+            },
+        };
+
+        const app2 = {
+            bootstrap: [
+                async () => {
+                    console.log('app2 bootstrap');
+                },
+            ],
+            mount: async () => {
+                console.log('app2 mount');
+            },
+            unmount: async () => {
+                console.log('app2 unmount');
+            },
+        };
+
+        const customProps = {
+            id: '001',
+        };
+
+        /* registerApplication({
+            name: 'app1',
+            loadApp,
+            activeWhen,
+            customProps,
+        }); */
+
+        registerApplication(
+            'app1',
+            async () => app1, // System.import
+            location => location.hash === '#/app1',
+            customProps,
+        );
+
+        registerApplication(
+            'app2',
+            async () => app2,
+            location => location.hash === '#/app2',
+            customProps,
+        );
+
+        start();
+    </script>
+</body>
+</html>
