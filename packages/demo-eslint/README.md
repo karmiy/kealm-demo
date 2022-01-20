@@ -34,3 +34,15 @@ eslint ./ --ext .js --ext .jsx
 // --fix 自动修复
 eslint ./ --ext .jsx --fix
 ```
+
+## 常见问题
+
+### VSCode 打开的工作目录为项目父文件夹时，eslint 报错 Cannot find module eslint-plugin-xxx
+
+配置 VScode 的 setting.json
+
+```json
+{
+    "eslint.workingDirectories": [{ "mode": "auto" }],
+}
+```
