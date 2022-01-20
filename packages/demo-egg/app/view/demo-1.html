@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo-1</title>
+    <link rel="stylesheet" href="/public/default.css">
+</head>
+<body>
+    <% include header.html %>
+    <p>user id: <%= id %></p>
+    <p>user name: <%= name %></p>
+    <p>user tags:</p>
+    <ul>
+        <% for(var i = 0; i < tags.length; i++) { %>
+            <li><%= tags[i] %></li>
+        <% } %>
+    </ul>
+    <button onclick="addCookie()">Add Cookie</button>
+    <button onclick="addSession()">Add Session</button>
+    <script>
+        function addCookie() {
+            fetch('/cookie/add', {
+                method: 'post',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+            });
+        }
+
+        function addSession() {
+            fetch('/session/add', {
+                method: 'post',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+            });
+        }
+    </script>
+</body>
+</html>

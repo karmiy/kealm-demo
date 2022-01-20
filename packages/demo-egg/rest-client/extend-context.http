@@ -1,0 +1,8 @@
+POST http://127.0.0.1:7001/extend/context
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "karmiy",
+    "age": 18
+}
