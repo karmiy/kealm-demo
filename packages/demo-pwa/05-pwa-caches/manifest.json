@@ -1,0 +1,15 @@
+{
+    "name": "渐进式 Web 应用程序",
+    "short_name": "PWA App",
+    "start_url": "./index.html",
+    "icons": [
+        {
+            "src": "./images/home-screen.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "background_color": "yellowgreen",
+    "theme_color": "#1394ff",
+    "display": "standalone"
+}

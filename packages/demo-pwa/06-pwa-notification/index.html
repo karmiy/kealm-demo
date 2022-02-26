@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="manifest" href="./manifest.json">
+
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="default"> -->
+    <!-- <meta name="apple-mobile-web-app-title" content="图书搜索"> -->
+    <!-- <link rel="apple-touch-icon" href="./images/home-screen.png"> -->
+    
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <!-- 需要在 https 或 http:localhost -->
+    <!-- npm run dev 用 http-server 启动 -->
+    <!-- 或 vscode 插件 Live Server 启动 -->
+    <h1>PWA...!!!</h1>
+    <script>
+        // 在 onload 事件注册，防止与其他资源竞争
+        // localhost 访问，否则 navigator 上无 serviceWorker 对象
+        window.addEventListener('load', async () => {
+            if (!('serviceWorker' in navigator)) return;
+
+            try {
+                const registration = await navigator.serviceWorker.register('./sw.js');
+            } catch (error) {
+                console.log('注册失败', error);
+            }
+        });
+
+        // 一进来用户没网，给用户通知
+        if (Notification.permission === 'default') {
+            Notification.requestPermission();
+        }
+        if (!navigator.onLine) {
+            new Notification('这是提示', { body: '当前无网络，您访问的是缓存' });
+        }
+
+        // online 事件，连上网络时触发
+        // offline 事件，断网触发
+        window.addEventListener('online', (e) => {
+            new Notification('这是提示', { body: '有网络了，请刷新页面' });
+        });
+    </script>
+</body>
+</html>

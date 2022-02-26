@@ -47,3 +47,5 @@ practice the following items:
 - single-spa
 
 - qiankun
+
+- pwa

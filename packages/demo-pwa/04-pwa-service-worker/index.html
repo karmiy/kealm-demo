@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="manifest" href="./manifest.json">
+
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="default"> -->
+    <!-- <meta name="apple-mobile-web-app-title" content="图书搜索"> -->
+    <!-- <link rel="apple-touch-icon" href="./images/home-screen.png"> -->
+</head>
+<body>
+    <!-- 需要在 https 或 http:localhost -->
+    <!-- npm run dev 用 http-server 启动 -->
+    <!-- 或 vscode 插件 Live Server 启动 -->
+    <h1>PWA...!!!</h1>
+    <script>
+        // 在 onload 事件注册，防止与其他资源竞争
+        // localhost 访问，否则 navigator 上无 serviceWorker 对象
+        window.addEventListener('load', () => {
+            if (!('serviceWorker' in navigator)) return;
+
+            navigator.serviceWorker.register('./sw.js')
+            .then(registration => {
+                console.log(registration);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        });
+    </script>
+</body>
+</html>

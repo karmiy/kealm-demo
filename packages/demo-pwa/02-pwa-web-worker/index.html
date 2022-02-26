@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log('start');
+
+        // web worker 不支持文件夹路径打开
+        // 需要起服务器，如 http-server、vscode 的 live server
+        const worker = new Worker('./worker.js');
+        worker.addEventListener('message', e => {
+            console.log('total', e.data.total);
+        });
+        console.log('end');
+    </script>
+</body>
+</html>
