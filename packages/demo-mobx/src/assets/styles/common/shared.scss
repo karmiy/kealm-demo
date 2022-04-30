@@ -1,0 +1,110 @@
+@import './var';
+@import '../mixins/utils';
+
+/* 水平对齐 */
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+
+/* 垂直对齐 */
+.align-baseline {
+    vertical-align: baseline;
+}
+.align-top {
+    vertical-align: top;
+}
+.align-middle {
+    vertical-align: middle;
+}
+.align-bottom {
+    vertical-align: bottom;
+}
+.align-text-top {
+    vertical-align: text-top;
+}
+.align-text-bottom {
+    vertical-align: text-bottom;
+}
+
+/* flex 水平对齐 */
+.flex-center {
+    justify-content: center;
+}
+.flex-left {
+    justify-content: flex-start;
+}
+.flex-right {
+    justify-content: flex-end;
+}
+
+/* 滚动条 */
+.scroll-bar-s {
+    @include scroll-bar(8px);
+}
+
+.scroll-bar-m {
+    @include scroll-bar(10px);
+}
+
+/* 隐藏式滚动条 */
+.scroll-hidden {
+    @include scroll-bar(0);
+}
+
+// -------------------- THEME: 共享主题色样式 --------------------
+// 蓝
+.s-color-blue-a { color: $color-blue-a }
+.s-color-blue-b { color: $color-blue-b }
+
+// 黄
+.s-color-yellow-a { color: $color-yellow-a }
+.s-color-yellow-b { color: $color-yellow-b }
+.s-color-yellow-c { color: $color-yellow-c }
+
+// 红
+.s-color-red-a { color: $color-red-a }
+.s-color-red-b { color: $color-red-b }
+
+// 绿
+.s-color-green-a { color: $color-green-a }
+.s-color-green-b { color: $color-green-b }
+
+// 橙
+.s-color-orange-a { color: $color-orange-a }
+
+// 紫
+.s-color-purple-a { color: $color-purple-a }
+
+// 中立色
+.s-color-black-1 { color: $color-black-1 }
+.s-color-black-2 { color: $color-black-2 }
+.s-color-black-3 { color: $color-black-3 }
+.s-color-black-4 { color: $color-black-4 }
+.s-color-black-5 { color: $color-black-5 }
+.s-color-black-6 { color: $color-black-6 }
+.s-color-black-7 { color: $color-black-7 }
+.s-color-black-8 { color: $color-black-8 }
+.s-color-black-9 { color: $color-black-9 }
+.s-color-black-10 { color: $color-black-10 }
+.s-color-black-11 { color: $color-black-11 }
+.s-color-black-12 { color: $color-black-12 }
+.s-color-black-13 { color: $color-black-13 }
+.s-color-black-14 { color: $color-black-14 }
+
+// general-color
+.s-color-primary { color: $color-primary }
+.s-color-regular { color: $color-regular }
+
+// text-color
+.s-text-color-primary { color: $text-color-primary }
+.s-text-color-regular { color: $text-color-regular }
+.s-text-color-secondary { color: $text-color-secondary }
+
+// border-color
+.s-border-color-primary { color: $border-color-primary }

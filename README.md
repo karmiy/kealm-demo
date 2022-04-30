@@ -49,3 +49,5 @@ practice the following items:
 - qiankun
 
 - pwa
+
+- mobx
