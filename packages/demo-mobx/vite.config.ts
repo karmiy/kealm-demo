@@ -31,6 +31,7 @@ export default defineConfig({
             '@router': resolve(__dirname, 'src/router'),
             '@shared': resolve(__dirname, 'src/shared'),
             '@store': resolve(__dirname, 'src/store'),
+            '@utils': resolve(__dirname, 'src/utils'),
         },
     },
     server: {
