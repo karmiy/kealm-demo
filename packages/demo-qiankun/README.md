@@ -1,3 +1,5 @@
+![logo](../../shared/static/imgs/logo-kealm.png)
+
 # 项目启动
 
 ```shell

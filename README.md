@@ -51,3 +51,5 @@ practice the following items:
 - pwa
 
 - mobx
+
+- demo-electron-react
