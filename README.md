@@ -53,3 +53,5 @@ practice the following items:
 - mobx
 
 - demo-electron-react
+
+- langchain
