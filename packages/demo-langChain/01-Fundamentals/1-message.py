@@ -5,6 +5,10 @@ from langchain_core.messages import (
     ToolMessage,
     FunctionMessage,
 )
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from base.llm import llm
 
 # SystemMessage、AIMessage... 等也可以理解成 langChain 内置的 prompt template
