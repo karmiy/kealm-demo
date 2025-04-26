@@ -15,19 +15,22 @@ pip install -r requirements.txt
 ## Learning Path
 
 ### 01-Fundamentals
+
 - [x] Message Types (SystemMessage, HumanMessage, AIMessage, etc.)
 - [x] Prompt Templates - Basic prompt formatting
 - [x] Chat Prompt Templates - Chat-specific prompt formatting
 - [x] Chain Calling - Understanding the chain calling mechanism
 
 ### 02-Advanced
+
 - [x] Output Parsers - Structured outputs from LLMs
-- [ ] Chains - Combining components for complex operations
+- [x] Chains - Combining components for complex operations
 - [ ] Memory - Managing conversation history and context
 - [ ] RAG (Retrieval Augmented Generation) - Enhancing responses with external knowledge
 - [ ] Tools - Enabling LLMs to use external tools and APIs
 
 ### 03-Applications
+
 - [ ] Agents - Creating intelligent agents that choose tools on demand
 - [ ] RetrievalQA - Building Q&A systems
 - [ ] Document Loaders - Processing different document formats
@@ -35,6 +38,7 @@ pip install -r requirements.txt
 - [ ] Evaluation - Assessing LLM application performance
 
 ### 04-Projects
+
 - [ ] Simple Chatbot (utilizing Memory and basic components)
 - [ ] Document Q&A System (utilizing RAG and RetrievalQA)
 - [ ] Multi-functional Assistant (utilizing Agents and Tools)
