@@ -167,7 +167,7 @@ def demo3_list_parser():
 
 if __name__ == "__main__":
     # 用户可以选择运行特定的 demo
-    # python3 ./02-Advanced/1-outputParsers.py --demo 1
+    # python3/python ./02-Advanced/1-outputParsers.py --demo 1
     import argparse
 
     parser = argparse.ArgumentParser(description="运行 LangChain OutputParser 示例")
