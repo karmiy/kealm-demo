@@ -26,8 +26,8 @@ pip install -r requirements.txt
 - [x] Output Parsers - Structured outputs from LLMs
 - [x] Chains - Combining components for complex operations
 - [x] Memory - Managing conversation history and context
+- [x] Tools - Enabling LLMs to use external tools and APIs
 - [ ] RAG (Retrieval Augmented Generation) - Enhancing responses with external knowledge
-- [ ] Tools - Enabling LLMs to use external tools and APIs
 
 ### 03-Applications
 
