@@ -26,11 +26,11 @@ def check_dependencies():
     """检查所需依赖是否安装"""
     missing_deps = []
 
-    # 检查sentence_transformers
+    # 检查 sentence_transformers
     if importlib.util.find_spec("sentence_transformers") is None:
         missing_deps.append("sentence-transformers")
 
-    # 检查faiss
+    # 检查 faiss
     if importlib.util.find_spec("faiss") is None:
         missing_deps.append("faiss-cpu")
 
@@ -41,7 +41,7 @@ def check_dependencies():
     return True
 
 
-# 如果依赖检查通过，导入HuggingFaceEmbeddings
+# 如果依赖检查通过，导入 HuggingFaceEmbeddings
 if check_dependencies():
     from langchain_community.embeddings import HuggingFaceEmbeddings
 else:
@@ -62,7 +62,7 @@ def create_knowledge_base():
     kb_content = """
 # 人工智能简介
 
-人工智能（Artificial Intelligence，简称AI）是计算机科学的一个分支，它致力于研究和开发能够模拟人类智能行为的系统。
+人工智能（Artificial Intelligence，简称 AI）是计算机科学的一个分支，它致力于研究和开发能够模拟人类智能行为的系统。
 
 ## 人工智能的主要分支
 
@@ -74,7 +74,7 @@ def create_knowledge_base():
 2. **深度学习（Deep Learning）**：使用神经网络的机器学习子集，特别是具有多层（"深"）神经网络。
    - 卷积神经网络（CNN）：主要用于图像识别
    - 循环神经网络（RNN）：用于序列数据，如文本和语音
-   - 变换器（Transformer）：用于自然语言处理，是GPT等大型语言模型的基础
+   - 变换器（Transformer）：用于自然语言处理，是 GPT 等大型语言模型的基础
 
 3. **自然语言处理（NLP）**：使计算机能够理解、解释和生成人类语言。
    - 情感分析：确定文本中表达的情感
@@ -90,11 +90,11 @@ def create_knowledge_base():
 - **规模大**：通常有数十亿到数万亿参数
 - **上下文理解**：能够理解长文本中的上下文
 - **少样本学习**：能够通过少量示例学习新任务
-- **通用性**：可用于多种NLP任务
+- **通用性**：可用于多种 NLP 任务
 
 ### 知名的 LLM 模型
 
-1. **GPT系列（OpenAI）**：包括GPT-3、GPT-4等
+1. **GPT 系列（OpenAI）**：包括 GPT-3、GPT-4 等
 2. **LLaMA（Meta）**：开源大型语言模型
 3. **Claude（Anthropic）**：强调安全对齐的助手
 4. **文心一言（百度）**：中文大型语言模型
@@ -127,7 +127,9 @@ def create_rag_system(knowledge_file):
 
     # 2.2 文档分割
     text_splitter = RecursiveCharacterTextSplitter(
+        # 每个文本块的最大字符数为 500。如果一个段落超过 500 个字符，它会被分割成更小的块
         chunk_size=500,
+        # 相邻文本块之间的重叠字符数为 100。重叠是为了保持上下文的连贯性，确保分割的文本块之间不会丢失关键信息
         chunk_overlap=100,
         separators=["\n## ", "\n### ", "\n#### ", "\n", " ", ""],
     )
@@ -135,18 +137,23 @@ def create_rag_system(knowledge_file):
     print(f"文档已分割为 {len(chunks)} 个块")
 
     # 2.3 创建向量存储
-    print("初始化本地嵌入模型，首次运行可能需要下载模型（约100MB）...")
+    print("初始化本地嵌入模型，首次运行可能需要下载模型（约 100MB）...")
 
-    # 使用HuggingFace的sentence-transformers模型
-    # all-MiniLM-L6-v2是一个轻量级模型，效果较好且资源需求低
+    # 使用 HuggingFace 的 sentence-transformers 模型
+    # 是个专门用于生成文本嵌入向量的本地模型，不是大语言模型 LLM，是用于输出数值向量的嵌入模型 Embedding Model，不需要 api key
+    # all-MiniLM-L6-v2 是一个轻量级模型，效果较好且资源需求低
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2",
         model_kwargs={"device": "cpu"},
     )
     print("嵌入模型初始化成功")
 
-    # 使用FAISS作为向量存储，它是一个高效的相似性搜索库
+    # 使用 FAISS 作为向量存储，它是一个高效的相似性搜索库
+    # 可以理解为向量数据库，向量索引库，专门存储和检索高维向量数据
     vector_store = FAISS.from_documents(chunks, embeddings)
+    # k: 3 表示每次查询时返回最相似的 3 个文档块
+    # k 值太小（如 1）：提供给LLM的上下文信息可能不足
+    # k 值太大（如 10+）：可能引入无关信息，干扰LLM的回答，又消耗 token
     retriever = vector_store.as_retriever(search_kwargs={"k": 3})
     print("向量存储和检索器已创建")
 
@@ -169,6 +176,10 @@ def create_rag_system(knowledge_file):
         return "\n\n".join(doc.page_content for doc in docs)
 
     rag_chain = (
+        # 创建 { context: xxx, question: xxx } 的字典
+        # retriever 将 rag_chain.invoke 的内容转向量，FAISS 索引中搜索最相似的 3 个文档块
+        # format_docs 函数将这些文档块合并为单个字符串
+        # RunnablePassthrough 将输入原样传递给输出，不做任何修改。确保原始问题不变地传递到提示模板中，同时允许其他字段（如 "context"）被其他处理步骤修改。它是创建数据流管道时常用的工具
         {"context": retriever | format_docs, "question": RunnablePassthrough()}
         | prompt
         | llm
@@ -196,7 +207,7 @@ def run_rag_demo():
             "什么是大型语言模型？",
             "深度学习和机器学习有什么区别？",
             "人工智能在医疗领域有哪些应用？",
-            "GPT和LLaMA有什么不同？",
+            "GPT 和 LLaMA 有什么不同？",
             "什么是强化学习？",
         ]
 
@@ -215,7 +226,7 @@ def run_rag_demo():
 
         # 交互模式
         print("\n" + "*" * 50)
-        print("交互模式: 你可以向 RAG 系统提问，输入'exit'退出")
+        print("交互模式: 你可以向 RAG 系统提问，输入 'exit' 退出")
         print("*" * 50)
 
         while True:
@@ -231,7 +242,7 @@ def run_rag_demo():
                 print(f"处理问题时出错: {str(e)}")
 
     except Exception as e:
-        print(f"创建RAG系统时出错: {str(e)}")
+        print(f"创建 RAG 系统时出错: {str(e)}")
 
     finally:
         # 清理创建的临时文件
@@ -279,7 +290,7 @@ def compare_rag_vs_llm():
         print("*" * 50)
 
     except Exception as e:
-        print(f"创建RAG系统时出错: {str(e)}")
+        print(f"创建 RAG 系统时出错: {str(e)}")
 
     finally:
         # 清理创建的临时文件

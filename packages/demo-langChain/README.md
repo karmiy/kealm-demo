@@ -27,7 +27,7 @@ pip install -r requirements.txt
 - [x] Chains - Combining components for complex operations
 - [x] Memory - Managing conversation history and context
 - [x] Tools - Enabling LLMs to use external tools and APIs
-- [ ] RAG (Retrieval Augmented Generation) - Enhancing responses with external knowledge
+- [x] RAG (Retrieval Augmented Generation) - Enhancing responses with external knowledge
 
 ### 03-Applications
 
