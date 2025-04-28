@@ -27,5 +27,5 @@ print("*" * 50)
 # <class 'langchain_core.prompt_values.StringPromptValue'> text='你好，你能帮我总结一下LangChain有哪些核心功能吗？'
 # 这是 PromptValue 对象，具体是 StringPromptValue 类的实例，也就是说是个对象，并不是字符串
 result = prompt.invoke({"topic": "LangChain"})
-print(type(result), result)
+print(type(result), result, result.to_string())
 print("*" * 50)
