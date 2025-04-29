@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 - [x] Agents - Creating intelligent agents that choose tools on demand
 - [x] RetrievalQA - Building Q&A systems
-- [ ] Document Loaders - Processing different document formats
+- [x] Document Loaders - Processing different document formats
 - [ ] Vector Stores - Efficiently storing and retrieving vector representations
 - [ ] Evaluation - Assessing LLM application performance
 
