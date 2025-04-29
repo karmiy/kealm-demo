@@ -6,6 +6,11 @@ RAG (Retrieval Augmented Generation) 实现示例
 2. 向量化和存储
 3. 检索相关内容
 4. 将检索到的内容与 LLM 结合生成回答
+
+核心概念：
+1. 从外部知识库检索相关信息
+2. 将这些信息与用户查询一起提供给 LLM
+3. 让 LLM 基于这些信息生成回答
 """
 
 import os
