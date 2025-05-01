@@ -1,0 +1,76 @@
+@startuml SimpleChatbotWorkflow
+
+'设置样式
+!theme plain
+skinparam handwritten false
+skinparam backgroundColor white
+skinparam componentStyle rectangle
+
+'标题
+title Simple Chatbot - High Level Architecture
+
+'定义组件
+package "Frontend (React)" {
+  [ChatInterface] as UI
+  note right of UI
+    - 消息输入框
+    - 聊天历史显示
+    - 消息状态指示器
+    - 聊天会话管理
+    - 响应式设计
+  end note
+}
+
+package "Backend (Python+LangChain)" {
+  [ConversationManager] as Manager
+  [KnowledgeRetriever] as RAG
+  [Agent] as Agent
+}
+
+cloud "LLM Service" {
+  [LanguageModel] as LLM
+}
+
+'定义交互关系
+UI --> Manager : 1. 发送用户消息
+Manager --> Agent : 2. 处理查询
+Agent --> RAG : 3. 检索知识
+Agent --> LLM : 4. 请求补全
+LLM --> Agent : 5. 返回响应
+RAG --> Agent : 6. 返回搜索结果
+Agent --> Manager : 7. 提供答案
+Manager --> UI : 8. 显示答案
+
+'业务流程说明
+note right of Manager
+  - 使用提示模板格式化用户输入
+  - 维护对话历史记录
+  - 处理会话上下文
+end note
+
+note right of Agent 
+  - 分析用户意图
+  - 决定是否使用工具
+  - 使用OutputParser解析结构化数据
+  - 调用外部API或服务
+end note
+
+note right of RAG
+  - 基于向量搜索提供相关信息
+  - 从文档中提取信息
+  - 减少幻觉，提高回答质量
+end note
+
+'工作流程图例
+legend left
+  工作流程:
+  1. 用户在React前端输入问题
+  2. ConversationManager处理输入并维护会话状态
+  3. Agent分析意图并决定行动路径
+  4. Agent可能通过RAG系统检索知识
+  5. Agent向LLM请求生成响应
+  6. Agent基于上下文和LLM输出生成最终答案
+  7. ConversationManager更新历史并发送到前端
+end legend
+
+@enduml

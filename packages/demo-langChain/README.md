@@ -38,6 +38,4 @@ pip install -r requirements.txt
 
 ### 04-Projects
 
-- [ ] Simple Chatbot (utilizing Memory and basic components)
-- [ ] Document Q&A System (utilizing RAG and RetrievalQA)
-- [ ] Multi-functional Assistant (utilizing Agents and Tools)
+- [ ] Conversation Chatbot
