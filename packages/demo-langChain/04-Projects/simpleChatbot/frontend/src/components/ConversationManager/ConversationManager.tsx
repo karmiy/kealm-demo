@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Layout, Menu, Button, Modal, Input, Typography, Divider } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Layout, Menu, Button, Modal, Input, Typography, Divider, message } from 'antd';
 import { PlusOutlined, MessageOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import ChatInterface from '../ChatInterface';
 import './ConversationManager.css';
+import { apiService, Session } from '../../services/api';
 
 const { Sider } = Layout;
 const { Text, Title } = Typography;
@@ -12,22 +13,14 @@ interface Conversation {
   id: string;
   title: string;
   createdAt: Date;
-  updatedAt: Date;
 }
 
 const ConversationManager: React.FC = () => {
   // 会话列表状态
-  const [conversations, setConversations] = useState<Conversation[]>([
-    {
-      id: '1',
-      title: '新对话',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ]);
+  const [conversations, setConversations] = useState<Conversation[]>([]);
   
   // 当前选中的会话ID
-  const [selectedConversationId, setSelectedConversationId] = useState<string>('1');
+  const [selectedConversationId, setSelectedConversationId] = useState<string>('');
   
   // 侧边栏折叠状态
   const [collapsed, setCollapsed] = useState(false);
@@ -37,6 +30,39 @@ const ConversationManager: React.FC = () => {
   const [modalMode, setModalMode] = useState<'create' | 'edit'>('create');
   const [modalInput, setModalInput] = useState('');
   const [editingConversationId, setEditingConversationId] = useState<string | null>(null);
+  
+  // 加载状态
+  const [loading, setLoading] = useState(false);
+
+  // 初始加载会话列表
+  useEffect(() => {
+    fetchSessions();
+  }, []);
+
+  // 获取会话列表
+  const fetchSessions = async () => {
+    setLoading(true);
+    try {
+      const response = await apiService.listSessions();
+      const fetchedConversations = response.sessions.map((session: Session) => ({
+        id: session.session_id,
+        title: session.title,
+        createdAt: new Date(session.created_at),
+      }));
+      
+      setConversations(fetchedConversations);
+      
+      // 如果有会话，选择第一个，否则不选择任何会话
+      if (fetchedConversations.length > 0 && !selectedConversationId) {
+        setSelectedConversationId(fetchedConversations[0].id);
+      }
+    } catch (error) {
+      console.error('Failed to fetch sessions:', error);
+      message.error('获取会话列表失败');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // 创建新会话
   const handleCreateConversation = () => {
@@ -63,61 +89,72 @@ const ConversationManager: React.FC = () => {
       okText: '删除',
       okType: 'danger',
       cancelText: '取消',
-      onOk: () => {
-        const updatedConversations = conversations.filter(conv => conv.id !== id);
-        setConversations(updatedConversations);
-        
-        // 如果删除的是当前选中的会话，则选择第一个会话或创建新会话
-        if (id === selectedConversationId) {
-          if (updatedConversations.length > 0) {
-            setSelectedConversationId(updatedConversations[0].id);
-          } else {
-            const newConversation = createNewConversation();
-            setConversations([newConversation]);
-            setSelectedConversationId(newConversation.id);
+      onOk: async () => {
+        try {
+          await apiService.deleteSession(id);
+          const updatedConversations = conversations.filter(conv => conv.id !== id);
+          setConversations(updatedConversations);
+          
+          // 如果删除的是当前选中的会话，则选择第一个会话或不选择任何会话
+          if (id === selectedConversationId) {
+            if (updatedConversations.length > 0) {
+              setSelectedConversationId(updatedConversations[0].id);
+            } else {
+              setSelectedConversationId('');
+            }
           }
+          
+          message.success('会话已删除');
+        } catch (error) {
+          console.error('Failed to delete session:', error);
+          message.error('删除会话失败');
         }
       },
     });
   };
 
   // 处理模态框确认
-  const handleModalOk = () => {
+  const handleModalOk = async () => {
     if (!modalInput.trim()) {
       return;
     }
 
-    if (modalMode === 'create') {
-      const newConversation = createNewConversation(modalInput);
-      setConversations([newConversation, ...conversations]);
-      setSelectedConversationId(newConversation.id);
-    } else if (modalMode === 'edit' && editingConversationId) {
-      setConversations(
-        conversations.map(conv =>
-          conv.id === editingConversationId
-            ? { ...conv, title: modalInput, updatedAt: new Date() }
-            : conv
-        )
-      );
-    }
+    try {
+      if (modalMode === 'create') {
+        // 创建新会话
+        const response = await apiService.createSession();
+        const newSessionId = response.session_id;
+        const newConversation: Conversation = {
+          id: newSessionId,
+          title: modalInput,
+          createdAt: new Date(),
+        };
+        
+        setConversations([newConversation, ...conversations]);
+        setSelectedConversationId(newConversation.id);
+        message.success('新会话已创建');
+      } else if (modalMode === 'edit' && editingConversationId) {
+        // 编辑会话标题功能API暂未支持，这里只在前端修改
+        setConversations(
+          conversations.map(conv =>
+            conv.id === editingConversationId
+              ? { ...conv, title: modalInput }
+              : conv
+          )
+        );
+        message.success('会话标题已更新');
+      }
 
-    setIsModalVisible(false);
+      setIsModalVisible(false);
+    } catch (error) {
+      console.error('Failed to process conversation:', error);
+      message.error(modalMode === 'create' ? '创建会话失败' : '更新会话标题失败');
+    }
   };
 
   // 处理模态框取消
   const handleModalCancel = () => {
     setIsModalVisible(false);
-  };
-
-  // 创建新会话对象
-  const createNewConversation = (title = '新对话'): Conversation => {
-    const now = new Date();
-    return {
-      id: Date.now().toString(),
-      title,
-      createdAt: now,
-      updatedAt: now,
-    };
   };
 
   // 切换会话
@@ -196,7 +233,7 @@ const ConversationManager: React.FC = () => {
       </Sider>
       
       <Layout className="chat-layout">
-        <ChatInterface />
+        <ChatInterface sessionId={selectedConversationId} />
       </Layout>
       
       <Modal

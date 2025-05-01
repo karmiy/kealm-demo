@@ -1,6 +1,6 @@
 # 简易聊天机器人后端
 
-基于LangChain和FastAPI构建的聊天机器人后端，支持知识检索增强和多轮对话。
+基于 LangChain 和 FastAPI 构建的聊天机器人后端，支持知识检索增强和多轮对话。
 
 ## 项目结构
 
@@ -19,19 +19,19 @@ backend/
 ├── knowledge/             # 知识检索模块
 │   └── retriever.py       # 知识检索器实现
 │
-├── api.py                 # API接口实现
+├── api.py                 # API 接口实现
 ├── main.py                # 应用入口
 └── README.md              # 说明文档
 ```
 
 ## 功能特性
 
-- 基于LangChain的智能代理，能够处理复杂查询
-- 支持RAG (检索增强生成) 模式，可以从文档中检索相关信息
-- 使用FAISS作为高效向量存储，无需安装额外的C++编译工具
+- 基于 LangChain 的智能代理，能够处理复杂查询
+- 支持 RAG (检索增强生成) 模式，可以从文档中检索相关信息
+- 使用 FAISS 作为高效向量存储，无需安装额外的 C++ 编译工具
 - 多会话管理，支持同时处理多个独立对话
 - 支持对话历史记录持久化
-- RESTful API接口，便于与前端集成
+- RESTful API 接口，便于与前端集成
 
 ## 依赖项
 
@@ -55,7 +55,7 @@ pip install -r requirements.txt
 
 ### 2. 配置环境变量
 
-在项目根目录创建`.env`文件，添加以下内容：
+在项目根目录创建 `.env` 文件，添加以下内容：
 
 ```
 api_key=your_api_key_here
@@ -80,23 +80,23 @@ python main.py
 ### 聊天接口
 
 `POST /chat`
-- 请求体: `{"session_id": "可选的会话ID", "message": "用户消息"}`
-- 响应: `{"session_id": "会话ID", "response": "AI回复", "timestamp": "时间戳"}`
+- 请求体: `{"session_id": "可选的会话 ID", "message": "用户消息"}`
+- 响应: `{"session_id": "会话 ID", "response": "AI 回复", "timestamp": "时间戳"}`
 
 ### 会话管理
 
 `POST /sessions/create`
-- 响应: `{"session_id": "新创建的会话ID"}`
+- 响应: `{"session_id": "新创建的会话 ID"}`
 
 `GET /sessions/list`
 - 响应: `{"sessions": [会话列表]}`
 
 `POST /sessions/delete`
-- 请求体: `{"session_id": "要删除的会话ID"}`
+- 请求体: `{"session_id": "要删除的会话 ID"}`
 - 响应: `{"success": true, "message": "删除成功消息"}`
 
 `GET /sessions/{session_id}/history`
-- 响应: `{"session_id": "会话ID", "history": [历史消息列表]}`
+- 响应: `{"session_id": "会话 ID", "history": [历史消息列表]}`
 
 ### 系统状态
 
@@ -129,4 +129,4 @@ def _create_tools(self) -> List[Tool]:
 
 ### 修改系统提示
 
-可以在 `config/settings.py` 中修改 `SYSTEM_PROMPT` 变量来自定义AI助手的行为风格。 
+可以在 `config/settings.py` 中修改 `SYSTEM_PROMPT` 变量来自定义 AI 助手的行为风格。 

@@ -1,137 +1,119 @@
+import axios from 'axios';
+
 // API基础URL，可以根据不同环境配置
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
 
-// 发送聊天消息接口
-export interface ChatRequest {
+// 创建axios实例
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// 消息请求接口
+export interface MessageRequest {
+  session_id?: string;
   message: string;
-  conversation_id?: string;
 }
 
-export interface ChatResponse {
+// 消息响应接口
+export interface MessageResponse {
   response: string;
-  conversation_id: string;
+  session_id: string;
+  timestamp: string;
+  sources?: string[];
 }
 
-// 获取会话列表接口
-export interface Conversation {
-  id: string;
-  title: string;
+// 会话接口
+export interface Session {
+  session_id: string;
   created_at: string;
-  updated_at: string;
+  title: string;
+}
+
+// 历史记录消息接口
+export interface HistoryMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: string;
 }
 
 // API服务类
 class ApiService {
   // 发送聊天消息
-  async sendMessage(request: ChatRequest): Promise<ChatResponse> {
+  async sendMessage(request: MessageRequest): Promise<MessageResponse> {
     try {
-      const response = await fetch(`${API_BASE_URL}/chat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(request),
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      
-      return await response.json();
+      const response = await api.post('/chat', request);
+      return response.data;
     } catch (error) {
       console.error('Error sending message:', error);
       throw error;
     }
   }
 
-  // 获取会话列表
-  async getConversations(): Promise<Conversation[]> {
-    try {
-      const response = await fetch(`${API_BASE_URL}/conversations`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      
-      return await response.json();
-    } catch (error) {
-      console.error('Error fetching conversations:', error);
-      throw error;
-    }
-  }
-
   // 创建新会话
-  async createConversation(title: string): Promise<Conversation> {
+  async createSession(): Promise<{ session_id: string }> {
     try {
-      const response = await fetch(`${API_BASE_URL}/conversations`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ title }),
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      
-      return await response.json();
+      const response = await api.post('/sessions/create');
+      return response.data;
     } catch (error) {
-      console.error('Error creating conversation:', error);
+      console.error('Error creating session:', error);
       throw error;
     }
   }
 
-  // 更新会话标题
-  async updateConversation(id: string, title: string): Promise<Conversation> {
+  // 获取会话列表
+  async listSessions(): Promise<{ sessions: Session[] }> {
     try {
-      const response = await fetch(`${API_BASE_URL}/conversations/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ title }),
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      
-      return await response.json();
+      const response = await api.get('/sessions/list');
+      return response.data;
     } catch (error) {
-      console.error('Error updating conversation:', error);
+      console.error('Error fetching sessions:', error);
       throw error;
     }
   }
 
   // 删除会话
-  async deleteConversation(id: string): Promise<void> {
+  async deleteSession(session_id: string): Promise<{ success: boolean; message: string }> {
     try {
-      const response = await fetch(`${API_BASE_URL}/conversations/${id}`, {
-        method: 'DELETE',
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      const response = await api.post('/sessions/delete', { session_id });
+      return response.data;
     } catch (error) {
-      console.error('Error deleting conversation:', error);
+      console.error('Error deleting session:', error);
       throw error;
     }
   }
 
-  // 获取会话历史消息
-  async getConversationHistory(conversationId: string): Promise<any[]> {
+  // 获取会话历史记录
+  async getSessionHistory(session_id: string): Promise<{ session_id: string; history: HistoryMessage[] }> {
     try {
-      const response = await fetch(`${API_BASE_URL}/conversations/${conversationId}/history`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      
-      return await response.json();
+      const response = await api.get(`/sessions/${session_id}/history`);
+      return response.data;
     } catch (error) {
-      console.error('Error fetching conversation history:', error);
+      console.error('Error fetching session history:', error);
+      throw error;
+    }
+  }
+
+  // 健康检查
+  async healthCheck(): Promise<{ status: string; components: Record<string, string> }> {
+    try {
+      const response = await api.get('/health');
+      return response.data;
+    } catch (error) {
+      console.error('Error checking health:', error);
+      throw error;
+    }
+  }
+
+  // 根状态检查
+  async rootCheck(): Promise<{ message: string }> {
+    try {
+      const response = await api.get('/');
+      return response.data;
+    } catch (error) {
+      console.error('Error checking root:', error);
       throw error;
     }
   }

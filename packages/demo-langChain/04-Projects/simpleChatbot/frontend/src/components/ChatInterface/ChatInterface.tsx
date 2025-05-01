@@ -1,11 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Input, Button, List, Avatar, Spin, Divider, Typography, Card, Layout } from 'antd';
+import { Input, Button, List, Avatar, Spin, Divider, Typography, Card, Layout, message } from 'antd';
 import { SendOutlined, UserOutlined, RobotOutlined } from '@ant-design/icons';
 import './ChatInterface.css';
+import { apiService, MessageResponse, HistoryMessage } from '../../services/api';
 
 const { Content } = Layout;
 const { Text } = Typography;
 const { TextArea } = Input;
+
+// 组件Props接口
+interface ChatInterfaceProps {
+  sessionId: string;
+}
 
 // 消息类型定义
 interface Message {
@@ -14,18 +20,12 @@ interface Message {
   sender: 'user' | 'bot';
   timestamp: Date;
   isLoading?: boolean;
+  sources?: string[];
 }
 
-const ChatInterface: React.FC = () => {
+const ChatInterface: React.FC<ChatInterfaceProps> = ({ sessionId }) => {
   // 消息列表状态
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      content: '你好！我是基于LangChain的AI助手，有什么可以帮到你的吗？',
-      sender: 'bot',
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   
   // 输入框状态
   const [inputValue, setInputValue] = useState('');
@@ -36,6 +36,68 @@ const ChatInterface: React.FC = () => {
   // 聊天区域的引用，用于自动滚动
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // 当会话ID变化时获取历史消息
+  useEffect(() => {
+    if (sessionId) {
+      fetchSessionHistory(sessionId);
+    } else {
+      // 如果没有会话ID，清空消息列表，显示欢迎消息
+      setMessages([
+        {
+          id: '1',
+          content: '你好！我是基于LangChain的AI助手，请创建或选择一个会话开始聊天。',
+          sender: 'bot',
+          timestamp: new Date(),
+        },
+      ]);
+    }
+  }, [sessionId]);
+
+  // 获取会话历史记录
+  const fetchSessionHistory = async (sessionId: string) => {
+    setIsLoading(true);
+    try {
+      const response = await apiService.getSessionHistory(sessionId);
+      
+      if (response && response.history) {
+        // 将API返回的历史记录转换为本地消息格式
+        const historyMessages: Message[] = response.history.map((msg: HistoryMessage, index: number) => ({
+          id: `history-${index}`,
+          content: msg.content,
+          sender: msg.role === 'user' ? 'user' : 'bot',
+          timestamp: new Date(msg.timestamp),
+        }));
+        
+        // 如果没有历史记录，添加欢迎消息
+        if (historyMessages.length === 0) {
+          historyMessages.push({
+            id: 'welcome',
+            content: '你好！我是基于LangChain的AI助手，有什么可以帮到你的吗？',
+            sender: 'bot',
+            timestamp: new Date(),
+          });
+        }
+        
+        setMessages(historyMessages);
+      }
+    } catch (error) {
+      console.error('Failed to fetch session history:', error);
+      message.error('获取历史记录失败');
+      
+      // 出错时显示默认欢迎消息
+      setMessages([
+        {
+          id: 'error-fallback',
+          content: '你好！我是基于LangChain的AI助手，有什么可以帮到你的吗？',
+          sender: 'bot',
+          timestamp: new Date(),
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // 处理输入变化
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
@@ -43,7 +105,7 @@ const ChatInterface: React.FC = () => {
 
   // 处理消息发送
   const handleSendMessage = async () => {
-    if (!inputValue.trim()) return;
+    if (!inputValue.trim() || !sessionId) return;
     
     // 生成新消息ID
     const newId = Date.now().toString();
@@ -75,18 +137,22 @@ const ChatInterface: React.FC = () => {
     setMessages(prev => [...prev, botLoadingMessage]);
     
     try {
-      // 这里将来会替换为实际的API调用
-      // 模拟API调用延迟
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // 模拟机器人回复
-      const botResponse = "这是一个模拟回复。在实际项目中，这里会调用后端API获取LLM的响应。";
+      // 调用API发送消息
+      const response = await apiService.sendMessage({
+        session_id: sessionId,
+        message: userMessage.content
+      });
       
       // 更新机器人回复消息
       setMessages(prev => 
         prev.map(msg => 
           msg.id === `${newId}-response` 
-            ? { ...msg, content: botResponse, isLoading: false } 
+            ? { 
+                ...msg, 
+                content: response.response, 
+                isLoading: false,
+                sources: response.sources || [],
+              } 
             : msg
         )
       );
@@ -100,6 +166,7 @@ const ChatInterface: React.FC = () => {
         )
       );
       console.error('Error sending message:', error);
+      message.error('发送消息失败');
     } finally {
       setIsLoading(false);
     }
@@ -117,6 +184,26 @@ const ChatInterface: React.FC = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // 渲染源引用
+  const renderSources = (sources?: string[]) => {
+    if (!sources || sources.length === 0) return null;
+    
+    return (
+      <div className="message-sources">
+        <Divider orientation="left">参考资料</Divider>
+        <ul>
+          {sources.map((source, index) => (
+            <li key={index}>
+              <Text type="secondary" ellipsis={{ tooltip: source }}>
+                {source}
+              </Text>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
 
   return (
     <Layout className="chat-interface">
@@ -147,7 +234,10 @@ const ChatInterface: React.FC = () => {
                         {message.isLoading ? (
                           <Spin size="small" />
                         ) : (
-                          <div className="message-content">{message.content}</div>
+                          <>
+                            <div className="message-content">{message.content}</div>
+                            {renderSources(message.sources)}
+                          </>
                         )}
                         <div className="message-timestamp">
                           <Text 
@@ -171,9 +261,9 @@ const ChatInterface: React.FC = () => {
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
-              placeholder="输入您的问题..."
+              placeholder={sessionId ? "输入您的问题..." : "请先创建或选择一个会话"}
               autoSize={{ minRows: 1, maxRows: 4 }}
-              disabled={isLoading}
+              disabled={isLoading || !sessionId}
               className="message-input"
             />
             <Button
@@ -181,7 +271,7 @@ const ChatInterface: React.FC = () => {
               shape="circle"
               icon={<SendOutlined />}
               onClick={handleSendMessage}
-              disabled={!inputValue.trim() || isLoading}
+              disabled={!inputValue.trim() || isLoading || !sessionId}
             />
           </div>
         </Card>
