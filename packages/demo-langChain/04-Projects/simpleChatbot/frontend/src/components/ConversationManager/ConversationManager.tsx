@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Button, Modal, Input, Typography, Divider, message } from 'antd';
+import { Layout, Menu, Button, Modal, Input, Typography, Divider, message, MenuProps } from 'antd';
 import { PlusOutlined, MessageOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import ChatInterface from '../ChatInterface';
 import './ConversationManager.css';
@@ -158,7 +158,8 @@ const ConversationManager: React.FC = () => {
   };
 
   // 切换会话
-  const handleSelectConversation = (id: string) => {
+  const handleSelectConversation: MenuProps['onClick'] = (e) => {
+    const id = e.key;
     setSelectedConversationId(id);
   };
 
@@ -199,10 +200,39 @@ const ConversationManager: React.FC = () => {
           mode="inline"
           selectedKeys={[selectedConversationId]}
           className="conversation-menu"
+          onClick={handleSelectConversation}
+          items={conversations.map((conversation, idx) => {
+            return {
+              key: conversation.id ?? idx,
+              label: (
+                <div className="conversation-item-content">
+                  <div className="conversation-title">{conversation.title}</div>
+                  <div className="conversation-actions">
+                    <Button
+                      type="text"
+                      icon={<EditOutlined />}
+                      size="small"
+                      onClick={(e) => handleEditConversation(conversation.id, conversation.title, e)}
+                      className="action-button"
+                    />
+                    <Button
+                      type="text"
+                      icon={<DeleteOutlined />}
+                      size="small"
+                      danger
+                      onClick={(e) => handleDeleteConversation(conversation.id, e)}
+                      className="action-button"
+                    />
+                  </div>
+                </div>
+              ),
+              icon: <MessageOutlined />,
+            }
+          })}
         >
-          {conversations.map(conversation => (
+          {/* {conversations.map((conversation, idx) => (
             <Menu.Item 
-              key={conversation.id}
+              key={conversation.id ?? idx}
               icon={<MessageOutlined />}
               onClick={() => handleSelectConversation(conversation.id)}
               className="conversation-menu-item"
@@ -228,7 +258,7 @@ const ConversationManager: React.FC = () => {
                 </div>
               </div>
             </Menu.Item>
-          ))}
+          ))} */}
         </Menu>
       </Sider>
       

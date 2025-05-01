@@ -49,6 +49,36 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ sessionId }) => {
           sender: 'bot',
           timestamp: new Date(),
         },
+        {
+          id: '2',
+          content: '你号',
+          sender: 'user',
+          timestamp: new Date(),
+        },
+        {
+          id: '3',
+          content: '你好！我是基于LangChain的AI助手，请创建或选择一个会话开始聊天。',
+          sender: 'bot',
+          timestamp: new Date(),
+        },
+        {
+          id: '4',
+          content: '你号',
+          sender: 'user',
+          timestamp: new Date(),
+        },
+        {
+          id: '5',
+          content: '你好！我是基于LangChain的AI助手，请创建或选择一个会话开始聊天。',
+          sender: 'bot',
+          timestamp: new Date(),
+        },
+        {
+          id: '6',
+          content: '你号',
+          sender: 'user',
+          timestamp: new Date(),
+        },
       ]);
     }
   }, [sessionId]);
@@ -208,7 +238,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ sessionId }) => {
   return (
     <Layout className="chat-interface">
       <Content className="chat-container">
-        <Card className="chat-card" bordered={false}>
+        <Card className="chat-card" variant='borderless'>
           <div className="chat-header">
             <Typography.Title level={4}>LangChain 智能助手</Typography.Title>
             <Divider />
