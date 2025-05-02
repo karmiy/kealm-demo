@@ -117,13 +117,14 @@ const ConversationManager: React.FC = () => {
   // 处理模态框确认
   const handleModalOk = async () => {
     if (!modalInput.trim()) {
+      message.warning('会话标题不能为空');
       return;
     }
 
     try {
       if (modalMode === 'create') {
         // 创建新会话
-        const response = await apiService.createSession();
+        const response = await apiService.createSession(modalInput);
         const newSessionId = response.session_id;
         const newConversation: Conversation = {
           id: newSessionId,
@@ -132,7 +133,7 @@ const ConversationManager: React.FC = () => {
         };
         
         setConversations([newConversation, ...conversations]);
-        setSelectedConversationId(newConversation.id);
+        setSelectedConversationId(newSessionId);
         message.success('新会话已创建');
       } else if (modalMode === 'edit' && editingConversationId) {
         // 编辑会话标题功能API暂未支持，这里只在前端修改

@@ -88,7 +88,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ sessionId }) => {
       setMessages([
         {
           id: 'error-fallback',
-          content: '你好！我是基于LangChain的AI助手，有什么可以帮到你的吗？',
+          content: '你好！我是基于 LangChain 的 AI 助手，有什么可以帮到你的吗？',
           sender: 'bot',
           timestamp: new Date(),
         },

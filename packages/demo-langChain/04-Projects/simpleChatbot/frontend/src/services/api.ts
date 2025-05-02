@@ -53,9 +53,9 @@ class ApiService {
   }
 
   // 创建新会话
-  async createSession(): Promise<{ session_id: string }> {
+  async createSession(title?: string): Promise<{ session_id: string }> {
     try {
-      const response = await api.post('/sessions/create');
+      const response = await api.post('/sessions/create', { title });
       return response.data;
     } catch (error) {
       console.error('Error creating session:', error);

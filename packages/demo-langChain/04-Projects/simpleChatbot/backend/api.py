@@ -55,6 +55,12 @@ class SessionRequest(BaseModel):
     session_id: str
 
 
+class CreateSessionRequest(BaseModel):
+    """创建会话请求模型"""
+
+    title: Optional[str] = "新会话"
+
+
 # 初始化组件
 knowledge_retriever = KnowledgeRetriever()
 chat_agent = ChatAgent(knowledge_retriever=knowledge_retriever)
@@ -89,15 +95,21 @@ async def chat(request: MessageRequest):
 
 
 @app.post("/sessions/create")
-async def create_session():
+async def create_session(request: CreateSessionRequest = None):
     """
     创建新的聊天会话
+
+    Args:
+        request: 可选的请求体，包含会话标题
 
     Returns:
         新创建的会话ID
     """
     try:
-        session_id = conversation_manager.create_session()
+        title = "新会话"
+        if request and request.title:
+            title = request.title
+        session_id = conversation_manager.create_session(title=title)
         return {"session_id": session_id}
     except Exception as e:
         logger.error(f"创建会话时出错: {str(e)}")

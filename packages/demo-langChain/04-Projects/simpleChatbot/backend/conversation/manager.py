@@ -35,9 +35,12 @@ class ConversationManager:
         self.chat_agent = chat_agent
         self.active_sessions = {}  # 存储活跃会话，格式: {session_id: session_data}
 
-    def create_session(self) -> str:
+    def create_session(self, title: str = "新会话") -> str:
         """
         创建新的对话会话
+
+        Args:
+            title: 会话标题，默认为"新会话"
 
         Returns:
             新会话的ID
@@ -45,6 +48,7 @@ class ConversationManager:
         session_id = str(uuid.uuid4())
         self.active_sessions[session_id] = {
             "id": session_id,
+            "title": title,
             "created_at": datetime.now().isoformat(),
             "last_activity": datetime.now().isoformat(),
             "history": [],
@@ -66,20 +70,27 @@ class ConversationManager:
 
     def list_sessions(self) -> List[Dict[str, Any]]:
         """
-        获取所有活跃会话的简要信息
+        获取所有活跃会话的简要信息，按照创建时间倒序排列（最新创建的排在前面）
 
         Returns:
             会话信息列表
         """
-        return [
+        # 构建会话列表
+        sessions = [
             {
-                "id": session_id,
+                "session_id": session_id,
+                "title": session_data.get("title", "新会话"),
                 "created_at": session_data["created_at"],
                 "last_activity": session_data["last_activity"],
                 "message_count": len(session_data["history"]),
             }
             for session_id, session_data in self.active_sessions.items()
         ]
+
+        # 按创建时间倒序排序，最新的会话排在最前面
+        sessions.sort(key=lambda x: x["created_at"], reverse=True)
+
+        return sessions
 
     def delete_session(self, session_id: str) -> bool:
         """
