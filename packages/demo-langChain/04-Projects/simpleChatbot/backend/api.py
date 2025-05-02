@@ -75,7 +75,8 @@ class UpdateSessionTitleRequest(BaseModel):
 
 
 # 初始化组件
-knowledge_retriever = KnowledgeRetriever()
+docs_path = os.path.join(backend_dir, "docs/pokemon")
+knowledge_retriever = KnowledgeRetriever(documents_dir=docs_path)
 chat_agent = ChatAgent(knowledge_retriever=knowledge_retriever)
 conversation_manager = ConversationManager(chat_agent=chat_agent)
 
