@@ -108,6 +108,23 @@ class ConversationManager:
             return True
         return False
 
+    def update_session_title(self, session_id: str, new_title: str) -> bool:
+        """
+        更新会话标题
+
+        Args:
+            session_id: 会话ID
+            new_title: 新的会话标题
+
+        Returns:
+            操作是否成功
+        """
+        if session_id in self.active_sessions:
+            self.active_sessions[session_id]["title"] = new_title
+            logger.info(f"更新会话标题: {session_id}, 新标题: {new_title}")
+            return True
+        return False
+
     def process_message(self, session_id: str, user_message: str) -> Dict[str, Any]:
         """
         处理用户消息

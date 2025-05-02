@@ -61,6 +61,13 @@ class CreateSessionRequest(BaseModel):
     title: Optional[str] = "新会话"
 
 
+class UpdateSessionTitleRequest(BaseModel):
+    """更新会话标题请求模型"""
+
+    session_id: str
+    title: str
+
+
 # 初始化组件
 knowledge_retriever = KnowledgeRetriever()
 chat_agent = ChatAgent(knowledge_retriever=knowledge_retriever)
@@ -155,6 +162,33 @@ async def delete_session(request: SessionRequest):
     except Exception as e:
         logger.error(f"删除会话时出错: {str(e)}")
         raise HTTPException(status_code=500, detail=f"删除会话失败: {str(e)}")
+
+
+@app.post("/sessions/update-title")
+async def update_session_title(request: UpdateSessionTitleRequest):
+    """
+    更新会话标题
+
+    Args:
+        request: 包含会话ID和新标题的请求
+
+    Returns:
+        操作结果
+    """
+    try:
+        success = conversation_manager.update_session_title(
+            request.session_id, request.title
+        )
+        if not success:
+            raise HTTPException(
+                status_code=404, detail=f"会话 {request.session_id} 不存在"
+            )
+        return {"success": True, "message": f"会话 {request.session_id} 标题已更新"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"更新会话标题时出错: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"更新会话标题失败: {str(e)}")
 
 
 @app.get("/sessions/{session_id}/history")

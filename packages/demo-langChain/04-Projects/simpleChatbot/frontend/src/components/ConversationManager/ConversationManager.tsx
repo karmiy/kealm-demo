@@ -136,7 +136,10 @@ const ConversationManager: React.FC = () => {
         setSelectedConversationId(newSessionId);
         message.success('新会话已创建');
       } else if (modalMode === 'edit' && editingConversationId) {
-        // 编辑会话标题功能API暂未支持，这里只在前端修改
+        // 调用后端API更新会话标题
+        await apiService.updateSessionTitle(editingConversationId, modalInput);
+        
+        // 更新前端状态
         setConversations(
           conversations.map(conv =>
             conv.id === editingConversationId

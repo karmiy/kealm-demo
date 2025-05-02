@@ -85,6 +85,17 @@ class ApiService {
     }
   }
 
+  // 更新会话标题
+  async updateSessionTitle(session_id: string, title: string): Promise<{ success: boolean; message: string }> {
+    try {
+      const response = await api.post('/sessions/update-title', { session_id, title });
+      return response.data;
+    } catch (error) {
+      console.error('Error updating session title:', error);
+      throw error;
+    }
+  }
+
   // 获取会话历史记录
   async getSessionHistory(session_id: string): Promise<{ session_id: string; history: HistoryMessage[] }> {
     try {
