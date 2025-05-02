@@ -6,6 +6,8 @@
 import sys
 import os
 import logging
+import random
+from datetime import datetime
 from typing import List, Dict, Any, Optional, Tuple
 
 # 导入 LangChain 相关组件
@@ -76,6 +78,57 @@ class ChatAgent:
             )
 
             tools.append(knowledge_tool)
+
+        # 添加查询天气工具
+        def get_weather(location: str) -> str:
+            """
+            获取指定位置的天气信息（模拟数据）。
+            当用户询问天气相关问题时使用此工具。
+            """
+            weather_types = [
+                "晴天",
+                "多云",
+                "阴天",
+                "小雨",
+                "大雨",
+                "雷阵雨",
+                "小雪",
+                "大雪",
+            ]
+            temperature = random.randint(0, 35)
+            humidity = random.randint(30, 95)
+            weather = random.choice(weather_types)
+
+            return f"{location}的天气：{weather}，温度：{temperature}°C，湿度：{humidity}%。请注意，这是模拟数据，仅供参考。如需准确天气信息，请查询专业天气预报。"
+
+        weather_tool = Tool.from_function(
+            func=get_weather,
+            name="查询天气",
+            description="当用户询问某地天气情况时，使用此工具获取天气信息（模拟数据）",
+        )
+
+        tools.append(weather_tool)
+
+        # 添加查询当前时间工具
+        def get_current_time(query: str = "") -> str:
+            """
+            获取当前系统时间。
+            当用户询问当前时间、日期等信息时使用此工具。
+
+            Args:
+                query: 可选的查询参数，对结果没有影响
+            """
+            now = datetime.now()
+            formatted_time = now.strftime("%Y年%m月%d日 %H:%M:%S")
+            return f"当前时间是：{formatted_time}"
+
+        time_tool = Tool.from_function(
+            func=get_current_time,
+            name="查询时间",
+            description="当用户询问当前时间、日期或相关时间信息时，使用此工具获取系统当前时间",
+        )
+
+        tools.append(time_tool)
 
         # 在这里可以添加更多工具
 
