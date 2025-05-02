@@ -43,7 +43,7 @@ class ConversationManager:
             title: 会话标题，默认为"新会话"
 
         Returns:
-            新会话的ID
+            新会话的 ID
         """
         session_id = str(uuid.uuid4())
         self.active_sessions[session_id] = {
@@ -61,10 +61,10 @@ class ConversationManager:
         获取会话信息
 
         Args:
-            session_id: 会话ID
+            session_id: 会话 ID
 
         Returns:
-            会话数据，如果不存在则返回None
+            会话数据，如果不存在则返回 None
         """
         return self.active_sessions.get(session_id)
 
@@ -97,7 +97,7 @@ class ConversationManager:
         删除会话
 
         Args:
-            session_id: 会话ID
+            session_id: 会话 ID
 
         Returns:
             操作是否成功
@@ -113,7 +113,7 @@ class ConversationManager:
         更新会话标题
 
         Args:
-            session_id: 会话ID
+            session_id: 会话 ID
             new_title: 新的会话标题
 
         Returns:
@@ -130,7 +130,7 @@ class ConversationManager:
         处理用户消息
 
         Args:
-            session_id: 会话ID
+            session_id: 会话 ID
             user_message: 用户消息内容
 
         Returns:
@@ -153,7 +153,7 @@ class ConversationManager:
         # 限制历史记录长度
         if (
             len(updated_history) > MAX_HISTORY_LENGTH * 2
-        ):  # 乘以2是因为每次对话有用户和助手两条消息
+        ):  # 乘以 2 是因为每次对话有用户和助手两条消息
             self.active_sessions[session_id]["history"] = updated_history[
                 -MAX_HISTORY_LENGTH * 2 :
             ]
@@ -169,7 +169,7 @@ class ConversationManager:
         获取会话历史记录
 
         Args:
-            session_id: 会话ID
+            session_id: 会话 ID
 
         Returns:
             历史记录列表

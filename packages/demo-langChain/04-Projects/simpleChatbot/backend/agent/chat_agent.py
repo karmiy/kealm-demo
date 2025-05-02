@@ -1,6 +1,6 @@
 """
 聊天智能代理模块
-负责分析用户意图、决定使用工具，以及调用LLM生成回答
+负责分析用户意图、决定使用工具，以及调用 LLM 生成回答
 """
 
 import sys
@@ -8,7 +8,7 @@ import os
 import logging
 from typing import List, Dict, Any, Optional, Tuple
 
-# 导入LangChain相关组件
+# 导入 LangChain 相关组件
 from langchain.agents import AgentExecutor, create_openai_functions_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import Tool
@@ -68,7 +68,7 @@ class ChatAgent:
                     return "未找到相关信息。"
                 return context
 
-            # 创建工具 - 修复方法：显式提供name和description参数
+            # 创建工具 - 修复方法：显式提供 name 和 description 参数
             knowledge_tool = Tool.from_function(
                 func=search_knowledge,
                 name="搜索知识库",
@@ -98,10 +98,10 @@ class ChatAgent:
             ]
         )
 
-        # 创建OpenAI Functions Agent
+        # 创建 OpenAI Functions Agent
         agent = create_openai_functions_agent(llm, self.tools, prompt)
 
-        # 创建Agent执行器
+        # 创建 Agent 执行器
         agent_executor = AgentExecutor(
             agent=agent,
             tools=self.tools,
@@ -124,7 +124,7 @@ class ChatAgent:
         Returns:
             生成的回答和更新后的对话历史
         """
-        # 将对话历史转换为LangChain消息格式
+        # 将对话历史转换为 LangChain 消息格式
         messages = []
         if chat_history:
             for msg in chat_history:

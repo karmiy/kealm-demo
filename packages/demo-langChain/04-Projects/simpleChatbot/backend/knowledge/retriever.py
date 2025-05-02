@@ -97,7 +97,7 @@ class KnowledgeRetriever:
         创建或加载向量存储
 
         Args:
-            documents: 要索引的文档，如果为None则尝试加载现有的向量库
+            documents: 要索引的文档，如果为 None 则尝试加载现有的向量库
 
         Returns:
             是否成功

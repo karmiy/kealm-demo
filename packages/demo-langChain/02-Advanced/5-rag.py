@@ -131,6 +131,11 @@ def create_rag_system(knowledge_file):
     documents = TextLoader(knowledge_file, encoding="utf-8").load()
 
     # 2.2 文档分割
+    # 目的：
+    # 1、优化语义检索：较小的文本块能更精确地匹配用户查询，避免检索到大量不相关内容的整篇文档
+    # 2、控制上下文窗口：LLM 模型有上下文长度限制，分割确保检索到的内容不会超出模型处理能力
+    # 3、提高相关性：细粒度的块允许系统只提取与查询最相关的部分，增强语义匹配效果，减少噪音
+    # 4、向量表示更准确：较短文本的向量嵌入通常能更好地捕捉语义，而长文档嵌入会"平均化"语义，降低特异性
     text_splitter = RecursiveCharacterTextSplitter(
         # 每个文本块的最大字符数为 500。如果一个段落超过 500 个字符，它会被分割成更小的块
         chunk_size=500,

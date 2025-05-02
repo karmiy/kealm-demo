@@ -16,15 +16,16 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    """应用主函数，启动API服务"""
+    """应用主函数，启动 API 服务"""
     logger.info("正在启动聊天机器人后端服务...")
 
-    # 使用uvicorn启动服务
+    # 使用 uvicorn 启动服务
+    # 运行 api.py 文件中名为 app 的 FastAPI 应用实例
     uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
 
 
 if __name__ == "__main__":
-    # 确保当前目录在Python路径中
+    # 确保当前目录在 Python 路径中
     current_dir = os.path.dirname(os.path.abspath(__file__))
     if current_dir not in sys.path:
         sys.path.insert(0, current_dir)  # 将当前目录添加到路径最前面

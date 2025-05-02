@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # 加载环境变量
 load_dotenv()
 
-# API设置
+# API 设置
 API_KEY = os.getenv("api_key")
 BASE_URL = os.getenv("base_url")
 MODEL_NAME = "qwen-plus"  # 使用通义千问大模型

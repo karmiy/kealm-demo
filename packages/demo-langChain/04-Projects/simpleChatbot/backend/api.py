@@ -1,5 +1,5 @@
 """
-API接口模块
+API 接口模块
 提供与前端交互的接口
 """
 
@@ -28,10 +28,11 @@ from config.settings import MAX_HISTORY_LENGTH
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# 创建FastAPI应用
-app = FastAPI(title="简易聊天机器人API", description="基于LangChain的聊天机器人后端")
+# 创建 FastAPI 应用
+# 构建 API 的现代、快速（高性能）的 Python Web 服务器
+app = FastAPI(title="简易聊天机器人 API", description="基于 LangChain 的聊天机器人后端")
 
-# 配置CORS
+# 配置 CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # 允许所有来源，实际生产环境中应该限制
@@ -41,7 +42,12 @@ app.add_middleware(
 )
 
 
-# 请求模型
+# 定义的请求数据模型类
+# 在 FastAPI 作用：
+# 1、请求体验证是否是有效的 JSON
+# 2、类型转换
+# 3、自动生成 API 文档
+# 4、类型提示
 class MessageRequest(BaseModel):
     """消息请求模型"""
 
@@ -76,8 +82,8 @@ conversation_manager = ConversationManager(chat_agent=chat_agent)
 
 @app.get("/")
 async def root():
-    """API根路径"""
-    return {"message": "聊天机器人API已成功运行"}
+    """API 根路径"""
+    return {"message": "聊天机器人 API 已成功运行"}
 
 
 @app.post("/chat")
@@ -86,10 +92,10 @@ async def chat(request: MessageRequest):
     处理聊天请求
 
     Args:
-        request: 包含会话ID和用户消息的请求
+        request: 包含会话 ID 和用户消息的请求
 
     Returns:
-        AI助手的回复
+        AI 助手的回复
     """
     try:
         result = conversation_manager.process_message(
@@ -110,7 +116,7 @@ async def create_session(request: CreateSessionRequest = None):
         request: 可选的请求体，包含会话标题
 
     Returns:
-        新创建的会话ID
+        新创建的会话 ID
     """
     try:
         title = "新会话"
@@ -145,7 +151,7 @@ async def delete_session(request: SessionRequest):
     删除指定会话
 
     Args:
-        request: 包含会话ID的请求
+        request: 包含会话 ID 的请求
 
     Returns:
         操作结果
@@ -170,7 +176,7 @@ async def update_session_title(request: UpdateSessionTitleRequest):
     更新会话标题
 
     Args:
-        request: 包含会话ID和新标题的请求
+        request: 包含会话 ID 和新标题的请求
 
     Returns:
         操作结果
@@ -197,7 +203,7 @@ async def get_history(session_id: str):
     获取指定会话的历史记录
 
     Args:
-        session_id: 会话ID
+        session_id: 会话 ID
 
     Returns:
         会话历史记录
@@ -216,7 +222,7 @@ async def health_check():
     健康检查接口
 
     Returns:
-        API状态信息
+        API 状态信息
     """
     return {
         "status": "healthy",
