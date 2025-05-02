@@ -45,38 +45,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ sessionId }) => {
       setMessages([
         {
           id: '1',
-          content: '你好！我是基于LangChain的AI助手，请创建或选择一个会话开始聊天。',
+          content: '你好！我是基于 LangChain 的 AI 助手，请创建或选择一个会话开始聊天。',
           sender: 'bot',
-          timestamp: new Date(),
-        },
-        {
-          id: '2',
-          content: '你号',
-          sender: 'user',
-          timestamp: new Date(),
-        },
-        {
-          id: '3',
-          content: '你好！我是基于LangChain的AI助手，请创建或选择一个会话开始聊天。',
-          sender: 'bot',
-          timestamp: new Date(),
-        },
-        {
-          id: '4',
-          content: '你号',
-          sender: 'user',
-          timestamp: new Date(),
-        },
-        {
-          id: '5',
-          content: '你好！我是基于LangChain的AI助手，请创建或选择一个会话开始聊天。',
-          sender: 'bot',
-          timestamp: new Date(),
-        },
-        {
-          id: '6',
-          content: '你号',
-          sender: 'user',
           timestamp: new Date(),
         },
       ]);

@@ -37,6 +37,7 @@ const ConversationManager: React.FC = () => {
   // 初始加载会话列表
   useEffect(() => {
     fetchSessions();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // 获取会话列表
